@@ -548,6 +548,16 @@ body:not(.culm-shock-mode) #mode-shock {
   font-weight: 600;
 }
 
+.lede-point {
+  display: block;
+  margin-top: 8px;
+}
+
+.lede-action {
+  display: block;
+  margin-top: 8px;
+}
+
 .why-lede {
   margin: 10px 0 0;
   color: var(--ink);
