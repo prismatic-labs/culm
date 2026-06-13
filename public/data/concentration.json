@@ -1,0 +1,1002 @@
+{
+  "datasetVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
+  "citation": "Prismatic Labs (2026). Culm AI Stack Concentration Map v1.0.0. Dataset snapshot culm-concentration-2026-06-13.json.",
+  "layers": [
+    {
+      "id": "critical-materials",
+      "name": "Critical Materials & Inputs",
+      "stackOrder": 1,
+      "category": "Materials",
+      "whatItIs": "Photoresists, ultrapure silica wafers, specialty gases, and critical elements such as gallium and germanium.",
+      "whyItMatters": "Several inputs are single-country dependencies. Without them, every downstream layer stalls, often before the bottleneck most people have heard of. Each input below has its own dominant country.",
+      "stallEffect": "Without these inputs, wafer and lithography supply chains halt before fabs can run.",
+      "actors": [
+        {
+          "name": "China (primary gallium production)",
+          "country": "China",
+          "share": {
+            "value": 0.99,
+            "confidence": "high",
+            "asOf": "2024",
+            "sources": [
+              "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+            ],
+            "note": "USGS MCS 2025: China accounted for 99% of worldwide primary low-purity gallium production."
+          }
+        },
+        {
+          "name": "JSR + TOK + Shin-Etsu (EUV photoresist)",
+          "country": "Japan",
+          "share": {
+            "value": 0.9,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
+            ],
+            "note": "Brookings cites ~50% global photoresist share for Japan; EUV segment higher (~90% per industry reports). Layer uses Japan photoresist/wafer cluster."
+          }
+        },
+        {
+          "name": "Shin-Etsu + SUMCO (300mm silicon wafers)",
+          "country": "Japan",
+          "share": {
+            "value": 0.53,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
+            ],
+            "note": "Brookings: Japan 53% global silicon wafer share."
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 0.99,
+          "confidence": "high",
+          "asOf": "2024",
+          "sources": [
+            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+          ],
+          "note": "Layer headline CR1 uses gallium primary production, the tightest single-country input in this layer."
+        },
+        "cr3": {
+          "value": 0.99,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf",
+            "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
+          ],
+          "note": "Composite layer; CR3 not additive across sub-materials. Shown for transparency."
+        },
+        "hhi": {
+          "value": 9900,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+          ],
+          "note": "Dominated by gallium country concentration."
+        },
+        "topCountry": "China",
+        "topCountryShare": {
+          "value": 0.99,
+          "confidence": "high",
+          "asOf": "2024",
+          "sources": [
+            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+          ],
+          "note": "Gallium refining. Japan dominates photoresist/wafers separately. See actors."
+        },
+        "dominantCountries": [
+          {
+            "country": "China",
+            "share": {
+              "value": 0.99,
+              "confidence": "high",
+              "asOf": "2024",
+              "sources": [
+                "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+              ],
+              "note": "USGS MCS 2025: China 99% of worldwide primary low-purity gallium production."
+            }
+          },
+          {
+            "country": "Japan",
+            "share": {
+              "value": 0.9,
+              "confidence": "medium",
+              "asOf": "2024",
+              "sources": [
+                "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
+              ],
+              "note": "Japan ~90% EUV photoresist; ~53% silicon wafers (Brookings)."
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "years",
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf",
+            "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
+          ],
+          "note": "USGS notes limited substitutes for germanium in some uses; gallium refinery buildout measured in years."
+        }
+      },
+      "subcomponents": [
+        {
+          "id": "gallium",
+          "name": "Primary gallium production",
+          "country": "China",
+          "share": {
+            "value": 0.99,
+            "confidence": "high",
+            "asOf": "2024",
+            "sources": [
+              "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+            ],
+            "note": "USGS MCS 2025: China 99% of worldwide primary low-purity gallium production. Drives headline CR1."
+          }
+        },
+        {
+          "id": "euv-photoresist",
+          "name": "EUV photoresist (JSR, TOK, Shin-Etsu)",
+          "country": "Japan",
+          "share": {
+            "value": 0.9,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
+            ],
+            "note": "Japan ~90% of EUV photoresist segment."
+          }
+        },
+        {
+          "id": "silicon-wafers",
+          "name": "300mm silicon wafers (Shin-Etsu, SUMCO)",
+          "country": "Japan",
+          "share": {
+            "value": 0.53,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
+            ],
+            "note": "Japan 53% global wafer share. Below 80% alone; shown for transparency."
+          }
+        }
+      ],
+      "dependsOn": [],
+      "isCriticalChokepoint": true,
+      "chokepointRationale": "Composite layer with 2 map geographies. Qualifies because CR1 ≈ 99%; top-country share ≈ 99%; substitutability is years. Layer headline CR1 uses gallium primary production, the tightest single-country input in this layer."
+    },
+    {
+      "id": "euv-litho",
+      "name": "EUV Lithography",
+      "stackOrder": 2,
+      "category": "Equipment",
+      "whatItIs": "The machines that print the finest circuit patterns using extreme-ultraviolet light. No leading-edge AI chip can be made at current densities without them.",
+      "whyItMatters": "A single company is the only maker of these machines on Earth, and each one depends on a thin chain of sub-suppliers. This is the narrowest point in the entire stack.",
+      "stallEffect": "No new leading-edge chips can be patterned; advanced-node production stops.",
+      "actors": [
+        {
+          "name": "ASML",
+          "country": "Netherlands",
+          "share": {
+            "value": 1,
+            "confidence": "high",
+            "asOf": "2025",
+            "sources": [
+              "https://www.asml.com/en/products/euv-lithography-systems",
+              "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            ],
+            "note": "Sole commercial EUV lithography system supplier."
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 1,
+          "confidence": "high",
+          "asOf": "2025",
+          "sources": [
+            "https://www.asml.com/en/products/euv-lithography-systems",
+            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+          ]
+        },
+        "cr3": {
+          "value": 1,
+          "confidence": "high",
+          "asOf": "2025",
+          "sources": [
+            "https://www.asml.com/en/products/euv-lithography-systems",
+            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+          ]
+        },
+        "hhi": {
+          "value": 10000,
+          "confidence": "high",
+          "asOf": "2025",
+          "sources": [
+            "https://www.asml.com/en/products/euv-lithography-systems",
+            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+          ]
+        },
+        "topCountry": "Netherlands",
+        "topCountryShare": {
+          "value": 1,
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.asml.com/en/products/euv-lithography-systems",
+            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+          ],
+          "note": "Assembly in NL; Zeiss SMT (Germany) supplies EUV optics. Sub-supplier concentration."
+        },
+        "dominantCountries": [
+          {
+            "country": "Netherlands",
+            "share": {
+              "value": 1,
+              "confidence": "medium",
+              "asOf": "2025",
+              "sources": [
+                "https://www.asml.com/en/products/euv-lithography-systems",
+                "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+              ],
+              "note": "Assembly in NL; Zeiss SMT (Germany) supplies EUV optics."
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "years-to-decades",
+          "confidence": "high",
+          "asOf": "2025",
+          "sources": [
+            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+          ],
+          "note": "FT/CSET framing: no credible second EUV supplier; decades of operating data gap."
+        }
+      },
+      "subcomponents": [
+        {
+          "id": "asml-system",
+          "name": "ASML (EUV system integration)",
+          "country": "Netherlands",
+          "share": {
+            "value": 1,
+            "confidence": "high",
+            "asOf": "2025",
+            "sources": [
+              "https://www.asml.com/en/products/euv-lithography-systems",
+              "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            ],
+            "note": "Sole commercial EUV lithography system supplier.",
+            "rawClaim": "ASML is the only commercial supplier of EUV lithography systems.",
+            "extraction": "Layer CR1 uses 100% for sole-supplier commercial EUV tools."
+          }
+        },
+        {
+          "id": "zeiss-optics",
+          "name": "Zeiss SMT (EUV mirrors / optics)",
+          "country": "Germany",
+          "parentId": "asml-system",
+          "share": {
+            "value": 1,
+            "confidence": "high",
+            "asOf": "2025",
+            "sources": [
+              "https://www.asml.com/en/products/euv-lithography-systems",
+              "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            ],
+            "note": "Near-monopoly on EUV optical subsystems supplied into ASML tools.",
+            "rawClaim": "Zeiss SMT supplies EUV optics integrated into ASML systems.",
+            "extraction": "Modeled as 100% of EUV optics subsystem share in this pilot graph.",
+            "caveat": "German supplier; concentration is firm-level, not Netherlands assembly share."
+          }
+        },
+        {
+          "id": "euv-source",
+          "name": "Cymer / ASML (EUV light source)",
+          "country": "United States",
+          "parentId": "asml-system",
+          "share": {
+            "value": 1,
+            "confidence": "medium",
+            "asOf": "2025",
+            "sources": [
+              "https://www.asml.com/en/products/euv-lithography-systems"
+            ],
+            "note": "Laser-produced plasma EUV source integrated by ASML (Cymer acquired 2013).",
+            "rawClaim": "Commercial EUV sources are integrated into ASML scanners.",
+            "extraction": "Pilot node for light-source subsystem concentration."
+          }
+        }
+      ],
+      "dependsOn": [
+        "critical-materials"
+      ],
+      "isCriticalChokepoint": true,
+      "chokepointRationale": "CR1 ≈ 100% and top-country share ≈ 100%; substitutability is years-to-decades."
+    },
+    {
+      "id": "chip-design-eda",
+      "name": "Chip Design & EDA",
+      "stackOrder": 3,
+      "category": "Design/EDA",
+      "whatItIs": "Electronic design automation tools, licensable IP cores, and accelerator chip architects.",
+      "whyItMatters": "A three-firm oligopoly supplies the software every advanced chip is designed with. You cannot tape out leading-edge silicon without passing through it.",
+      "stallEffect": "New advanced chip designs cannot be taped out or verified at scale.",
+      "actors": [
+        {
+          "name": "Synopsys",
+          "country": "United States",
+          "share": {
+            "value": 0.31,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+            ]
+          }
+        },
+        {
+          "name": "Cadence",
+          "country": "United States",
+          "share": {
+            "value": 0.3,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+            ]
+          }
+        },
+        {
+          "name": "Siemens EDA",
+          "country": "Germany",
+          "share": {
+            "value": 0.13,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+            ]
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 0.31,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+          ]
+        },
+        "cr3": {
+          "value": 0.74,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+          ]
+        },
+        "hhi": {
+          "value": 2030,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+          ]
+        },
+        "topCountry": "United States",
+        "topCountryShare": {
+          "value": 0.61,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+          ],
+          "note": "Synopsys + Cadence US revenue share of EDA triopoly."
+        },
+        "dominantCountries": [
+          {
+            "country": "United States",
+            "share": {
+              "value": 0.61,
+              "confidence": "medium",
+              "asOf": "2024",
+              "sources": [
+                "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+              ],
+              "note": "Synopsys + Cadence US revenue share of EDA triopoly."
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "years",
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/"
+          ],
+          "note": "Foundry-certified tool chains; switching EDA vendor at advanced nodes takes years."
+        }
+      },
+      "dependsOn": [
+        "critical-materials"
+      ],
+      "isCriticalChokepoint": false,
+      "chokepointRationale": "Concentration below 80% threshold (CR1 31%, top-country 61%)."
+    },
+    {
+      "id": "leading-edge-fab",
+      "name": "Leading-Edge Fabrication (≤5nm)",
+      "stackOrder": 4,
+      "category": "Fabrication",
+      "whatItIs": "The foundries that actually manufacture the most advanced AI chips at the smallest process nodes.",
+      "whyItMatters": "Most leading-edge AI silicon is fabricated by one company, concentrated in one region. That is a geographic single point of failure for the whole frontier.",
+      "stallEffect": "Frontier AI silicon production at ≤5nm stops worldwide at scale.",
+      "actors": [
+        {
+          "name": "TSMC",
+          "country": "Taiwan",
+          "share": {
+            "value": 0.9,
+            "confidence": "medium",
+            "asOf": "2025-Q4",
+            "sources": [
+              "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+            ],
+            "note": "TrendForce: TSMC >90% at 3nm, ~70-80% at 5nm; layer uses advanced-node composite ~90%."
+          }
+        },
+        {
+          "name": "Samsung Foundry",
+          "country": "South Korea",
+          "share": {
+            "value": 0.08,
+            "confidence": "medium",
+            "asOf": "2025-Q4",
+            "sources": [
+              "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+            ]
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 0.9,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+          ]
+        },
+        "cr3": {
+          "value": 0.98,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+          ]
+        },
+        "hhi": {
+          "value": 8164,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+          ]
+        },
+        "topCountry": "Taiwan",
+        "topCountryShare": {
+          "value": 0.9,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+          ]
+        },
+        "dominantCountries": [
+          {
+            "country": "Taiwan",
+            "share": {
+              "value": 0.9,
+              "confidence": "medium",
+              "asOf": "2025-Q4",
+              "sources": [
+                "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+              ]
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "years",
+          "confidence": "high",
+          "asOf": "2025",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
+          ]
+        }
+      },
+      "dependsOn": [
+        "euv-litho",
+        "critical-materials"
+      ],
+      "isCriticalChokepoint": true,
+      "chokepointRationale": "CR1 ≈ 90% and top-country share ≈ 90%; substitutability is years."
+    },
+    {
+      "id": "hbm",
+      "name": "High-Bandwidth Memory (HBM)",
+      "stackOrder": 5,
+      "category": "Memory",
+      "whatItIs": "Stacked DRAM packages that feed AI accelerators at the bandwidth training and inference require.",
+      "whyItMatters": "Only three firms make HBM at scale, heavily concentrated in Korea. Accelerator output is capped by HBM attach rate and supply.",
+      "stallEffect": "Training clusters cannot get enough memory bandwidth; accelerator output is capped.",
+      "actors": [
+        {
+          "name": "SK hynix",
+          "country": "South Korea",
+          "share": {
+            "value": 0.525,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            ]
+          }
+        },
+        {
+          "name": "Samsung",
+          "country": "South Korea",
+          "share": {
+            "value": 0.424,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            ]
+          }
+        },
+        {
+          "name": "Micron",
+          "country": "United States",
+          "share": {
+            "value": 0.05,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            ]
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 0.525,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+          ]
+        },
+        "cr3": {
+          "value": 0.9990000000000001,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+          ]
+        },
+        "hhi": {
+          "value": 4579.01,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+          ]
+        },
+        "topCountry": "South Korea",
+        "topCountryShare": {
+          "value": 0.949,
+          "confidence": "medium",
+          "asOf": "2024",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+          ],
+          "note": "SK hynix + Samsung combined."
+        },
+        "dominantCountries": [
+          {
+            "country": "South Korea",
+            "share": {
+              "value": 0.949,
+              "confidence": "medium",
+              "asOf": "2024",
+              "sources": [
+                "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+              ],
+              "note": "SK hynix + Samsung combined."
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "years",
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+          ]
+        }
+      },
+      "dependsOn": [
+        "leading-edge-fab",
+        "critical-materials"
+      ],
+      "isCriticalChokepoint": true,
+      "chokepointRationale": "top-country share ≈ 95%; substitutability is years."
+    },
+    {
+      "id": "advanced-packaging",
+      "name": "Advanced Packaging (CoWoS-class)",
+      "stackOrder": 6,
+      "category": "Packaging",
+      "whatItIs": "Advanced packaging bonds accelerator dies to HBM stacks. The dominant method is TSMC’s CoWoS (chip-on-wafer-on-substrate) and similar techniques.",
+      "whyItMatters": "Known capacity bottleneck: even when fabs and HBM exist, packaging lines throttle how many AI GPUs ship.",
+      "stallEffect": "GPU and accelerator shipments stall even when dies and HBM exist.",
+      "actors": [
+        {
+          "name": "TSMC (CoWoS)",
+          "country": "Taiwan",
+          "share": {
+            "value": 0.95,
+            "confidence": "medium",
+            "asOf": "2025",
+            "sources": [
+              "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+            ],
+            "note": "Industry estimates ~100% of production-proven AI CoWoS; TSMC dominates."
+          }
+        },
+        {
+          "name": "OSAT partners (Amkor, SPIL, etc.)",
+          "country": "Taiwan",
+          "share": {
+            "value": 0.05,
+            "confidence": "low",
+            "asOf": "2025",
+            "sources": [
+              "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+            ],
+            "note": "TSMC outsourcing portion of CoWoS workflow; still Taiwan-centric."
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 0.95,
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+          ]
+        },
+        "cr3": {
+          "value": 1,
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+          ]
+        },
+        "hhi": {
+          "value": 9050,
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+          ]
+        },
+        "topCountry": "Taiwan",
+        "topCountryShare": {
+          "value": 0.95,
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+          ]
+        },
+        "dominantCountries": [
+          {
+            "country": "Taiwan",
+            "share": {
+              "value": 0.95,
+              "confidence": "medium",
+              "asOf": "2025",
+              "sources": [
+                "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+              ]
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "years",
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://www.nomadsemi.com/p/tsmcs-cowos-capacity"
+          ]
+        }
+      },
+      "dependsOn": [
+        "leading-edge-fab",
+        "hbm"
+      ],
+      "isCriticalChokepoint": true,
+      "chokepointRationale": "CR1 ≈ 95% and top-country share ≈ 95%; substitutability is years."
+    },
+    {
+      "id": "ai-accelerators",
+      "name": "AI Accelerators",
+      "stackOrder": 7,
+      "category": "Accelerators",
+      "whatItIs": "Finished training and inference chips: merchant AI accelerators (Nvidia and AMD GPUs, Google TPUs, and similar) plus the in-house silicon that cloud providers design themselves.",
+      "whyItMatters": "The layer most people discuss, but it sits atop every upstream chokepoint. Concentration here is visible; dependence on upstream layers is often not.",
+      "stallEffect": "Merchant and hyperscaler AI chip supply to datacenters dries up.",
+      "actors": [
+        {
+          "name": "NVIDIA",
+          "country": "United States",
+          "share": {
+            "value": 0.7071005552645668,
+            "confidence": "medium",
+            "asOf": "2025-Q4",
+            "sources": [
+              "https://epoch.ai/data/ai-chip-sales",
+              "https://epoch.ai/data/ai_chip_sales.zip"
+            ],
+            "note": "Epoch AI cumulative H100e-equivalent compute by designer through 2025."
+          }
+        },
+        {
+          "name": "Google (TPU)",
+          "country": "United States",
+          "share": {
+            "value": 0.18965544731509273,
+            "confidence": "medium",
+            "asOf": "2025-Q4",
+            "sources": [
+              "https://epoch.ai/data/ai-chip-sales",
+              "https://epoch.ai/data/ai_chip_sales.zip"
+            ]
+          }
+        },
+        {
+          "name": "AMD",
+          "country": "United States",
+          "share": {
+            "value": 0.0647865605081627,
+            "confidence": "medium",
+            "asOf": "2025-Q4",
+            "sources": [
+              "https://epoch.ai/data/ai-chip-sales",
+              "https://epoch.ai/data/ai_chip_sales.zip"
+            ]
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 0.7071005552645668,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://epoch.ai/data/ai-chip-sales",
+            "https://epoch.ai/data/ai_chip_sales.zip"
+          ],
+          "note": "cumulative H100e share by chip designer",
+          "rawClaim": "NVIDIA cumulative H100e-equivalent compute share through the dataset end date in Epoch AI chip sales data.",
+          "extraction": "CR1 = maximum designer share in cumulative_timelines_by_designer.csv after normalizing designer names.",
+          "caveat": "Tracks cumulative compute shipped, not current installed base or revenue share."
+        },
+        "cr3": {
+          "value": 0.9615425630878223,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://epoch.ai/data/ai-chip-sales",
+            "https://epoch.ai/data/ai_chip_sales.zip"
+          ]
+        },
+        "hhi": {
+          "value": 5415.041347679034,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://epoch.ai/data/ai-chip-sales",
+            "https://epoch.ai/data/ai_chip_sales.zip"
+          ]
+        },
+        "topCountry": "United States",
+        "topCountryShare": {
+          "value": 0.92,
+          "confidence": "medium",
+          "asOf": "2025-Q4",
+          "sources": [
+            "https://epoch.ai/data/ai-chip-sales",
+            "https://epoch.ai/data/ai_chip_sales.zip"
+          ],
+          "note": "NVIDIA + Google + AMD designer HQs; compute share US-heavy."
+        },
+        "dominantCountries": [
+          {
+            "country": "United States",
+            "share": {
+              "value": 0.92,
+              "confidence": "medium",
+              "asOf": "2025-Q4",
+              "sources": [
+                "https://epoch.ai/data/ai-chip-sales",
+                "https://epoch.ai/data/ai_chip_sales.zip"
+              ],
+              "note": "NVIDIA + Google + AMD designer HQs; compute share US-heavy."
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "years",
+          "confidence": "medium",
+          "asOf": "2025",
+          "sources": [
+            "https://epoch.ai/data/ai_chip_sales.zip",
+            "https://epoch.ai/data-insights/ai-chip-production"
+          ]
+        }
+      },
+      "dependsOn": [
+        "leading-edge-fab",
+        "chip-design-eda",
+        "hbm",
+        "advanced-packaging"
+      ],
+      "isCriticalChokepoint": true,
+      "chokepointRationale": "top-country share ≈ 92%; substitutability is years."
+    },
+    {
+      "id": "compute-cloud",
+      "name": "Compute Provision / Cloud",
+      "stackOrder": 8,
+      "category": "Compute/Cloud",
+      "whatItIs": "GPU capacity rented from hyperscalers and neoclouds (GPU-rental specialists like CoreWeave), plus the power grid and datacenter geography behind it.",
+      "whyItMatters": "Frontier training runs concentrate in a handful of cloud providers and regions. Energy and grid access are part of the concentration story at this layer.",
+      "stallEffect": "Frontier training and inference capacity in concentrated cloud regions becomes unavailable.",
+      "actors": [
+        {
+          "name": "AWS",
+          "country": "United States",
+          "share": {
+            "value": 0.3,
+            "confidence": "medium",
+            "asOf": "2024-Q4",
+            "sources": [
+              "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth"
+            ]
+          }
+        },
+        {
+          "name": "Microsoft Azure",
+          "country": "United States",
+          "share": {
+            "value": 0.21,
+            "confidence": "medium",
+            "asOf": "2024-Q4",
+            "sources": [
+              "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth"
+            ]
+          }
+        },
+        {
+          "name": "Google Cloud",
+          "country": "United States",
+          "share": {
+            "value": 0.12,
+            "confidence": "medium",
+            "asOf": "2024-Q4",
+            "sources": [
+              "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth"
+            ]
+          }
+        }
+      ],
+      "metrics": {
+        "cr1": {
+          "value": 0.3,
+          "confidence": "medium",
+          "asOf": "2024-Q4",
+          "sources": [
+            "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth",
+            "https://epoch.ai/data/gpu_clusters.csv"
+          ]
+        },
+        "cr3": {
+          "value": 0.63,
+          "confidence": "medium",
+          "asOf": "2024-Q4",
+          "sources": [
+            "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth",
+            "https://epoch.ai/data/gpu_clusters.csv"
+          ]
+        },
+        "hhi": {
+          "value": 1485,
+          "confidence": "medium",
+          "asOf": "2024-Q4",
+          "sources": [
+            "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth",
+            "https://epoch.ai/data/gpu_clusters.csv"
+          ]
+        },
+        "topCountry": "United States",
+        "topCountryShare": {
+          "value": 0.7920226833718457,
+          "confidence": "medium",
+          "asOf": "2025-05",
+          "sources": [
+            "https://epoch.ai/publications/trends-in-ai-supercomputers",
+            "https://epoch.ai/data/gpu_clusters.csv",
+            "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth"
+          ],
+          "note": "Epoch dataset covers ~10-20% of global AI chip stock; geographic share is indicative, not exhaustive.",
+          "rawClaim": "Sum of Max OP/s for Existing GPU clusters where Country contains United States.",
+          "extraction": "topCountryShare = US Max OP/s divided by global Max OP/s total among Existing clusters in gpu_clusters.csv.",
+          "caveat": "Epoch cluster inventory is partial; share is indicative, not exhaustive global cloud capacity."
+        },
+        "dominantCountries": [
+          {
+            "country": "United States",
+            "share": {
+              "value": 0.7920226833718457,
+              "confidence": "medium",
+              "asOf": "2025-05",
+              "sources": [
+                "https://epoch.ai/publications/trends-in-ai-supercomputers",
+                "https://epoch.ai/data/gpu_clusters.csv",
+                "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth"
+              ],
+              "note": "Epoch dataset covers ~10-20% of global AI chip stock; geographic share is indicative, not exhaustive.",
+              "rawClaim": "Sum of Max OP/s for Existing GPU clusters where Country contains United States.",
+              "extraction": "topCountryShare = US Max OP/s divided by global Max OP/s total among Existing clusters in gpu_clusters.csv.",
+              "caveat": "Epoch cluster inventory is partial; share is indicative, not exhaustive global cloud capacity."
+            }
+          }
+        ],
+        "substitutability": {
+          "value": "months",
+          "confidence": "low",
+          "asOf": "2025",
+          "sources": [
+            "https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth"
+          ],
+          "note": "Cloud capacity can shift regions over months; not a years-long physical replacement."
+        }
+      },
+      "dependsOn": [
+        "ai-accelerators"
+      ],
+      "isCriticalChokepoint": false,
+      "chokepointRationale": "Concentration below 80% threshold (CR1 30%, top-country 79%)."
+    }
+  ],
+  "methodology": "Culm measures concentration at each physical layer of the AI stack using separate, auditable metrics. No blended fragility score.\n\nCR1: share held by the single largest actor (0 to 1).\nCR3: combined share of the top three actors (0 to 1).\nHHI: Herfindahl-Hirschman Index. Sum of squared percentage shares (0 to 10,000; >2,500 = highly concentrated).\nTop-country share: geographic concentration of the dominant country.\nSubstitutability: fungible | months | years | years-to-decades.\n\nCritical chokepoint rule: A layer is a critical chokepoint if (CR1 ≥ 0.80 OR top-country share ≥ 0.80) AND substitutability ∈ {years, years-to-decades}.\n\nEvery value carries confidence, as-of date, and source URLs. Empty sources are shown as unverified.\n\nData APIs: Machine-readable today: Epoch AI CSV/ZIP downloads (CC-BY) for accelerator compute share and GPU-cluster geography. USGS MCS: PDF + CSV data release, no REST API. TrendForce, Synergy, ASML, company filings: manual citation only. No public APIs.\n\nRefresh API-derived fields: npm run refresh:apis",
+  "lastUpdated": "2026-06-13",
+  "exportedAt": "2026-06-13T15:03:17.835Z"
+}

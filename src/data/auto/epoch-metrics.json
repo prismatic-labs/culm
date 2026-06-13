@@ -1,0 +1,42 @@
+{
+  "fetchedAt": "2026-06-13",
+  "aiAccelerators": {
+    "asOf": "2025-Q4",
+    "metric": "cumulative H100e share by chip designer",
+    "designers": {
+      "Nvidia": 0.7071005552645668,
+      "AMD": 0.0647865605081627,
+      "Huawei": 0.03664946997190805,
+      "Google": 0.18965544731509273,
+      "Cambricon": 0.0018079669402697419
+    },
+    "cr1": 0.7071005552645668,
+    "cr3": 0.9615425630878223,
+    "hhi": 5415.041347679034,
+    "sources": [
+      "https://epoch.ai/data/ai-chip-sales",
+      "https://epoch.ai/data/ai_chip_sales.zip"
+    ],
+    "evidence": {
+      "rawClaim": "NVIDIA cumulative H100e-equivalent compute share through the dataset end date in Epoch AI chip sales data.",
+      "extraction": "CR1 = maximum designer share in cumulative_timelines_by_designer.csv after normalizing designer names.",
+      "caveat": "Tracks cumulative compute shipped, not current installed base or revenue share."
+    }
+  },
+  "computeCloud": {
+    "asOf": "2025-05",
+    "metric": "US share of Max OP/s among Existing GPU clusters in Epoch dataset",
+    "topCountry": "United States",
+    "topCountryShare": 0.7920226833718457,
+    "sources": [
+      "https://epoch.ai/publications/trends-in-ai-supercomputers",
+      "https://epoch.ai/data/gpu_clusters.csv"
+    ],
+    "note": "Epoch dataset covers ~10-20% of global AI chip stock; geographic share is indicative, not exhaustive.",
+    "evidence": {
+      "rawClaim": "Sum of Max OP/s for Existing GPU clusters where Country contains United States.",
+      "extraction": "topCountryShare = US Max OP/s divided by global Max OP/s total among Existing clusters in gpu_clusters.csv.",
+      "caveat": "Epoch cluster inventory is partial; share is indicative, not exhaustive global cloud capacity."
+    }
+  }
+}

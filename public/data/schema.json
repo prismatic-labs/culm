@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://prismaticlabs.ai/culm/data/schema.json",
+  "title": "Culm concentration snapshot",
+  "type": "object",
+  "required": ["datasetVersion", "schemaVersion", "citation", "layers", "methodology", "lastUpdated"],
+  "properties": {
+    "datasetVersion": {
+      "type": "string",
+      "description": "Semver for the dataset snapshot."
+    },
+    "schemaVersion": {
+      "type": "string",
+      "description": "JSON schema version for consumers."
+    },
+    "citation": {
+      "type": "string",
+      "description": "Suggested citation for researchers."
+    },
+    "doi": {
+      "type": "string",
+      "description": "Optional Zenodo DOI when archived."
+    },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp when concentration.json was emitted."
+    },
+    "lastUpdated": {
+      "type": "string",
+      "description": "Snapshot date in YYYY-MM-DD format."
+    },
+    "methodology": {
+      "type": "string"
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/layer"
+      }
+    }
+  },
+  "$defs": {
+    "sourcedValue": {
+      "type": "object",
+      "required": ["value", "confidence", "asOf", "sources"],
+      "properties": {
+        "value": {},
+        "confidence": {
+          "enum": ["high", "medium", "low"]
+        },
+        "asOf": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string"
+        },
+        "rawClaim": {
+          "type": "string"
+        },
+        "extraction": {
+          "type": "string"
+        },
+        "caveat": {
+          "type": "string"
+        }
+      }
+    },
+    "subComponent": {
+      "type": "object",
+      "required": ["id", "name", "country", "share"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "country": { "type": "string" },
+        "parentId": { "type": "string" },
+        "share": { "$ref": "#/$defs/sourcedValue" },
+        "note": { "type": "string" }
+      }
+    },
+    "actor": {
+      "type": "object",
+      "required": ["name", "country", "share"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "share": {
+          "$ref": "#/$defs/sourcedValue"
+        }
+      }
+    },
+    "dominantCountry": {
+      "type": "object",
+      "required": ["country", "share"],
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "share": {
+          "$ref": "#/$defs/sourcedValue"
+        }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "stackOrder",
+        "category",
+        "whatItIs",
+        "whyItMatters",
+        "actors",
+        "metrics",
+        "dependsOn",
+        "isCriticalChokepoint",
+        "chokepointRationale"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "stackOrder": {
+          "type": "integer"
+        },
+        "category": {
+          "type": "string"
+        },
+        "whatItIs": {
+          "type": "string"
+        },
+        "whyItMatters": {
+          "type": "string"
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/actor"
+          }
+        },
+        "subcomponents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/subComponent"
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "required": [
+            "cr1",
+            "cr3",
+            "hhi",
+            "topCountry",
+            "topCountryShare",
+            "dominantCountries",
+            "substitutability"
+          ],
+          "properties": {
+            "cr1": {
+              "$ref": "#/$defs/sourcedValue"
+            },
+            "cr3": {
+              "$ref": "#/$defs/sourcedValue"
+            },
+            "hhi": {
+              "$ref": "#/$defs/sourcedValue"
+            },
+            "topCountry": {
+              "type": "string"
+            },
+            "topCountryShare": {
+              "$ref": "#/$defs/sourcedValue"
+            },
+            "dominantCountries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/dominantCountry"
+              }
+            },
+            "substitutability": {
+              "$ref": "#/$defs/sourcedValue"
+            }
+          }
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isCriticalChokepoint": {
+          "type": "boolean"
+        },
+        "chokepointRationale": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" aria-label="Culm">
+  <rect width="32" height="32" rx="8" fill="#ebeee6"/>
+  <!-- three stack segments: culm (grass stem) pun -->
+  <rect x="10" y="22" width="12" height="5.5" rx="2.75" fill="#7e8c7c"/>
+  <rect x="11" y="15.5" width="10" height="5.5" rx="2.75" fill="#5f7a62"/>
+  <rect x="12" y="9" width="8" height="5.5" rx="2.75" fill="#4a6b4e"/>
+  <path d="M19.5 11.5c2.2-0.8 3.2-2.5 2.8-4.3-1.8 0.4-3 1.8-2.8 4.3z" fill="#9fbf88"/>
+  <!-- kawaii face -->
+  <ellipse cx="14.3" cy="11.2" rx="1.15" ry="1.35" fill="#18241d"/>
+  <ellipse cx="17.7" cy="11.2" rx="1.15" ry="1.35" fill="#18241d"/>
+  <circle cx="14.7" cy="10.7" r="0.35" fill="#f5f7f1"/>
+  <circle cx="18.1" cy="10.7" r="0.35" fill="#f5f7f1"/>
+  <path d="M14.5 13.1q1.5 1.1 3 0" stroke="#18241d" stroke-width="0.9" stroke-linecap="round"/>
+  <circle cx="13.2" cy="12.5" r="0.75" fill="#efb09e"/>
+  <circle cx="18.8" cy="12.5" r="0.75" fill="#efb09e"/>
+  <!-- single chokepoint bead -->
+  <circle cx="16" cy="6.2" r="1.35" fill="#a6371f"/>
+  <circle cx="15.55" cy="5.85" r="0.35" fill="#f6d4cc" opacity="0.9"/>
+</svg>

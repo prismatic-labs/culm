@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Culm: AI Stack Concentration Map</title>
+    <meta
+      name="description"
+      content="Eight physical layers sit between raw materials and cloud AI. Culm shows who controls each one, and what breaks if you remove it."
+    />
+    <meta property="og:title" content="Culm: AI Stack Concentration Map" />
+    <meta
+      property="og:description"
+      content="Eight physical layers sit between raw materials and cloud AI. Culm shows who controls each one, and what breaks if you remove it."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <header>
+      <span class="mark">Culm</span>
+      <span class="eyebrow">AI Stack Concentration Map</span>
+      <div class="mode-toggle" role="group" aria-label="Stack mode">
+        <button type="button" class="mode-btn" id="mode-inspect" aria-pressed="true">Inspect</button>
+        <button type="button" class="mode-btn" id="mode-shock" aria-pressed="false">What if?</button>
+      </div>
+      <button type="button" class="text-size-toggle" id="text-size-toggle" aria-pressed="false">
+        Larger text
+      </button>
+    </header>
+
+    <div id="app">
+      <div class="page-intro">
+        <p class="lede">
+          Eight physical layers sit between raw materials and cloud AI.
+          <b>Culm shows who controls each one, and what breaks if you remove it.</b>
+        </p>
+        <p class="interact-hint" id="interact-hint">
+          Explore each layer in the stack, or switch to <strong>What if?</strong> to simulate removal.
+        </p>
+      </div>
+
+      <div class="thesis" id="thesis"></div>
+
+      <div class="cols">
+        <div class="col-stack">
+          <details class="metrics-guide" id="metrics-guide" aria-label="Metric definitions">
+          </details>
+          <div class="col-label"><span>Stack</span><span>upstream ↑ &nbsp; downstream ↓</span></div>
+          <div class="rail" id="rail" aria-label="Stack layers"></div>
+        </div>
+        <div class="col-detail">
+          <div class="map-block">
+            <div class="col-label">
+              <span>Geography</span><span id="map-meta"></span>
+            </div>
+            <div class="map-wrap" id="map-wrap">
+              <div class="map-host" id="map" aria-label="World concentration map"></div>
+              <div class="map-tooltip" id="map-tooltip" hidden></div>
+            </div>
+            <div class="map-legend" id="map-legend" role="note" aria-label="Map legend"></div>
+            <div class="map-caption" id="map-caption"></div>
+          </div>
+          <div class="panel" id="panel" aria-label="Layer or country detail"></div>
+        </div>
+      </div>
+
+      <section class="guide" id="guide" aria-label="How Culm works"></section>
+
+      <section class="methodology" id="methodology"></section>
+
+      <section class="data-export" id="data-export"></section>
+
+      <footer class="site-footer">
+        Open dataset · Apache-2.0 · Culm v<span id="dataset-version">1.0.0</span> · Values marked
+        <span class="tag unverified">unverified</span> have no source URL yet.
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
