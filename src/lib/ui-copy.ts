@@ -13,8 +13,11 @@ export const COPY = {
   stackDefault: 'Stack',
 } as const;
 
-export function interactHintInspect(): string {
-  return `Explore each layer in the stack, or switch to <strong>${COPY.modeWhatIf}</strong> to simulate removal.`;
+const COUNTRIES_WITH_ARTICLE = new Set(['United States', 'Netherlands', 'United Kingdom']);
+
+/** Prepend "the" for country names that read as proper plurals/unions. */
+export function withArticle(country: string): string {
+  return COUNTRIES_WITH_ARTICLE.has(country) ? `the ${country}` : country;
 }
 
 export function interactHintWhatIfIdle(): string {

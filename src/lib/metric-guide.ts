@@ -141,5 +141,5 @@ export function sourceCitation(url: string, asOf: string): string {
     if (import.meta.env.DEV) console.warn('[culm] malformed source URL:', url);
   }
   const org = SOURCE_ORG[host] ?? host;
-  return `Source: ${org}, checked ${asOf}`;
+  return `Source: ${org}, data as of ${asOf}`;
 }

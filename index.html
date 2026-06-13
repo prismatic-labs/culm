@@ -26,9 +26,23 @@
         <button type="button" class="mode-btn" id="mode-inspect" aria-pressed="true">Inspect</button>
         <button type="button" class="mode-btn" id="mode-shock" aria-pressed="false">What if?</button>
       </div>
-      <button type="button" class="text-size-toggle" id="text-size-toggle" aria-pressed="false">
-        Larger text
-      </button>
+      <a
+        class="brand-link"
+        href="https://prismaticlabs.ai"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Prismatic Labs (opens prismaticlabs.ai)"
+      >
+        <span class="brand-by">by</span>
+        <img
+          class="brand-logo"
+          src="prismatic-logo.svg"
+          alt="Prismatic Labs"
+          width="96"
+          height="68"
+          style="height: 68px; width: auto"
+        />
+      </a>
     </header>
 
     <div id="app">
@@ -40,6 +54,11 @@
         <p class="interact-hint" id="interact-hint">
           Explore each layer in the stack, or switch to <strong>What if?</strong> to simulate removal.
         </p>
+        <nav
+          class="stack-flow"
+          id="stack-flow"
+          aria-label="How AI compute is built, from raw materials to cloud"
+        ></nav>
       </div>
 
       <div class="thesis" id="thesis"></div>

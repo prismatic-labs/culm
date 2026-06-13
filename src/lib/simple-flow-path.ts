@@ -37,7 +37,7 @@ export function buildSimpleFlowPath(
   // first, then the target side but never inside the dot) when space is tight.
   const MIN_VISIBLE = 16;
   let startGap = from.radius + 5;
-  let endGap = to.radius + 3;
+  let endGap = to.radius + 2;
   const deficit = MIN_VISIBLE - (len - startGap - endGap);
   if (deficit > 0) {
     const startTrim = Math.min(deficit, Math.max(0, startGap - 3));
@@ -61,7 +61,11 @@ export function buildSimpleFlowPath(
   const fan = (routeIndex - center) * 12 * spreadDamp;
   const mx = (x1 + x2) / 2;
   const my = (y1 + y2) / 2;
-  const bend = Math.min(46, Math.max(3, span * 0.16));
+  // Curvature ramps in from zero so short cluster hops (e.g. Korea→Taiwan) stay
+  // straight and their heads point dead-centre at the target dot, while longer
+  // inter-continental arcs still bow gracefully. The old Math.max(3, …) floor
+  // forced a small bend on every arrow, making short heads approach at a glance.
+  const bend = Math.min(46, Math.max(0, (span - 44) * 0.17));
   const nx = -uy;
   const ny = ux;
   const fanScale = 0.3;

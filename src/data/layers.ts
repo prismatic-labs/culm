@@ -168,7 +168,7 @@ const criticalMaterials = layerFromMetrics({
           confidence: 'high',
           asOf: '2024',
           sources: [USGS_GALLIUM],
-          note: 'USGS MCS 2025: China 99% of worldwide primary low-purity gallium production.',
+          note: 'USGS MCS 2025: China 99% of worldwide primary low-purity gallium production. Gallium feeds gallium-arsenide and gallium-nitride chips used in radio-frequency, power-electronics, and optoelectronic devices.',
         }),
       },
       {

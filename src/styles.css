@@ -298,23 +298,6 @@ header {
   margin-bottom: 4px;
 }
 
-.trend-badge {
-  display: inline-block;
-  margin-left: 6px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.04em;
-  vertical-align: middle;
-}
-
-.trend-up {
-  color: var(--hot);
-}
-
-.trend-down {
-  color: var(--cool);
-}
-
 .subcomponent-list {
   margin: 8px 0 0;
   padding-left: 1.1rem;
@@ -581,6 +564,90 @@ body:not(.culm-shock-mode) #mode-shock {
   color: var(--ink-soft);
 }
 
+.stack-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px 4px;
+  margin: 12px 0 2px;
+}
+
+.stack-flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  transition: border-color 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+
+.stack-flow-step:hover {
+  border-color: var(--ink-faint);
+  background: var(--raised);
+}
+
+.stack-flow-step:focus-visible {
+  outline: 2px solid var(--map-flow);
+  outline-offset: 2px;
+}
+
+.stack-flow-ord {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+.stack-flow-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+
+.stack-flow-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hot);
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.stack-flow-step.is-selected {
+  border-color: var(--map-flow);
+  background: var(--paper);
+}
+
+.stack-flow-step.is-selected .stack-flow-name,
+.stack-flow-step.is-selected .stack-flow-ord {
+  color: var(--ink);
+}
+
+.stack-flow-step.is-shock-source {
+  border-color: var(--hot);
+  background: var(--hot-bg);
+}
+
+.stack-flow-step.is-shock-source .stack-flow-name {
+  color: var(--hot);
+}
+
+.stack-flow-arrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  padding: 0 1px;
+  user-select: none;
+}
+
 .thesis-reset {
   margin-top: 14px;
 }
@@ -608,22 +675,35 @@ body:not(.culm-shock-mode) #mode-shock {
   border: 2.5px solid var(--warm);
 }
 
-.text-size-toggle {
+.brand-link {
   margin-left: auto;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 8px 12px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--raised);
-  color: var(--ink-soft);
-  cursor: pointer;
+  margin-top: -18px;
+  margin-bottom: -12px;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.12s ease;
 }
 
-.text-size-toggle:hover {
-  background: #fff;
+.brand-link:hover {
+  opacity: 1;
+}
+
+.brand-by {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.brand-logo {
+  display: block;
+  height: 68px;
+  width: auto;
 }
 
 html.text-large {
@@ -2082,6 +2162,21 @@ html.text-large .map-marker-hit {
 .fill {
   height: 100%;
   border-radius: 4px;
+  position: relative;
+}
+
+/* End cap: a thin marker at the fill's edge so low values (e.g. CR1 31%),
+   whose fill colour is nearly the track colour, still show where they end. */
+.fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--ink-faint);
+  opacity: 0.7;
 }
 
 .meter .v {

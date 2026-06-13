@@ -22,9 +22,9 @@ import {
 import { renderGuideHtml, type GuideTabId } from './lib/guide';
 import {
   COPY,
-  interactHintInspect,
   interactHintWhatIfActive,
   interactHintWhatIfIdle,
+  withArticle,
 } from './lib/ui-copy';
 import { buildDatasetSnapshot } from './lib/dataset-snapshot';
 import { renderEvidenceRow } from './lib/evidence';
@@ -46,7 +46,6 @@ import {
   renderShockLayerPicker,
 } from './lib/shock-cascade';
 import { renderSubcomponentsHtml } from './lib/subcomponents';
-import { cr1Trend, trendBadgeHtml } from './lib/trends';
 import { parseUrlState, replaceUrlFromState } from './lib/url-state';
 import { meterBar, metricRowPlain, pct100, SUBSTITUTABILITY_LABEL } from './lib/ui';
 import { createMapView } from './map';
@@ -75,6 +74,7 @@ function listToProse(items: string[]): string {
   return `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`;
 }
 
+const stackFlowEl = document.querySelector<HTMLElement>('#stack-flow')!;
 const railEl = document.querySelector<HTMLElement>('#rail')!;
 const panelEl = document.querySelector<HTMLElement>('#panel')!;
 const thesisEl = document.querySelector<HTMLElement>('#thesis')!;
@@ -252,13 +252,16 @@ function syncInteractHint(): void {
   const cascade = analyzeCascade(layers, activeShockTarget());
 
   if (state.stackMode === 'shock') {
-    if (cascade) {
-      hint.innerHTML = interactHintWhatIfActive(cascade.label);
-    } else {
-      hint.innerHTML = interactHintWhatIfIdle();
-    }
+    hint.hidden = false;
+    hint.innerHTML = cascade
+      ? interactHintWhatIfActive(cascade.label)
+      : interactHintWhatIfIdle();
   } else {
-    hint.innerHTML = interactHintInspect();
+    // In Inspect mode the stack-flow pills and the thesis banner already guide
+    // the user, so the boxed hint is redundant friction. Keep it for What if?,
+    // where it carries live simulation state.
+    hint.hidden = true;
+    hint.innerHTML = '';
   }
 }
 
@@ -415,11 +418,11 @@ function renderThesis(): void {
   } else if (layerHeroMetric(layer) === 'geographic') {
     statNum = `${cshare}%`;
     statCap = `${escapeHtml(country)} · ${metricAbbr('top-country-share', 'geographic share')}`;
-    capPlain = escapeHtml(`largest supplier makes ${cr1} of every 100`);
+    capPlain = escapeHtml(`${cshare}% of this layer sits in ${withArticle(country)}`);
   } else {
     statNum = `${cr1}%`;
     statCap = `${metricAbbr('cr1')} · single largest supplier`;
-    capPlain = escapeHtml(`${cshare}% of supply sits in ${country}`);
+    capPlain = escapeHtml(`${cshare}% of supply sits in ${withArticle(country)}`);
   }
 
   thesisEl.innerHTML = `
@@ -439,6 +442,51 @@ function renderThesis(): void {
   `;
   thesisEl.querySelector<HTMLButtonElement>('#try-shock-layer')?.addEventListener('click', () => {
     setLayerShock(layer.id, layer.metrics.topCountry);
+  });
+}
+
+function renderStackFlow(): void {
+  const state = getState();
+  const shockSourceIds = analyzeCascade(layers, activeShockTarget())?.sourceLayerIds;
+
+  stackFlowEl.innerHTML = layers
+    .map((layer, index) => {
+      const selected = state.mode === 'layer' && layer.id === state.selectedLayer;
+      const isShockSource = shockSourceIds?.has(layer.id) ?? false;
+      const classes = ['stack-flow-step'];
+      if (selected) classes.push('is-selected');
+      if (isShockSource) classes.push('is-shock-source');
+      const choke = layer.isCriticalChokepoint
+        ? '<span class="stack-flow-dot" aria-hidden="true"></span>'
+        : '';
+      const arrow =
+        index < layers.length - 1
+          ? '<span class="stack-flow-arrow" aria-hidden="true">&#8594;</span>'
+          : '';
+      return `
+        <button
+          type="button"
+          class="${classes.join(' ')}"
+          data-flow-layer-id="${layer.id}"
+          title="${escapeAttr(layer.name)}"
+          aria-pressed="${selected ? 'true' : 'false'}"
+        >
+          <span class="stack-flow-ord">${String(layer.stackOrder).padStart(2, '0')}</span>
+          <span class="stack-flow-name">${choke}${escapeHtml(layer.category)}</span>
+        </button>${arrow}`;
+    })
+    .join('');
+
+  stackFlowEl.querySelectorAll<HTMLButtonElement>('[data-flow-layer-id]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.flowLayerId!;
+      const layer = layers.find((l) => l.id === id)!;
+      if (getState().stackMode === 'shock') {
+        setLayerShock(id, layer.metrics.topCountry);
+        return;
+      }
+      toggleLayer(id, layer.metrics.topCountry);
+    });
   });
 }
 
@@ -486,8 +534,6 @@ function renderRail(): void {
       const dot = layer.isCriticalChokepoint ? '<span class="chip-dot"></span>' : '';
       const tagline = layer.whatItIs.split('.')[0] ?? layer.whatItIs;
       const hhiPlain = hhiBand(hhi);
-      const trend = cr1Trend(layer.id, layer.metrics.cr1.value, layer.metrics.cr1.asOf);
-      const trendHtml = trendBadgeHtml(trend);
 
       const shockBadge = cascade
         ? cascade.sourceLayerIds.has(layer.id)
@@ -505,7 +551,7 @@ function renderRail(): void {
         <div role="button" tabindex="0" class="${classes.join(' ')}" data-layer-id="${layer.id}" aria-pressed="${layer.id === state.selectedLayer ? 'true' : 'false'}">
           <div class="layer-top">
             <span class="ord">${String(layer.stackOrder).padStart(2, '0')}</span>
-            <span class="lname">${dot}${escapeHtml(layer.name)}${trendHtml}${shockBadge}</span>
+            <span class="lname">${dot}${escapeHtml(layer.name)}${shockBadge}</span>
             ${relHtml || `<span class="lcat">${escapeHtml(layer.category)}</span>`}
           </div>
           <p class="layer-tagline">${escapeHtml(tagline)}.</p>
@@ -946,6 +992,7 @@ function renderGuide(active: GuideTabId = 'overview'): void {
 function renderAll(): void {
   const state = getState();
   renderThesis();
+  renderStackFlow();
   renderRail();
   renderPanel();
   renderMap(state);
@@ -997,17 +1044,6 @@ function initFromUrl(): void {
   });
 }
 
-function setupLargerTextToggle(): void {
-  const toggle = document.querySelector<HTMLButtonElement>('#text-size-toggle');
-  if (!toggle) return;
-  toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('text-large');
-    const on = document.documentElement.classList.contains('text-large');
-    toggle.setAttribute('aria-pressed', on ? 'true' : 'false');
-    toggle.textContent = on ? 'Default text' : 'Larger text';
-  });
-}
-
 renderMetricsGuide();
 renderGuide();
 renderMethodology();
@@ -1017,7 +1053,6 @@ document.querySelector<HTMLElement>('#dataset-version')!.textContent = concentra
 initFromUrl();
 subscribe(renderAll);
 renderAll();
-setupLargerTextToggle();
 setupModeToggle();
 
 document.querySelector<HTMLElement>('#app')!.dataset.ready = 'true';
