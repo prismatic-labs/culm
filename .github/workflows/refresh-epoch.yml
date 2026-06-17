@@ -49,10 +49,5 @@ jobs:
             exit 0
           fi
           git add src/data/auto/epoch-metrics.json public/data/concentration.json
-          git commit -m "$(cat <<'EOF'
-chore(data): refresh Epoch AI accelerator and cluster metrics
-
-Automated monthly refresh from Epoch CSV/ZIP sources.
-EOF
-)"
+          git commit -m "chore(data): refresh Epoch AI accelerator and cluster metrics"
           git push
