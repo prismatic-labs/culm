@@ -70,6 +70,8 @@ function metricsFromActors(
 
 const USGS_GALLIUM =
   'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf';
+const USGS_GERMANIUM =
+  'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-germanium.pdf';
 const BROOKINGS_JP =
   'https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/';
 const ASML_EUV = 'https://www.asml.com/en/products/euv-lithography-systems';
@@ -90,6 +92,13 @@ const EPOCH_GPU = 'https://epoch.ai/data/gpu_clusters.csv';
 const nvidiaShare = epochMetrics.aiAccelerators.designers.Nvidia ?? 0.707;
 const amdShare = epochMetrics.aiAccelerators.designers.AMD ?? 0.065;
 const googleShare = epochMetrics.aiAccelerators.designers.Google ?? 0.19;
+const huaweiShare = epochMetrics.aiAccelerators.designers.Huawei ?? 0.037;
+const cambriconShare = epochMetrics.aiAccelerators.designers.Cambricon ?? 0.002;
+/** US-headquartered designers in Epoch cumulative H100e share (Nvidia + Google + AMD). */
+const usDesignerShare =
+  (epochMetrics.aiAccelerators.designers.Nvidia ?? 0) +
+  (epochMetrics.aiAccelerators.designers.Google ?? 0) +
+  (epochMetrics.aiAccelerators.designers.AMD ?? 0);
 
 const criticalMaterials = layerFromMetrics({
   id: 'critical-materials',
@@ -99,7 +108,7 @@ const criticalMaterials = layerFromMetrics({
   whatItIs:
     'Photoresists, ultrapure silica wafers, specialty gases, and critical elements such as gallium and germanium.',
   whyItMatters:
-    'Several inputs are single-country dependencies. Without them, every downstream layer stalls, ' +
+    'Several inputs are single-country dependencies. Without them, several downstream layers would stall, ' +
     'often before the bottleneck most people have heard of. Each input below has its own dominant country.',
   stallEffect:
     'Without these inputs, wafer and lithography supply chains halt before fabs can run.',
@@ -201,6 +210,17 @@ const criticalMaterials = layerFromMetrics({
       }),
     },
     {
+      id: 'germanium',
+      name: 'Primary germanium production',
+      country: 'China',
+      share: sv(0.6, {
+        confidence: 'medium',
+        asOf: '2024',
+        sources: [USGS_GERMANIUM],
+        note: 'USGS MCS 2025: China ~60% of worldwide germanium refinery production; used in RF and optoelectronics.',
+      }),
+    },
+    {
       id: 'euv-photoresist',
       name: 'EUV photoresist (JSR, TOK, Shin-Etsu)',
       country: 'Japan',
@@ -235,10 +255,10 @@ const euvLithography = layerFromMetrics({
     'The machines that print the finest circuit patterns using extreme-ultraviolet light. ' +
     'No leading-edge AI chip can be made at current densities without them.',
   whyItMatters:
-    'A single company is the only maker of these machines on Earth, and each one depends ' +
-    'on a thin chain of sub-suppliers. This is the narrowest point in the entire stack.',
+    'ASML is the sole commercial supplier of EUV lithography systems in current data, and each machine depends ' +
+    'on a thin chain of sub-suppliers. Among the most concentrated layers in this dataset.',
   stallEffect:
-    'No new leading-edge chips can be patterned; advanced-node production stops.',
+    'Leading-edge chip patterning would be severely constrained; advanced-node production at current densities would stall.',
   actors: [
     {
       name: 'ASML',
@@ -335,9 +355,9 @@ const chipDesignEda = layerFromMetrics({
   whatItIs:
     'Electronic design automation tools, licensable IP cores, and accelerator chip architects.',
   whyItMatters:
-    'A three-firm oligopoly supplies the software every advanced chip is designed with. ' +
-    'You cannot tape out leading-edge silicon without passing through it.',
-  stallEffect: 'New advanced chip designs cannot be taped out or verified at scale.',
+    'A three-firm oligopoly supplies the software most advanced chips are designed with. ' +
+    'Leading-edge tape-outs typically depend on this oligopoly.',
+  stallEffect: 'New advanced chip designs would be hard to tape out or verify at scale.',
   actors: [
     {
       name: 'Synopsys',
@@ -393,17 +413,17 @@ const leadingEdgeFab = layerFromMetrics({
     'The foundries that actually manufacture the most advanced AI chips at the smallest process nodes.',
   whyItMatters:
     'Most leading-edge AI silicon is fabricated by one company, concentrated in one region. ' +
-    'That is a geographic single point of failure for the whole frontier.',
-  stallEffect: 'Frontier AI silicon production at ≤5nm stops worldwide at scale.',
+    'That is high geographic concentration for leading-edge production.',
+  stallEffect: 'Leading-edge ≤5nm production would be severely constrained at scale.',
   actors: [
     {
       name: 'TSMC',
       country: 'Taiwan',
       share: sv(0.9, {
         confidence: 'medium',
-        asOf: '2025-Q4',
+        asOf: '2024-04',
         sources: [TRENDFORCE_FAB],
-        note: 'TrendForce: TSMC >90% at 3nm, ~70-80% at 5nm; layer uses advanced-node composite ~90%.',
+        note: 'TrendForce April 2024: TSMC >90% at 3nm, ~70-80% at 5nm; layer uses advanced-node composite ~90%.',
       }),
     },
     {
@@ -411,7 +431,7 @@ const leadingEdgeFab = layerFromMetrics({
       country: 'South Korea',
       share: sv(0.08, {
         confidence: 'medium',
-        asOf: '2025-Q4',
+        asOf: '2024-04',
         sources: [TRENDFORCE_FAB],
       }),
     },
@@ -419,18 +439,18 @@ const leadingEdgeFab = layerFromMetrics({
   metrics: {
     ...metricsFromActors(
       [
-        { name: 'TSMC', country: 'Taiwan', share: sv(0.9, { confidence: 'medium', asOf: '2025-Q4', sources: [TRENDFORCE_FAB] }) },
-        { name: 'Samsung Foundry', country: 'South Korea', share: sv(0.08, { confidence: 'medium', asOf: '2025-Q4', sources: [TRENDFORCE_FAB] }) },
+        { name: 'TSMC', country: 'Taiwan', share: sv(0.9, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_FAB] }) },
+        { name: 'Samsung Foundry', country: 'South Korea', share: sv(0.08, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_FAB] }) },
       ],
       {
         topCountry: 'Taiwan',
-        topCountryShare: sv(0.9, { confidence: 'medium', asOf: '2025-Q4', sources: [TRENDFORCE_FAB] }),
+        topCountryShare: sv(0.9, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_FAB] }),
         substitutability: sv('years', {
           confidence: 'high',
           asOf: '2025',
           sources: [TRENDFORCE_FAB],
         }),
-        asOf: '2025-Q4',
+        asOf: '2024-04',
         sources: [TRENDFORCE_FAB],
       },
     ),
@@ -448,45 +468,45 @@ const hbm = layerFromMetrics({
     'Only three firms make HBM at scale, heavily concentrated in Korea. ' +
     'Accelerator output is capped by HBM attach rate and supply.',
   stallEffect:
-    'Training clusters cannot get enough memory bandwidth; accelerator output is capped.',
+    'Training clusters would face memory-bandwidth limits; accelerator output would be capped.',
   actors: [
     {
       name: 'SK hynix',
       country: 'South Korea',
-      share: sv(0.525, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }),
+      share: sv(0.525, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_HBM], note: 'TrendForce April 2024 HBM revenue share.' }),
     },
     {
       name: 'Samsung',
       country: 'South Korea',
-      share: sv(0.424, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }),
+      share: sv(0.424, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_HBM] }),
     },
     {
       name: 'Micron',
       country: 'United States',
-      share: sv(0.05, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }),
+      share: sv(0.05, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_HBM] }),
     },
   ],
   metrics: {
     ...metricsFromActors(
       [
-        { name: 'SK hynix', country: 'South Korea', share: sv(0.525, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }) },
-        { name: 'Samsung', country: 'South Korea', share: sv(0.424, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }) },
-        { name: 'Micron', country: 'United States', share: sv(0.05, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }) },
+        { name: 'SK hynix', country: 'South Korea', share: sv(0.525, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_HBM] }) },
+        { name: 'Samsung', country: 'South Korea', share: sv(0.424, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_HBM] }) },
+        { name: 'Micron', country: 'United States', share: sv(0.05, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_HBM] }) },
       ],
       {
         topCountry: 'South Korea',
         topCountryShare: sv(0.949, {
           confidence: 'medium',
-          asOf: '2024',
+          asOf: '2024-04',
           sources: [TRENDFORCE_HBM],
-          note: 'SK hynix + Samsung combined.',
+          note: 'SK hynix + Samsung combined; TrendForce April 2024.',
         }),
         substitutability: sv('years', {
           confidence: 'medium',
-          asOf: '2025',
+          asOf: '2024-04',
           sources: [TRENDFORCE_HBM],
         }),
-        asOf: '2024',
+        asOf: '2024-04',
         sources: [TRENDFORCE_HBM],
       },
     ),
@@ -588,6 +608,26 @@ const aiAccelerators = layerFromMetrics({
         sources: epochMetrics.aiAccelerators.sources,
       }),
     },
+    {
+      name: 'Huawei (Ascend)',
+      country: 'China',
+      share: sv(huaweiShare, {
+        confidence: 'medium',
+        asOf: epochMetrics.aiAccelerators.asOf,
+        sources: epochMetrics.aiAccelerators.sources,
+        note: 'Epoch AI cumulative H100e-equivalent compute by designer.',
+      }),
+    },
+    {
+      name: 'Cambricon',
+      country: 'China',
+      share: sv(cambriconShare, {
+        confidence: 'medium',
+        asOf: epochMetrics.aiAccelerators.asOf,
+        sources: epochMetrics.aiAccelerators.sources,
+        note: 'Epoch AI cumulative H100e-equivalent compute by designer.',
+      }),
+    },
   ],
   metrics: {
     cr1: sv(epochMetrics.aiAccelerators.cr1, {
@@ -610,20 +650,20 @@ const aiAccelerators = layerFromMetrics({
       sources: epochMetrics.aiAccelerators.sources,
     }),
     topCountry: 'United States',
-    topCountryShare: sv(0.92, {
+    topCountryShare: sv(usDesignerShare, {
       confidence: 'medium',
       asOf: epochMetrics.aiAccelerators.asOf,
       sources: epochMetrics.aiAccelerators.sources,
-      note: 'NVIDIA + Google + AMD designer HQs; compute share US-heavy.',
+      note: 'Sum of Nvidia, Google, and AMD cumulative H100e share in Epoch AI chip-sales data (US-headquartered designers).',
     }),
     dominantCountries: [
       {
         country: 'United States',
-        share: sv(0.92, {
+        share: sv(usDesignerShare, {
           confidence: 'medium',
           asOf: epochMetrics.aiAccelerators.asOf,
           sources: epochMetrics.aiAccelerators.sources,
-          note: 'NVIDIA + Google + AMD designer HQs; compute share US-heavy.',
+          note: 'Sum of Nvidia, Google, and AMD cumulative H100e share in Epoch AI chip-sales data.',
         }),
       },
     ],
@@ -681,7 +721,9 @@ const computeCloud = layerFromMetrics({
           note: epochMetrics.computeCloud.note,
           rawClaim: epochMetrics.computeCloud.evidence?.rawClaim,
           extraction: epochMetrics.computeCloud.evidence?.extraction,
-          caveat: epochMetrics.computeCloud.evidence?.caveat,
+          caveat:
+            'Firm CR1/CR3 from Synergy cloud revenue (2024-Q4). Top-country share from Epoch GPU cluster geography (partial inventory). Different metrics and as-of dates. ' +
+            (epochMetrics.computeCloud.evidence?.caveat ?? ''),
         }),
         substitutability: sv('months', {
           confidence: 'low',

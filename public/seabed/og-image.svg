@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Culm: Deep-sea mining and AI metals">
+  <rect width="1200" height="630" fill="#ebeee6"/>
+  <rect x="48" y="48" width="1104" height="534" rx="12" fill="#f5f7f1" stroke="#d4d9cc"/>
+  <!-- stylized Pacific hotspot map -->
+  <g transform="translate(620 290)">
+    <ellipse cx="0" cy="20" rx="220" ry="95" fill="none" stroke="#94a8c4" stroke-width="2" stroke-dasharray="8 6" opacity="0.7"/>
+    <ellipse cx="-30" cy="10" rx="140" ry="60" fill="#dce8f4" opacity="0.55"/>
+    <circle cx="-30" cy="10" r="9" fill="#a6371f"/>
+    <circle cx="80" cy="-30" r="6" fill="#a6371f"/>
+    <circle cx="120" cy="40" r="6" fill="#739068"/>
+    <circle cx="-160" cy="50" r="6" fill="#739068"/>
+    <circle cx="200" cy="10" r="5" fill="#739068"/>
+    <text x="-30" y="36" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#5c675d">CCZ</text>
+    <text x="120" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#5c675d">Cook Islands</text>
+  </g>
+  <text x="72" y="120" font-family="Georgia,serif" font-size="56" font-weight="700" fill="#18241d">Culm</text>
+  <text x="72" y="168" font-family="ui-monospace,Menlo,monospace" font-size="16" letter-spacing="0.12em" fill="#8c968b">SEABED MINING</text>
+  <text x="72" y="220" font-family="system-ui,sans-serif" font-size="28" fill="#18241d">Deep-sea mining and the metals behind AI power</text>
+  <text x="72" y="260" font-family="system-ui,sans-serif" font-size="20" fill="#5c675d">Copper is the spine. Neutral, sourced, confidence-rated.</text>
+  <text x="72" y="540" font-family="ui-monospace,Menlo,monospace" font-size="14" fill="#8c968b">prismatic-labs.github.io/culm/seabed</text>
+</svg>

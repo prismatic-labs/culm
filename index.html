@@ -3,59 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Culm: AI Stack Concentration Map</title>
+    <title>Culm: AI supply chain concentration map</title>
     <meta
       name="description"
-      content="Every AI system runs on a physical supply chain that a handful of companies and countries control. Culm maps that concentration of power: who controls each layer, where the chokepoints are, and what breaks if any one is removed."
+      content="An AI safety map of physical concentration in the supply chain: who holds each layer, where chokepoints create fragility and leverage, and what export controls already show."
     />
-    <meta property="og:title" content="Culm: AI Stack Concentration Map" />
+    <meta property="og:title" content="Culm: AI supply chain concentration map" />
     <meta
       property="og:description"
-      content="Every AI system runs on a physical supply chain that a handful of companies and countries control. Culm maps that concentration of power: who controls each layer, where the chokepoints are, and what breaks if any one is removed."
+      content="An AI safety map of physical concentration: fragility and leverage at each chokepoint in the stack from materials to cloud."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://prismatic-labs.github.io/culm/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Culm: AI supply chain concentration map" />
+    <meta
+      name="twitter:description"
+      content="Chokepoints from materials to cloud: fragility, leverage, and export controls on the physical AI stack."
+    />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
-    <header>
-      <span class="mark">Culm</span>
-      <span class="eyebrow">AI Stack Concentration Map</span>
-      <div class="mode-toggle" role="group" aria-label="Stack mode">
-        <button type="button" class="mode-btn" id="mode-inspect" aria-pressed="true">Inspect</button>
-        <button type="button" class="mode-btn" id="mode-shock" aria-pressed="false">What if?</button>
+    <div class="culm-chrome">
+      <div class="culm-site-bar">
+        <span class="culm-wordmark" aria-current="page">Culm</span>
+        <nav id="explore-nav" class="explore-nav" aria-label="Explore Culm"></nav>
+        <div class="culm-site-actions">
+          <div class="mode-toggle" role="group" aria-label="Stack mode">
+            <button type="button" class="mode-btn" id="mode-inspect" aria-pressed="true">Inspect</button>
+            <button type="button" class="mode-btn" id="mode-shock" aria-pressed="false">What if?</button>
+          </div>
+          <a
+            class="brand-link"
+            href="https://prismaticlabs.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Prismatic Labs (opens prismaticlabs.ai)"
+          >
+            <span class="brand-by">by</span>
+            <img
+              class="brand-logo"
+              src="prismatic-logo.svg"
+              alt="Prismatic Labs"
+              width="96"
+              height="68"
+              style="height: 68px; width: auto"
+            />
+          </a>
+        </div>
       </div>
-      <a
-        class="brand-link"
-        href="https://prismaticlabs.ai"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Prismatic Labs (opens prismaticlabs.ai)"
-      >
-        <span class="brand-by">by</span>
-        <img
-          class="brand-logo"
-          src="prismatic-logo.svg"
-          alt="Prismatic Labs"
-          width="96"
-          height="68"
-          style="height: 68px; width: auto"
-        />
-      </a>
-    </header>
+      <header class="culm-page-head">
+        <p class="culm-kicker">AI safety · concentration, fragility, and leverage in the physical stack</p>
+        <h1 class="page-title">Chokepoints from materials to cloud</h1>
+        <p class="page-subtitle">
+          Eight layers from materials to cloud. Who holds each chokepoint, what breaks without it, and
+          where a few hands can restrict frontier AI.
+        </p>
+      </header>
+    </div>
 
     <div id="app">
       <div class="page-intro">
         <p class="lede">
-          Every AI system runs on a physical supply chain of chips, tools, materials, and cloud
-          capacity. Only a handful of companies and countries control it.
-          <b class="lede-point">Culm maps that concentration of power: who controls each layer, where
-          the chokepoints are, and what breaks if any one is removed.</b>
-          <span class="lede-action">For a country or company, that's the first step to reducing
-          exposure: see where you depend on a single supplier, and where you could diversify or
-          build competing capability.</span>
+          Every AI system runs on a physical supply chain: chips, tools, materials, and
+          <a class="lede-link" href="compute/">cloud capacity</a>. A handful of companies and
+          countries control most of it.
+          <b class="lede-point">That concentration is where AI safety meets hardware. Each chokepoint
+          is two things at once: a bottleneck that can disrupt several downstream layers, and a
+          control point where a few hands can restrict or prioritize who builds frontier
+          AI, as <a class="lede-link" href="controls/">export controls already show</a>.</b>
+          <span class="lede-action">Culm maps where that leverage sits: who holds each layer, where
+          the chokepoints are, and what breaks if one is removed. Sourced, neutral, confidence-rated.
+          Culm reports facts; what to do about them is your call.</span>
         </p>
+        <details class="safety-blurb">
+          <summary>Why this matters for AI safety</summary>
+          <p>
+            Frontier AI runs on hardware with extreme concentration: a few firms, countries, and
+            chokepoints sit between raw materials and the compute that trains the largest models.
+            That concentration creates fragility (one removal can stall the stack) and leverage
+            (export controls and supply restrictions already target these layers). Culm maps where
+            both sit, with sourced numbers you can audit.
+          </p>
+        </details>
         <p class="interact-hint" id="interact-hint">
           Explore each layer in the stack, or switch to <strong>What if?</strong> to simulate removal.
         </p>
@@ -64,6 +96,7 @@
           id="stack-flow"
           aria-label="How AI compute is built, from raw materials to cloud"
         ></nav>
+        <div id="deeper-bridge"></div>
       </div>
 
       <div class="thesis" id="thesis"></div>
@@ -91,15 +124,19 @@
         </div>
       </div>
 
+      <section class="about" id="about" aria-labelledby="about-heading"></section>
+
       <section class="guide" id="guide" aria-label="How Culm works"></section>
 
-      <section class="methodology" id="methodology"></section>
-
-      <section class="data-export" id="data-export"></section>
+      <div class="reference-row">
+        <section class="methodology" id="methodology"></section>
+        <section class="data-export" id="data-export"></section>
+      </div>
 
       <footer class="site-footer">
-        Open dataset · Apache-2.0 · Culm v<span id="dataset-version">1.0.0</span> · Values marked
-        <span class="tag unverified">unverified</span> have no source URL yet.
+        Open dataset · Apache-2.0 · Culm v<span id="dataset-version">1.0.0</span> · Snapshot
+        <span id="dataset-updated">—</span> · Values confidence-rated · Unverified values have no
+        source URL yet.
       </footer>
     </div>
 

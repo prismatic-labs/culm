@@ -70,7 +70,7 @@ function sourceContext(source: Layer): Pick<
       : `${source.metrics.topCountry} · ${pct100(source.metrics.topCountryShare.value)}% geographic share`,
     sourceRecovery:
       source.metrics.substitutability.note ??
-      `No credible substitute on a ${sub} timeline in this dataset.`,
+      `No substitute modeled within ${sub} in this dataset.`,
   };
 }
 
@@ -103,10 +103,10 @@ function blockingPhrase(
   if (!blocking) return 'Upstream dependency in this cascade is unavailable.';
 
   if (sourceIds.has(blocking.id)) {
-    return `Cannot run without ${layerShortName(blocking)} (removed · ${substitutabilityLabel(blocking)} to substitute).`;
+    return `Stalls without ${layerShortName(blocking)} (removed · ${substitutabilityLabel(blocking)} to substitute).`;
   }
 
-  return `Cannot run while ${layerShortName(blocking)} is stalled upstream.`;
+  return `Stalls while ${layerShortName(blocking)} is stalled upstream.`;
 }
 
 function buildBottomLine(downstream: CascadeStep[]): string {

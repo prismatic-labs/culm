@@ -5,7 +5,7 @@ import { humanChokepointPanelCopy, layerHeroMetric, layerThesisHeadline } from '
 describe('layer-copy', () => {
   it('uses whyItMatters for thesis headline', () => {
     const euv = concentrationMap.layers.find((l) => l.id === 'euv-litho')!;
-    expect(layerThesisHeadline(euv)).toContain('single company');
+    expect(layerThesisHeadline(euv)).toContain('sole commercial supplier');
     expect(layerThesisHeadline(euv)).not.toContain('Eight layers');
   });
 

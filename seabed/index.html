@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Culm: Deep-sea mining and AI metals</title>
+    <meta
+      name="description"
+      content="Seven seabed mining hotspots tagged with AI-relevant metals. Who holds each licence, which metals are targeted, and how they connect to the AI stack. Sourced and confidence-rated."
+    />
+    <meta property="og:title" content="Culm: Deep-sea mining and AI metals" />
+    <meta
+      property="og:description"
+      content="Seven seabed mining hotspots: ISA contract areas and national EEZ projects, tagged with AI-relevant metals and confidence-rated linkages."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://prismatic-labs.github.io/culm/seabed/" />
+    <meta property="og:image" content="https://prismatic-labs.github.io/culm/seabed/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Culm: Deep-sea mining and AI metals" />
+    <meta
+      name="twitter:description"
+      content="Seabed mining hotspots × AI materials. Sourced and confidence-rated."
+    />
+    <meta name="twitter:image" content="https://prismatic-labs.github.io/culm/seabed/og-image.svg" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="seabed-page">
+    <div class="culm-chrome">
+      <div class="culm-site-bar">
+        <a class="culm-wordmark" href="../">Culm</a>
+        <nav id="explore-nav" class="explore-nav" aria-label="Explore Culm"></nav>
+        <div class="culm-site-actions">
+          <a
+            class="brand-link"
+            href="https://prismaticlabs.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Prismatic Labs (opens prismaticlabs.ai)"
+          >
+            <span class="brand-by">by</span>
+            <img
+              class="brand-logo"
+              src="../prismatic-logo.svg"
+              alt="Prismatic Labs"
+              width="96"
+              height="68"
+              style="height: 68px; width: auto"
+            />
+          </a>
+        </div>
+      </div>
+      <header class="culm-page-head">
+        <p class="culm-kicker">Seabed minerals · a supply question still being decided</p>
+        <h1 class="page-title">Deep-sea mining and the metals behind AI power</h1>
+        <p class="page-subtitle">
+          Seven licensed or explored sites, the metals they target, and who may control them next.
+        </p>
+      </header>
+    </div>
+
+    <div id="app" class="seabed-app">
+      <div class="page-intro seabed-intro">
+        <p class="lede">
+          AI doesn't only run on chips. It runs on power, and power runs on metal. Copper wires and
+          cools the datacenters; cobalt and nickel go into the batteries and grid that keep them on.
+          Some of the largest known deposits under exploration sit on the ocean floor, where seven
+          sites are already licensed or being explored.
+          <b class="lede-point">Copper does most of the work, and depth is the problem. The metals AI
+          leans on most lie four or five kilometres down, deep enough that only a handful of
+          operators can reach them, and no one yet knows what it really costs to bring them up.</b>
+          <span class="lede-action">Tap a site on the map or the depth scale to see who holds it,
+          which metals it targets, and how deep it goes. Every link is confidence-rated, with sources
+          in each panel.</span>
+        </p>
+      </div>
+
+      <section class="seabed-thesis" id="seabed-thesis" aria-labelledby="seabed-thesis-heading"></section>
+
+      <div class="seabed-layout">
+        <div class="seabed-map-block">
+          <div class="col-label">
+            <span>Hotspots</span><span>7 sites · tap map or depth</span>
+          </div>
+          <div class="seabed-map-wrap" id="seabed-map-wrap">
+            <div class="seabed-map-host" id="seabed-map" aria-label="Deep-sea mining hotspot map"></div>
+            <div class="seabed-tooltip map-tooltip" id="seabed-tooltip" hidden></div>
+          </div>
+          <div class="seabed-depth-chart" id="seabed-depth" aria-label="Water depth by site"></div>
+          <div class="seabed-legend map-legend" role="note" aria-label="Map legend">
+            <div class="seabed-legend-item">
+              <span class="seabed-legend-term"><i class="leg-dot leg-isa"></i> ISA contract area</span>
+              <span class="seabed-legend-def">Exploration licence from the International Seabed Authority for seabed beyond any country's 200-mile zone.</span>
+            </div>
+            <div class="seabed-legend-item">
+              <span class="seabed-legend-term"><i class="leg-dot leg-eez"></i> National EEZ</span>
+              <span class="seabed-legend-def">Licence or project inside a coastal state's exclusive economic zone (within 200 nautical miles).</span>
+            </div>
+            <div class="seabed-legend-item">
+              <span class="seabed-legend-term"><i class="leg-zone"></i> Approximate exploration zone</span>
+              <span class="seabed-legend-def">Rough contract footprint on the map, not a precise boundary.</span>
+            </div>
+          </div>
+        </div>
+        <div class="seabed-panel panel" id="seabed-panel" aria-live="polite"></div>
+      </div>
+
+      <section class="seabed-section" aria-labelledby="metals-heading">
+        <h2 id="metals-heading">Metals → AI hardware</h2>
+        <p class="section-lead">Metals chosen for their role in AI hardware, from nodule fields to rack wiring.</p>
+        <div class="metals-strip" id="metals-strip"></div>
+      </section>
+
+      <section class="seabed-section" aria-labelledby="exploring-heading">
+        <h2 id="exploring-heading">Who's exploring where</h2>
+        <div class="exploring-strip" id="exploring-strip"></div>
+      </section>
+
+      <section class="seabed-section seabed-section--state" aria-labelledby="state-heading">
+        <h2 id="state-heading">State of play</h2>
+        <p class="section-lead">Where the process stands: licences issued, code still in draft, national moves accelerating.</p>
+        <div class="state-grid" id="state-of-play"></div>
+      </section>
+
+      <section class="seabed-section seabed-section--procon" aria-labelledby="procon-heading">
+        <h2 id="procon-heading">Deep sea mining: Pro | Cons</h2>
+        <p class="section-lead">Arguments commonly cited in policy debate.</p>
+        <div id="pro-con"></div>
+      </section>
+
+      <footer class="site-footer">
+        Open dataset · Apache-2.0 · Culm · Values confidence-rated ·
+        <a href="../">Return to map</a>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/seabed/main.ts"></script>
+  </body>
+</html>

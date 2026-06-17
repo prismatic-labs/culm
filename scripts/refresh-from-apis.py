@@ -91,6 +91,15 @@ def chip_designer_shares() -> dict:
     }
 
 
+def cluster_dataset_as_of(rows: list[dict[str, str]]) -> str:
+    for field in ("Last updated", "Last Updated", "Date added", "Start date"):
+        vals = sorted({(row.get(field) or "")[:10] for row in rows if row.get(field)})
+        if vals and vals[-1]:
+            v = vals[-1]
+            return v[:7] if len(v) >= 7 else v
+    return date.today().strftime("%Y-%m")
+
+
 def gpu_cluster_us_share() -> dict:
     text = fetch_bytes(EPOCH_GPU_CLUSTERS).decode("utf-8")
     rows = list(csv.DictReader(io.StringIO(text)))
@@ -119,7 +128,7 @@ def gpu_cluster_us_share() -> dict:
         raise ValueError(f"gpu_clusters US share out of range [0,1]: {share}")
 
     return {
-        "asOf": "2025-05",
+        "asOf": cluster_dataset_as_of(rows),
         "metric": "US share of Max OP/s among Existing GPU clusters in Epoch dataset",
         "topCountry": "United States",
         "topCountryShare": share,

@@ -55,6 +55,20 @@ export function renderGuideHtml(active: GuideTabId = 'overview'): string {
     <div class="guide-panel" role="tabpanel">
       <h2 class="guide-panel-title">${escapeHtml(panel.title)}</h2>
       <p class="guide-panel-body">${escapeHtml(panel.body)}</p>
+      ${
+        active === 'overview'
+          ? `
+      <div class="guide-continue">
+        <h3>Continue reading</h3>
+        <ol>
+          <li><a href="controls/">Export controls already pulled on the AI stack</a> · measures already pulled on each chokepoint</li>
+          <li><a href="compute/">Who controls AI compute, and the power that runs it</a> · accelerator concentration and the power that binds it</li>
+          <li><a href="seabed/">Deep-sea mining and the metals behind AI power</a> · a supply question still being decided</li>
+          <li><a href="materials/">What the AI hardware stack is made of</a> · physical inputs at each layer</li>
+        </ol>
+      </div>`
+          : ''
+      }
     </div>
   `;
 }

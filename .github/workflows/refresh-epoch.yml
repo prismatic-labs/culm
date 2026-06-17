@@ -1,0 +1,58 @@
+name: Refresh Epoch metrics
+
+on:
+  schedule:
+    # 06:00 UTC on the 1st of each month
+    - cron: '0 6 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: culm-epoch-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch Epoch AI metrics
+        run: npm run refresh:apis
+
+      - name: Test and rebuild dataset snapshot
+        run: |
+          npm run test
+          npm run build
+
+      - name: Commit refreshed data if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- src/data/auto/epoch-metrics.json public/data/concentration.json; then
+            echo "Epoch metrics unchanged; skipping commit."
+            exit 0
+          fi
+          git add src/data/auto/epoch-metrics.json public/data/concentration.json
+          git commit -m "$(cat <<'EOF'
+chore(data): refresh Epoch AI accelerator and cluster metrics
+
+Automated monthly refresh from Epoch CSV/ZIP sources.
+EOF
+)"
+          git push

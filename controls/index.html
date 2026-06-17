@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Culm: Export controls already pulled on the AI stack</title>
+    <meta
+      name="description"
+      content="The export controls already pulled on each chokepoint of the AI hardware stack. Who holds the lever, whom it targets, and what it did. Sourced and confidence-rated."
+    />
+    <meta property="og:title" content="Culm: Export controls already pulled on the AI stack" />
+    <meta
+      property="og:description"
+      content="The map shows where leverage sits. This shows where it has already been pulled: export controls on EUV, EDA, equipment, HBM, AI chips, and the materials beneath them."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://prismatic-labs.github.io/culm/controls/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Culm: Export controls already pulled on the AI stack" />
+    <meta
+      name="twitter:description"
+      content="The export controls already pulled on each AI-stack chokepoint. Sourced and confidence-rated."
+    />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="controls-page">
+    <div class="culm-chrome">
+      <div class="culm-site-bar">
+        <a class="culm-wordmark" href="../">Culm</a>
+        <nav id="explore-nav" class="explore-nav" aria-label="Explore Culm"></nav>
+        <div class="culm-site-actions">
+          <a
+            class="brand-link"
+            href="https://prismaticlabs.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Prismatic Labs (opens prismaticlabs.ai)"
+          >
+            <span class="brand-by">by</span>
+            <img
+              class="brand-logo"
+              src="../prismatic-logo.svg"
+              alt="Prismatic Labs"
+              width="96"
+              height="68"
+              style="height: 68px; width: auto"
+            />
+          </a>
+        </div>
+      </div>
+      <header class="culm-page-head">
+        <p class="culm-kicker">Export controls · where concentration becomes policy leverage</p>
+        <h1 class="page-title">Export controls already pulled on the AI stack</h1>
+        <p class="page-subtitle">
+          Live measures by layer: who holds the lever, whom each control targets, and what it did.
+        </p>
+      </header>
+    </div>
+
+    <div id="app" class="controls-app">
+      <div class="page-intro">
+        <p class="lede">
+          Concentration only matters because of what it lets someone do. The map shows where
+          the leverage sits; this page shows where it has already been used.
+          <b class="lede-point">Every measure below is a live export control aimed at one of the
+          stack's chokepoints, already running in both directions.</b>
+          <span class="lede-action">Each entry names who holds the lever, whom it targets, and what
+          it did. Confidence-rated, with sources in each card.</span>
+        </p>
+      </div>
+
+      <section class="controls-summary" id="controls-summary" aria-label="Summary"></section>
+
+      <section class="controls-section" aria-labelledby="controls-list-heading">
+        <h2 id="controls-list-heading">The controls, layer by layer</h2>
+        <p class="section-lead">
+          Ordered up the stack, from the materials at the bottom to compute at the top.
+        </p>
+        <div class="controls-direction-key" id="controls-direction-key" role="note"></div>
+        <div class="controls-list" id="controls-list"></div>
+      </section>
+
+      <footer class="site-footer">
+        Open dataset · Apache-2.0 · Culm · Values confidence-rated ·
+        <a href="../">Return to map</a>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/controls/main.ts"></script>
+  </body>
+</html>

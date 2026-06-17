@@ -9,7 +9,7 @@
       "stackOrder": 1,
       "category": "Materials",
       "whatItIs": "Photoresists, ultrapure silica wafers, specialty gases, and critical elements such as gallium and germanium.",
-      "whyItMatters": "Several inputs are single-country dependencies. Without them, every downstream layer stalls, often before the bottleneck most people have heard of. Each input below has its own dominant country.",
+      "whyItMatters": "Several inputs are single-country dependencies. Without them, several downstream layers would stall, often before the bottleneck most people have heard of. Each input below has its own dominant country.",
       "stallEffect": "Without these inputs, wafer and lithography supply chains halt before fabs can run.",
       "actors": [
         {
@@ -144,6 +144,20 @@
           }
         },
         {
+          "id": "germanium",
+          "name": "Primary germanium production",
+          "country": "China",
+          "share": {
+            "value": 0.6,
+            "confidence": "medium",
+            "asOf": "2024",
+            "sources": [
+              "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-germanium.pdf"
+            ],
+            "note": "USGS MCS 2025: China ~60% of worldwide germanium refinery production; used in RF and optoelectronics."
+          }
+        },
+        {
           "id": "euv-photoresist",
           "name": "EUV photoresist (JSR, TOK, Shin-Etsu)",
           "country": "Japan",
@@ -182,8 +196,8 @@
       "stackOrder": 2,
       "category": "Equipment",
       "whatItIs": "The machines that print the finest circuit patterns using extreme-ultraviolet light. No leading-edge AI chip can be made at current densities without them.",
-      "whyItMatters": "A single company is the only maker of these machines on Earth, and each one depends on a thin chain of sub-suppliers. This is the narrowest point in the entire stack.",
-      "stallEffect": "No new leading-edge chips can be patterned; advanced-node production stops.",
+      "whyItMatters": "ASML is the sole commercial supplier of EUV lithography systems in current data, and each machine depends on a thin chain of sub-suppliers. Among the most concentrated layers in this dataset.",
+      "stallEffect": "Leading-edge chip patterning would be severely constrained; advanced-node production at current densities would stall.",
       "actors": [
         {
           "name": "ASML",
@@ -331,8 +345,8 @@
       "stackOrder": 3,
       "category": "Design/EDA",
       "whatItIs": "Electronic design automation tools, licensable IP cores, and accelerator chip architects.",
-      "whyItMatters": "A three-firm oligopoly supplies the software every advanced chip is designed with. You cannot tape out leading-edge silicon without passing through it.",
-      "stallEffect": "New advanced chip designs cannot be taped out or verified at scale.",
+      "whyItMatters": "A three-firm oligopoly supplies the software most advanced chips are designed with. Leading-edge tape-outs typically depend on this oligopoly.",
+      "stallEffect": "New advanced chip designs would be hard to tape out or verify at scale.",
       "actors": [
         {
           "name": "Synopsys",
@@ -442,8 +456,8 @@
       "stackOrder": 4,
       "category": "Fabrication",
       "whatItIs": "The foundries that actually manufacture the most advanced AI chips at the smallest process nodes.",
-      "whyItMatters": "Most leading-edge AI silicon is fabricated by one company, concentrated in one region. That is a geographic single point of failure for the whole frontier.",
-      "stallEffect": "Frontier AI silicon production at ≤5nm stops worldwide at scale.",
+      "whyItMatters": "Most leading-edge AI silicon is fabricated by one company, concentrated in one region. That is high geographic concentration for leading-edge production.",
+      "stallEffect": "Leading-edge ≤5nm production would be severely constrained at scale.",
       "actors": [
         {
           "name": "TSMC",
@@ -451,11 +465,11 @@
           "share": {
             "value": 0.9,
             "confidence": "medium",
-            "asOf": "2025-Q4",
+            "asOf": "2024-04",
             "sources": [
               "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
             ],
-            "note": "TrendForce: TSMC >90% at 3nm, ~70-80% at 5nm; layer uses advanced-node composite ~90%."
+            "note": "TrendForce April 2024: TSMC >90% at 3nm, ~70-80% at 5nm; layer uses advanced-node composite ~90%."
           }
         },
         {
@@ -464,7 +478,7 @@
           "share": {
             "value": 0.08,
             "confidence": "medium",
-            "asOf": "2025-Q4",
+            "asOf": "2024-04",
             "sources": [
               "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
             ]
@@ -475,7 +489,7 @@
         "cr1": {
           "value": 0.9,
           "confidence": "medium",
-          "asOf": "2025-Q4",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
           ]
@@ -483,7 +497,7 @@
         "cr3": {
           "value": 0.98,
           "confidence": "medium",
-          "asOf": "2025-Q4",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
           ]
@@ -491,7 +505,7 @@
         "hhi": {
           "value": 8164,
           "confidence": "medium",
-          "asOf": "2025-Q4",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
           ]
@@ -500,7 +514,7 @@
         "topCountryShare": {
           "value": 0.9,
           "confidence": "medium",
-          "asOf": "2025-Q4",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
           ]
@@ -511,7 +525,7 @@
             "share": {
               "value": 0.9,
               "confidence": "medium",
-              "asOf": "2025-Q4",
+              "asOf": "2024-04",
               "sources": [
                 "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
               ]
@@ -541,7 +555,7 @@
       "category": "Memory",
       "whatItIs": "Stacked DRAM packages that feed AI accelerators at the bandwidth training and inference require.",
       "whyItMatters": "Only three firms make HBM at scale, heavily concentrated in Korea. Accelerator output is capped by HBM attach rate and supply.",
-      "stallEffect": "Training clusters cannot get enough memory bandwidth; accelerator output is capped.",
+      "stallEffect": "Training clusters would face memory-bandwidth limits; accelerator output would be capped.",
       "actors": [
         {
           "name": "SK hynix",
@@ -549,10 +563,11 @@
           "share": {
             "value": 0.525,
             "confidence": "medium",
-            "asOf": "2024",
+            "asOf": "2024-04",
             "sources": [
               "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
-            ]
+            ],
+            "note": "TrendForce April 2024 HBM revenue share."
           }
         },
         {
@@ -561,7 +576,7 @@
           "share": {
             "value": 0.424,
             "confidence": "medium",
-            "asOf": "2024",
+            "asOf": "2024-04",
             "sources": [
               "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
             ]
@@ -573,7 +588,7 @@
           "share": {
             "value": 0.05,
             "confidence": "medium",
-            "asOf": "2024",
+            "asOf": "2024-04",
             "sources": [
               "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
             ]
@@ -584,7 +599,7 @@
         "cr1": {
           "value": 0.525,
           "confidence": "medium",
-          "asOf": "2024",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
@@ -592,7 +607,7 @@
         "cr3": {
           "value": 0.9990000000000001,
           "confidence": "medium",
-          "asOf": "2024",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
@@ -600,7 +615,7 @@
         "hhi": {
           "value": 4579.01,
           "confidence": "medium",
-          "asOf": "2024",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
@@ -609,11 +624,11 @@
         "topCountryShare": {
           "value": 0.949,
           "confidence": "medium",
-          "asOf": "2024",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ],
-          "note": "SK hynix + Samsung combined."
+          "note": "SK hynix + Samsung combined; TrendForce April 2024."
         },
         "dominantCountries": [
           {
@@ -621,18 +636,18 @@
             "share": {
               "value": 0.949,
               "confidence": "medium",
-              "asOf": "2024",
+              "asOf": "2024-04",
               "sources": [
                 "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
               ],
-              "note": "SK hynix + Samsung combined."
+              "note": "SK hynix + Samsung combined; TrendForce April 2024."
             }
           }
         ],
         "substitutability": {
           "value": "years",
           "confidence": "medium",
-          "asOf": "2025",
+          "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
@@ -792,6 +807,34 @@
               "https://epoch.ai/data/ai_chip_sales.zip"
             ]
           }
+        },
+        {
+          "name": "Huawei (Ascend)",
+          "country": "China",
+          "share": {
+            "value": 0.03664946997190805,
+            "confidence": "medium",
+            "asOf": "2025-Q4",
+            "sources": [
+              "https://epoch.ai/data/ai-chip-sales",
+              "https://epoch.ai/data/ai_chip_sales.zip"
+            ],
+            "note": "Epoch AI cumulative H100e-equivalent compute by designer."
+          }
+        },
+        {
+          "name": "Cambricon",
+          "country": "China",
+          "share": {
+            "value": 0.0018079669402697419,
+            "confidence": "medium",
+            "asOf": "2025-Q4",
+            "sources": [
+              "https://epoch.ai/data/ai-chip-sales",
+              "https://epoch.ai/data/ai_chip_sales.zip"
+            ],
+            "note": "Epoch AI cumulative H100e-equivalent compute by designer."
+          }
         }
       ],
       "metrics": {
@@ -828,27 +871,27 @@
         },
         "topCountry": "United States",
         "topCountryShare": {
-          "value": 0.92,
+          "value": 0.9615425630878223,
           "confidence": "medium",
           "asOf": "2025-Q4",
           "sources": [
             "https://epoch.ai/data/ai-chip-sales",
             "https://epoch.ai/data/ai_chip_sales.zip"
           ],
-          "note": "NVIDIA + Google + AMD designer HQs; compute share US-heavy."
+          "note": "Sum of Nvidia, Google, and AMD cumulative H100e share in Epoch AI chip-sales data (US-headquartered designers)."
         },
         "dominantCountries": [
           {
             "country": "United States",
             "share": {
-              "value": 0.92,
+              "value": 0.9615425630878223,
               "confidence": "medium",
               "asOf": "2025-Q4",
               "sources": [
                 "https://epoch.ai/data/ai-chip-sales",
                 "https://epoch.ai/data/ai_chip_sales.zip"
               ],
-              "note": "NVIDIA + Google + AMD designer HQs; compute share US-heavy."
+              "note": "Sum of Nvidia, Google, and AMD cumulative H100e share in Epoch AI chip-sales data."
             }
           }
         ],
@@ -869,7 +912,7 @@
         "advanced-packaging"
       ],
       "isCriticalChokepoint": true,
-      "chokepointRationale": "top-country share ≈ 92%; substitutability is years."
+      "chokepointRationale": "top-country share ≈ 96%; substitutability is years."
     },
     {
       "id": "compute-cloud",
@@ -958,7 +1001,7 @@
           "note": "Epoch dataset covers ~10-20% of global AI chip stock; geographic share is indicative, not exhaustive.",
           "rawClaim": "Sum of Max OP/s for Existing GPU clusters where Country contains United States.",
           "extraction": "topCountryShare = US Max OP/s divided by global Max OP/s total among Existing clusters in gpu_clusters.csv.",
-          "caveat": "Epoch cluster inventory is partial; share is indicative, not exhaustive global cloud capacity."
+          "caveat": "Firm CR1/CR3 from Synergy cloud revenue (2024-Q4). Top-country share from Epoch GPU cluster geography (partial inventory). Different metrics and as-of dates. Epoch cluster inventory is partial; share is indicative, not exhaustive global cloud capacity."
         },
         "dominantCountries": [
           {
@@ -975,7 +1018,7 @@
               "note": "Epoch dataset covers ~10-20% of global AI chip stock; geographic share is indicative, not exhaustive.",
               "rawClaim": "Sum of Max OP/s for Existing GPU clusters where Country contains United States.",
               "extraction": "topCountryShare = US Max OP/s divided by global Max OP/s total among Existing clusters in gpu_clusters.csv.",
-              "caveat": "Epoch cluster inventory is partial; share is indicative, not exhaustive global cloud capacity."
+              "caveat": "Firm CR1/CR3 from Synergy cloud revenue (2024-Q4). Top-country share from Epoch GPU cluster geography (partial inventory). Different metrics and as-of dates. Epoch cluster inventory is partial; share is indicative, not exhaustive global cloud capacity."
             }
           }
         ],
@@ -998,5 +1041,5 @@
   ],
   "methodology": "Culm measures concentration at each physical layer of the AI stack using separate, auditable metrics. No blended fragility score.\n\nCR1: share held by the single largest actor (0 to 1).\nCR3: combined share of the top three actors (0 to 1).\nHHI: Herfindahl-Hirschman Index. Sum of squared percentage shares (0 to 10,000; >2,500 = highly concentrated).\nTop-country share: geographic concentration of the dominant country.\nSubstitutability: fungible | months | years | years-to-decades.\n\nCritical chokepoint rule: A layer is a critical chokepoint if (CR1 ≥ 0.80 OR top-country share ≥ 0.80) AND substitutability ∈ {years, years-to-decades}.\n\nEvery value carries confidence, as-of date, and source URLs. Empty sources are shown as unverified.\n\nData APIs: Machine-readable today: Epoch AI CSV/ZIP downloads (CC-BY) for accelerator compute share and GPU-cluster geography. USGS MCS: PDF + CSV data release, no REST API. TrendForce, Synergy, ASML, company filings: manual citation only. No public APIs.\n\nRefresh API-derived fields: npm run refresh:apis",
   "lastUpdated": "2026-06-13",
-  "exportedAt": "2026-06-13T16:17:32.932Z"
+  "exportedAt": "2026-06-17T12:26:39.725Z"
 }

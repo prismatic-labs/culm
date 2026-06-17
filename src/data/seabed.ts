@@ -1,0 +1,663 @@
+import type { Confidence } from '../types';
+
+export interface SeabedSource {
+  url: string;
+  org: string;
+  asOf: string;
+  note?: string;
+}
+
+export interface AiLinkage {
+  metal: string;
+  stackLayer: string;
+  role: string;
+  confidence: Confidence;
+  note?: string;
+}
+
+export interface SeabedContractor {
+  name: string;
+  sponsor: string;
+}
+
+export interface DepthRangeM {
+  min: number;
+  max: number;
+}
+
+export type SeabedDepositType =
+  | 'polymetallic nodules'
+  | 'cobalt-rich crusts'
+  | 'seafloor massive sulphides';
+
+export interface SeabedHotspot {
+  id: string;
+  name: string;
+  shortLabel: string;
+  jurisdiction: 'isa' | 'eez';
+  /** Marker centroid for map (degrees). */
+  lat: number;
+  lon: number;
+  /** Approximate zone radius in projection degrees (large ISA areas). */
+  zoneRadiusDeg?: number;
+  depositType: SeabedDepositType;
+  /** Target depth range in metres below sea level. */
+  depthM: DepthRangeM;
+  targetMetals: string[];
+  contractors: SeabedContractor[];
+  aiLinkages: AiLinkage[];
+  neutralSummary: string;
+  sources: SeabedSource[];
+}
+
+export interface MetalAiProfile {
+  id: string;
+  symbol: string;
+  name: string;
+  protagonist?: boolean;
+  aiRoles: { role: string; confidence: Confidence }[];
+  otherUses: string;
+  seabedRole: 'primary target' | 'secondary in nodules' | 'crust-hosted' | 'not seabed-sourced';
+  demandNote: string;
+  dissent?: string;
+  sources: SeabedSource[];
+}
+
+export interface StateOfPlayItem {
+  heading: string;
+  body: string;
+  sources: SeabedSource[];
+}
+
+/** ISA exploration contract totals as of 31 January 2026. */
+export const ISA_EXPLORATION_SUMMARY = {
+  totalContracts: 31,
+  contractors: 22,
+  byResource: {
+    polymetallicNodules: 19,
+    polymetallicSulphides: 8,
+    cobaltRichCrusts: 4,
+  },
+  cczNoduleContracts: 17,
+  asOf: '2026-01-31',
+  sources: [
+    {
+      url: 'https://isa.org.jm/exploration-contracts/',
+      org: 'International Seabed Authority',
+      asOf: '2026-01',
+    },
+    {
+      url: 'https://www.congress.gov/crs-product/R47324',
+      org: 'Congressional Research Service',
+      asOf: '2026-04',
+      note: '31 contracts in force; 17 for polymetallic nodules in the CCZ.',
+    },
+  ] satisfies SeabedSource[],
+};
+
+export const METAL_PROFILES: MetalAiProfile[] = [
+  {
+    id: 'copper',
+    symbol: 'Cu',
+    name: 'Copper',
+    protagonist: true,
+    aiRoles: [
+      { role: 'Chip interconnect and packaging power delivery', confidence: 'high' },
+      { role: 'Liquid-cooling cold plates and heat exchangers on accelerators', confidence: 'high' },
+      { role: 'Data-center power distribution and cabling', confidence: 'high' },
+      { role: 'Grid upgrades driven by AI load growth', confidence: 'medium' },
+    ],
+    otherUses: 'Construction, vehicles, general electrification.',
+    seabedRole: 'primary target',
+    demandNote:
+      'J.P. Morgan Global Research estimates data-center copper demand near 475,000 tonnes in 2026 (~110,000 t above the prior year). S&P Global (Jan 2026) frames AI as adding on the order of 2 Mt incremental copper demand from 2025–2040 for IT infrastructure and power generation. A large AI campus can require tens of thousands of tonnes when grid scope is included.',
+    dissent:
+      'Some analysts argue AI-driven copper demand is overstated or that headline campus figures bundle grid scope that would exist anyway. ICSG and other forecasters show smaller near-term deficits than bullish bank scenarios.',
+    sources: [
+      {
+        url: 'https://www.jpmorgan.com/insights/global-research/commodities/copper',
+        org: 'J.P. Morgan Global Research',
+        asOf: '2025-11',
+        note: '475k t data-center copper demand estimate for 2026 cited in industry summaries.',
+      },
+      {
+        url: 'https://www.spglobal.com/en/research-insights/market-insights/energy-commodities',
+        org: 'S&P Global',
+        asOf: '2026-01',
+        note: 'Copper in the Age of AI; long-horizon incremental demand figures.',
+      },
+      {
+        url: 'https://www.iea.org/reports/critical-minerals-market-review-2024',
+        org: 'IEA',
+        asOf: '2024-05',
+        note: 'Clean-tech and grid copper demand outlooks; updated in subsequent IEA commentary.',
+      },
+    ],
+  },
+  {
+    id: 'cobalt',
+    symbol: 'Co',
+    name: 'Cobalt',
+    aiRoles: [
+      { role: 'Battery storage and backup power at data-center scale', confidence: 'medium' },
+      { role: 'Grid-scale storage tied to renewable supply for AI load', confidence: 'low' },
+    ],
+    otherUses: 'EV batteries, superalloys, pigments.',
+    seabedRole: 'primary target',
+    demandNote:
+      'Seabed nodules and crusts are cobalt-rich; AI tie is mainly through the power and battery footprint of running compute at scale, not through chips directly.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/polymetallic-nodules/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+      },
+    ],
+  },
+  {
+    id: 'nickel',
+    symbol: 'Ni',
+    name: 'Nickel',
+    aiRoles: [
+      { role: 'Battery chemistries for grid and data-center power systems', confidence: 'medium' },
+    ],
+    otherUses: 'Stainless steel, EV batteries.',
+    seabedRole: 'secondary in nodules',
+    demandNote:
+      'Present in polymetallic nodules alongside manganese and copper; AI linkage is indirect via power infrastructure.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/polymetallic-nodules/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+      },
+    ],
+  },
+  {
+    id: 'manganese',
+    symbol: 'Mn',
+    name: 'Manganese',
+    aiRoles: [{ role: 'Thin AI tie; mainly steel and industrial demand', confidence: 'low' }],
+    otherUses: 'Steel production dominates global manganese demand.',
+    seabedRole: 'secondary in nodules',
+    demandNote: 'Abundant in nodules but not a primary AI-hardware metal.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/polymetallic-nodules/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+      },
+    ],
+  },
+  {
+    id: 'ree',
+    symbol: 'REE',
+    name: 'Rare earths (crust-hosted)',
+    aiRoles: [
+      { role: 'Permanent magnets and select electronics; not the chip bottleneck', confidence: 'low' },
+    ],
+    otherUses: 'Wind turbines, defense, consumer electronics.',
+    seabedRole: 'crust-hosted',
+    demandNote:
+      'Cobalt-rich ferromanganese crusts can carry rare-earth enrichment; AI relevance is peripheral compared with copper.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+        note: 'Four exploration contracts for cobalt-rich ferromanganese crusts.',
+      },
+    ],
+  },
+  {
+    id: 'gallium',
+    symbol: 'Ga',
+    name: 'Gallium',
+    aiRoles: [{ role: 'RF and power electronics in the AI stack (Culm layer 1)', confidence: 'high' }],
+    otherUses: 'Not a seabed target.',
+    seabedRole: 'not seabed-sourced',
+    demandNote:
+      'Gallium is AI-critical in Culm’s materials layer but is not recovered from seabed deposits mapped here. Land refining dominance (e.g. China) is the relevant concentration risk.',
+    sources: [
+      {
+        url: 'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf',
+        org: 'USGS Mineral Commodity Summaries',
+        asOf: '2025',
+      },
+    ],
+  },
+];
+
+export const SEABED_HOTSPOTS: SeabedHotspot[] = [
+  {
+    id: 'ccz',
+    name: 'Clarion-Clipperton Zone',
+    shortLabel: 'CCZ',
+    jurisdiction: 'isa',
+    lat: 12,
+    lon: -127,
+    zoneRadiusDeg: 9,
+    depositType: 'polymetallic nodules',
+    depthM: { min: 4000, max: 5500 },
+    targetMetals: ['Cu', 'Co', 'Ni', 'Mn'],
+    contractors: [
+      { name: 'Multiple ISA contractors (17 in CCZ; 19 ISA-wide nodule contracts)', sponsor: 'See ISA registry' },
+      {
+        name: 'Examples: COMRA, TMC/NORI, UK Seabed Resources, BGR (Germany), IFREMER (France)',
+        sponsor: 'China, Nauru, UK, Germany, France, and others',
+      },
+    ],
+    aiLinkages: [
+      {
+        metal: 'Cu',
+        stackLayer: 'Materials / power & cooling',
+        role: 'Nodules are copper-bearing; AI data-center and grid demand is the strongest quantified link.',
+        confidence: 'high',
+      },
+      {
+        metal: 'Co',
+        stackLayer: 'Compute / grid power',
+        role: 'Cobalt in nodules; AI tie is mainly battery and backup power, not chips.',
+        confidence: 'medium',
+      },
+      {
+        metal: 'Ni',
+        stackLayer: 'Compute / grid power',
+        role: 'Nickel in nodules; indirect AI tie via power infrastructure.',
+        confidence: 'medium',
+      },
+      {
+        metal: 'Mn',
+        stackLayer: 'Materials',
+        role: 'Abundant in nodules; weak direct AI-hardware link.',
+        confidence: 'low',
+      },
+    ],
+    neutralSummary:
+      'The largest polymetallic-nodule province in areas beyond national jurisdiction. The ISA holds 17 exploration contracts here as of January 2026. Economic recoverability remains unproven at commercial scale.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/polymetallic-nodules/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+      },
+      {
+        url: 'https://www.congress.gov/crs-product/R47324',
+        org: 'Congressional Research Service',
+        asOf: '2026-04',
+      },
+    ],
+  },
+  {
+    id: 'cio',
+    name: 'Central Indian Ocean Basin',
+    shortLabel: 'Indian Ocean',
+    jurisdiction: 'isa',
+    lat: -10,
+    lon: 79,
+    zoneRadiusDeg: 4,
+    depositType: 'polymetallic nodules',
+    depthM: { min: 4000, max: 5000 },
+    targetMetals: ['Cu', 'Co', 'Ni', 'Mn'],
+    contractors: [{ name: 'Government of India', sponsor: 'India' }],
+    aiLinkages: [
+      {
+        metal: 'Cu',
+        stackLayer: 'Materials / power & cooling',
+        role: 'India’s ISA nodule contract area; same polymetallic mix as the CCZ.',
+        confidence: 'high',
+      },
+      {
+        metal: 'Co',
+        stackLayer: 'Compute / grid power',
+        role: 'Cobalt-bearing nodules; indirect AI power footprint.',
+        confidence: 'medium',
+      },
+    ],
+    neutralSummary:
+      'India’s exploration contract in the Central Indian Ocean Basin, in force since 2002 with extensions. One of three ISA nodule provinces outside the CCZ.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/polymetallic-nodules/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+      },
+    ],
+  },
+  {
+    id: 'wpac-crust',
+    name: 'Western Pacific cobalt-rich crusts',
+    shortLabel: 'W. Pacific crusts',
+    jurisdiction: 'isa',
+    lat: 22,
+    lon: 148,
+    zoneRadiusDeg: 5,
+    depositType: 'cobalt-rich crusts',
+    depthM: { min: 800, max: 2500 },
+    targetMetals: ['Co', 'Ni', 'REE', 'Mn'],
+    contractors: [
+      { name: 'China Ocean Mineral Resources Research and Development Association (COMRA)', sponsor: 'China' },
+      { name: 'Other ISA crust contractors in the Western Pacific', sponsor: 'China, Japan, Russia, and others' },
+    ],
+    aiLinkages: [
+      {
+        metal: 'Co',
+        stackLayer: 'Compute / grid power',
+        role: 'Crust deposits are cobalt-rich; AI tie is mainly power and battery systems.',
+        confidence: 'medium',
+      },
+      {
+        metal: 'REE',
+        stackLayer: 'Materials / electronics',
+        role: 'Crust-hosted rare earths; peripheral to core AI compute bottlenecks.',
+        confidence: 'low',
+      },
+    ],
+    neutralSummary:
+      'ISA exploration contracts for cobalt-rich ferromanganese crusts on seamounts in the Western Pacific, including areas contracted to Chinese sponsors.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+        note: 'Four crust contracts; Western Pacific seamount provinces.',
+      },
+    ],
+  },
+  {
+    id: 'cook-islands',
+    name: 'Cook Islands EEZ',
+    shortLabel: 'Cook Islands',
+    jurisdiction: 'eez',
+    lat: -21,
+    lon: -159,
+    zoneRadiusDeg: 3,
+    depositType: 'polymetallic nodules',
+    depthM: { min: 4000, max: 5500 },
+    targetMetals: ['Co', 'Mn', 'Cu'],
+    contractors: [
+      { name: 'Cook Islands Cobalt (CIC) Limited', sponsor: 'Cook Islands' },
+      { name: 'Moana Minerals Limited', sponsor: 'Cook Islands' },
+      { name: 'CIIC Seabed Resources Limited (Cobalt Seabed Resources)', sponsor: 'Cook Islands' },
+    ],
+    aiLinkages: [
+      {
+        metal: 'Co',
+        stackLayer: 'Compute / grid power',
+        role: 'Polymetallic nodules in national waters; cobalt is a stated target metal.',
+        confidence: 'medium',
+      },
+      {
+        metal: 'Cu',
+        stackLayer: 'Materials / power & cooling',
+        role: 'Copper present in nodules; AI demand link uses the same copper spine as CCZ.',
+        confidence: 'medium',
+        note: 'National EEZ programme; no commercial extraction licensed yet.',
+      },
+    ],
+    neutralSummary:
+      'Three five-year exploration licences issued in February 2022 under the Seabed Minerals Authority. Exploration extended toward 2032; commercial mining requires separate environmental and mining approvals.',
+    sources: [
+      {
+        url: 'https://www.sbma.gov.ck/news-3/article-254',
+        org: 'Cook Islands Seabed Minerals Authority',
+        asOf: '2025-12',
+      },
+      {
+        url: 'https://www.rnz.co.nz/news/pacific/578735/cook-islands-delays-seabed-mining-decision-extends-exploration-to-2032',
+        org: 'RNZ / Cook Islands News',
+        asOf: '2025-11',
+      },
+    ],
+  },
+  {
+    id: 'kiribati',
+    name: 'Kiribati (Marawa / CCZ sponsor)',
+    shortLabel: 'Kiribati',
+    jurisdiction: 'isa',
+    lat: 2,
+    lon: -162,
+    zoneRadiusDeg: 3,
+    depositType: 'polymetallic nodules',
+    depthM: { min: 4000, max: 5500 },
+    targetMetals: ['Cu', 'Co', 'Ni', 'Mn'],
+    contractors: [{ name: 'Marawa Research and Exploration Ltd.', sponsor: 'Kiribati' }],
+    aiLinkages: [
+      {
+        metal: 'Cu',
+        stackLayer: 'Materials / power & cooling',
+        role: 'Kiribati-sponsored CCZ nodule contract; metals mix as CCZ.',
+        confidence: 'high',
+      },
+    ],
+    neutralSummary:
+      'Kiribati sponsors an ISA exploration contract in the Clarion-Clipperton Zone (Marawa Research and Exploration Ltd.).',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/polymetallic-nodules/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+      },
+    ],
+  },
+  {
+    id: 'tonga',
+    name: 'Tonga Offshore Mining (CCZ)',
+    shortLabel: 'Tonga',
+    jurisdiction: 'isa',
+    lat: 8,
+    lon: -145,
+    zoneRadiusDeg: 3,
+    depositType: 'polymetallic nodules',
+    depthM: { min: 4000, max: 5500 },
+    targetMetals: ['Cu', 'Co', 'Ni', 'Mn'],
+    contractors: [{ name: 'Tonga Offshore Mining Limited', sponsor: 'Tonga' }],
+    aiLinkages: [
+      {
+        metal: 'Cu',
+        stackLayer: 'Materials / power & cooling',
+        role: 'Tonga-sponsored CCZ nodule contract.',
+        confidence: 'high',
+      },
+    ],
+    neutralSummary:
+      'Tonga sponsors an ISA polymetallic-nodule exploration contract in the CCZ.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/exploration-contracts/polymetallic-nodules/',
+        org: 'International Seabed Authority',
+        asOf: '2026-01',
+      },
+    ],
+  },
+  {
+    id: 'png',
+    name: 'Papua New Guinea EEZ (Solwara 1)',
+    shortLabel: 'PNG',
+    jurisdiction: 'eez',
+    lat: -3,
+    lon: 152,
+    zoneRadiusDeg: 2,
+    depositType: 'seafloor massive sulphides',
+    depthM: { min: 1500, max: 1700 },
+    targetMetals: ['Cu', 'Co', 'Au', 'Ag'],
+    contractors: [{ name: 'Nautilus Minerals (Solwara 1 project; largely stalled)', sponsor: 'Papua New Guinea' }],
+    aiLinkages: [
+      {
+        metal: 'Cu',
+        stackLayer: 'Materials / power & cooling',
+        role: 'Seafloor massive sulphides are copper-rich; project status uncertain.',
+        confidence: 'medium',
+        note: 'Historical EEZ licensing; not an active commercial operation.',
+      },
+    ],
+    neutralSummary:
+      'Papua New Guinea licensed the Solwara 1 seafloor massive sulphide project in national waters; development stalled after financial and operational setbacks. Included as EEZ-level activity, not a live mine.',
+    sources: [
+      {
+        url: 'https://www.congress.gov/crs-product/R47324',
+        org: 'Congressional Research Service',
+        asOf: '2026-04',
+        note: 'Background on national EEZ seabed projects including PNG.',
+      },
+    ],
+  },
+];
+
+export const DEEP_SEA_MINING_PRO_CON = {
+  pros: [
+    'Nodules and crusts bundle copper, cobalt, nickel, and manganese in one deposit, which could diversify supply beyond land-based concentration.',
+    'Coastal states (Cook Islands, Kiribati, Tonga, and others) treat seabed minerals as sovereign revenue and industrial development.',
+    'Extraction happens far from farmland and settled land; unlike many land mines, it does not directly displace surface communities.',
+    'Thirty-one ISA exploration contracts are already in force; collection technology is advancing, though commercial scale is unproven.',
+  ],
+  cons: [
+    'Abyssal habitats recover slowly. Plumes, noise, and seabed disturbance may harm ecosystems that are still poorly understood.',
+    'No commercial deep-sea mine is operating yet. Costs, ore grades, and processing at scale remain uncertain.',
+    'ISA exploitation rules are unfinished. Member states disagree on environmental thresholds and liability.',
+    'Land recycling and alternative suppliers may cover much demand. Seabed mining does not solve every AI-material bottleneck (gallium, photoresists, and others are land-sourced).',
+  ],
+  sources: [
+    {
+      url: 'https://www.congress.gov/crs-product/R47324',
+      org: 'Congressional Research Service',
+      asOf: '2026-04',
+    },
+    {
+      url: 'https://isa.org.jm/exploration-contracts/',
+      org: 'International Seabed Authority',
+      asOf: '2026-01',
+    },
+  ] satisfies SeabedSource[],
+} as const;
+
+export const STATE_OF_PLAY: StateOfPlayItem[] = [
+  {
+    heading: 'ISA mining code',
+    body:
+      'The International Seabed Authority has issued 31 exploration contracts but no exploitation contracts as of January 2026. A full mining code was not finalized at the March 2026 Council session; the Secretary-General has stated an aim to complete a draft by end-2026.',
+    sources: [
+      {
+        url: 'https://isa.org.jm/wp-content/uploads/2026/02/ISBA_31_C_3-AUV.pdf',
+        org: 'International Seabed Authority',
+        asOf: '2026-02',
+      },
+      {
+        url: 'https://www.congress.gov/crs-product/R47324',
+        org: 'Congressional Research Service',
+        asOf: '2026-04',
+      },
+    ],
+  },
+  {
+    heading: 'Recent national moves',
+    body:
+      'The United States is not a UNCLOS party but has revived domestic seabed-mining legislation and issued exploration licences to U.S. firms in the CCZ under the Deep Seabed Hard Mineral Resources Act. NOAA and other agencies have pursued permitting and research partnerships, including with Pacific island states.',
+    sources: [
+      {
+        url: 'https://www.congress.gov/crs-product/R47324',
+        org: 'Congressional Research Service',
+        asOf: '2026-04',
+      },
+    ],
+  },
+  {
+    heading: 'What this map does not show',
+    body:
+      'Alternative suppliers on land, full lifecycle emissions, and whether seabed mining can scale economically. Some AI-critical materials (gallium, ultrapure silicon, photoresists) are not seabed-sourced.',
+    sources: [
+      {
+        url: 'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf',
+        org: 'USGS Mineral Commodity Summaries',
+        asOf: '2025',
+      },
+    ],
+  },
+];
+
+export interface SeabedConcentrationStat {
+  value: string;
+  label: string;
+  note: string;
+  confidence: Confidence;
+  sources: SeabedSource[];
+}
+
+/**
+ * The concentration throughline, one level below layer 01. Seabed mining is sold
+ * as an escape from land-based mineral concentration; the licences and the
+ * refining say otherwise. Same Culm thesis, still being decided.
+ */
+export const SEABED_CONCENTRATION = {
+  heading: 'Concentration below the stack: seabed to refining',
+  lede:
+    'Deep-sea mining is pitched as a way around the concentration that grips these metals on land. It may not be. A few states already hold most of the licences, and whatever is dug up still has to be refined in a handful of countries. That is the same concentration the map traces, one level down.',
+  stats: [
+    {
+      value: '5',
+      label: 'ISA exploration contracts held by China, more than any other state',
+      note: 'Sponsored mainly through COMRA, spanning polymetallic nodules and cobalt-rich crusts.',
+      confidence: 'medium',
+      sources: [
+        {
+          url: 'https://www.congress.gov/crs-product/R47324',
+          org: 'Congressional Research Service',
+          asOf: '2026-04',
+        },
+        {
+          url: 'https://isa.org.jm/exploration-contracts/',
+          org: 'International Seabed Authority',
+          asOf: '2026-01',
+        },
+      ],
+    },
+    {
+      value: '~75%',
+      label: 'of the world’s cobalt is refined in China',
+      note: 'Where a metal is mined barely changes who controls the refined supply; nickel and manganese refining are similarly concentrated. Seabed mining does not, by itself, route around that chokepoint.',
+      confidence: 'medium',
+      sources: [
+        {
+          url: 'https://www.iea.org/reports/global-critical-minerals-outlook-2025',
+          org: 'IEA',
+          asOf: '2025',
+          note: 'Refining-share concentration across cobalt, nickel, and other critical minerals.',
+        },
+      ],
+    },
+    {
+      value: '0 of 31',
+      label: 'ISA contracts that authorise mining, not just exploration',
+      note: 'The exploitation code is still in draft. Unlike EUV or leading-edge fabs, this chokepoint is not locked in yet, it is being written now.',
+      confidence: 'high',
+      sources: [
+        {
+          url: 'https://isa.org.jm/wp-content/uploads/2026/02/ISBA_31_C_3-AUV.pdf',
+          org: 'International Seabed Authority',
+          asOf: '2026-02',
+        },
+        {
+          url: 'https://www.congress.gov/crs-product/R47324',
+          org: 'Congressional Research Service',
+          asOf: '2026-04',
+        },
+      ],
+    },
+  ] satisfies SeabedConcentrationStat[],
+  fragility:
+    'Pitched as diversification, seabed supply would still funnel through the same few refiners. New mines may not change refining concentration.',
+  leverage:
+    'Whoever writes the ISA code and holds the contracts gains a control point over the metals behind AI’s power and datacenter buildout, a question still open to policy.',
+} as const;
+
+export const METAL_SYMBOL_TO_ID: Record<string, string> = {
+  Cu: 'copper',
+  Co: 'cobalt',
+  Ni: 'nickel',
+  Mn: 'manganese',
+  REE: 'ree',
+};
+
+export function metalIdFromSymbol(symbol: string): string | null {
+  return METAL_SYMBOL_TO_ID[symbol] ?? null;
+}

@@ -1,4 +1,5 @@
 import { escapeAttr, escapeHtml } from './escape-html';
+import { CONFIDENCE_DEFINITIONS } from './confidence';
 
 export interface MetricDefinition {
   id: string;
@@ -106,7 +107,9 @@ export function renderMetricsGuideHtml(): string {
       <p class="metrics-guide-lead">
         Each number measures one thing. Plain-English lines sit beside the numbers in the stack.
         Click any underlined metric to open its definition below.
-        Confidence and <span class="tag unverified">unverified</span> tags apply per value.
+        Confidence tags rate how sure Culm is about each value:
+        ${CONFIDENCE_DEFINITIONS.map((d) => `${d.label} (${d.gloss})`).join('; ')}.
+        <span class="tag unverified">unverified</span> means no source link is attached yet.
       </p>
       <dl class="metrics-dl">
         ${METRIC_DEFINITIONS.map(

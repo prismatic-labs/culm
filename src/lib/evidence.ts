@@ -1,3 +1,4 @@
+import { renderConfidenceTag } from './confidence';
 import { escapeHtml } from './escape-html';
 import { renderSourceLinksHtml } from './source-links';
 import type { SourcedValue } from '../types';
@@ -14,7 +15,7 @@ export function renderEvidenceRow(label: string, value: string, sourced: Sourced
     <div class="evidence-row">
       <div class="evidence-row-head">
         <strong>${escapeHtml(label)}</strong>
-        <span>${escapeHtml(value)} · ${escapeHtml(sourced.asOf)} · ${escapeHtml(sourced.confidence)}</span>
+        <span>${escapeHtml(value)} · ${escapeHtml(sourced.asOf)} · ${renderConfidenceTag(sourced.confidence)}</span>
       </div>
       <dl class="evidence-pipeline">${steps.join('')}</dl>
       ${renderSourceLinksHtml(sourced.sources, sourced.asOf)}

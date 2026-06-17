@@ -2,14 +2,15 @@
   "name": "culm",
   "type": "module",
   "version": "0.1.0",
-  "description": "AI Stack Concentration Map: sourced layer-by-layer measurement of substrate concentration",
+  "description": "Physical AI supply chain concentration map: chokepoints from materials to cloud, sourced for AI safety research",
   "license": "Apache-2.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "refresh:apis": "python3 scripts/refresh-from-apis.py"
+    "refresh:apis": "python3 scripts/refresh-from-apis.py",
+    "refresh:all": "npm run refresh:apis && npm run test && npm run build"
   },
   "devDependencies": {
     "@types/d3-geo": "^3.1.0",

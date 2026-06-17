@@ -1,8 +1,21 @@
 # Culm
 
-AI Stack Concentration Map: a sourced, layer-by-layer measurement of how few actors and countries control each physical layer of the AI hardware stack.
+Physical AI supply chain concentration map: a sourced, layer-by-layer measurement of how few actors and countries control each layer from materials to cloud.
 
-Deployed at `/culm/` on GitHub Pages (Vite base path).
+**Live:** [prismatic-labs.github.io/culm/](https://prismatic-labs.github.io/culm/)
+
+Winner of **Breaking Barriers to AI Safety** (LISA × BlueDot Impact, June 2026).
+
+## Production
+
+- **Deploy:** push to `main` runs tests, builds `dist/`, and publishes to GitHub Pages (see `.github/workflows/deploy.yml`).
+- **Data refresh:** Epoch AI accelerator and cluster metrics refresh automatically on the 1st of each month (`.github/workflows/refresh-epoch.yml`). Manual refresh: `npm run refresh:all`.
+- **Snapshot date:** `lastUpdated` follows `fetchedAt` in `src/data/auto/epoch-metrics.json` and appears in the hub footer and methodology block.
+- **AI safety framing:** hub kicker + collapsible “Why this matters for AI safety” + About section; companion pages show evidence (controls, compute) without repeating the slogan.
+
+## Seabed level (`/culm/seabed/`)
+
+Deep-sea mining hotspots tagged with AI-relevant metals. Who, where, which metals, water depth, confidence-rated linkages. Copper is the spine. Dataset at `public/data/seabed-hotspots.json`.
 
 ## Stack
 
@@ -19,6 +32,7 @@ npm run dev          # local viewer
 npm run test         # vitest
 npm run build        # tsc --noEmit && vite build
 npm run refresh:apis # pull Epoch metrics into src/data/auto/epoch-metrics.json
+npm run refresh:all  # refresh + test + rebuild concentration.json
 ```
 
 ## Data schema
@@ -87,14 +101,17 @@ Computed in `src/lib/chokepoint.ts` via `layerFromMetrics` → `evaluateChokepoi
 
 ### Snapshot policy
 
-1. Run `npm run refresh:apis` when Epoch publishes new CSVs.
+1. Run `npm run refresh:apis` when Epoch publishes new CSVs (or wait for the monthly GitHub Action).
 2. Review the diff to `epoch-metrics.json`.
-3. Commit the snapshot with the rest of the dataset changes.
-4. The refresh script validates shares, totals, and writes atomically; it exits non-zero on failure.
+3. Run `npm run test && npm run build` to regenerate `public/data/concentration.json`.
+4. Commit the snapshot with the rest of the dataset changes.
+5. The refresh script validates shares, totals, and writes atomically; it exits non-zero on failure.
+
+`lastUpdated` in the dataset is derived from `epoch-metrics.json` → `fetchedAt`.
 
 ## Acknowledgements
 
-Built for the hackathon **Breaking Barriers to AI Safety**, hosted by LISA x BlueDot Impact.
+Built for and winner of the hackathon **Breaking Barriers to AI Safety**, hosted by LISA x BlueDot Impact (June 2026).
 
 ## License
 

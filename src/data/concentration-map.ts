@@ -1,6 +1,7 @@
 import type { ConcentrationMap } from '../types';
 import { CHOKEPOINT_RULE } from '../lib/chokepoint';
 import { API_SUMMARY } from '../lib/data-sources';
+import { DATASET_LAST_UPDATED, datasetCitation } from '../lib/dataset-meta';
 import {
   advancedPackaging,
   aiAccelerators,
@@ -15,8 +16,7 @@ import {
 export const concentrationMap: ConcentrationMap = {
   datasetVersion: '1.0.0',
   schemaVersion: '1.1.0',
-  citation:
-    'Prismatic Labs (2026). Culm AI Stack Concentration Map v1.0.0. Dataset snapshot culm-concentration-2026-06-13.json.',
+  citation: datasetCitation('1.0.0'),
   layers: [
     criticalMaterials,
     euvLithography,
@@ -44,5 +44,5 @@ export const concentrationMap: ConcentrationMap = {
     '',
     'Refresh API-derived fields: npm run refresh:apis',
   ].join('\n'),
-  lastUpdated: '2026-06-13',
+  lastUpdated: DATASET_LAST_UPDATED,
 };

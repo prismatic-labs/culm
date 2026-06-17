@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Culm: Who controls AI compute</title>
+    <meta
+      name="description"
+      content="The demand side of the AI stack: where compute concentrates, who controls it, and the binding constraint of power and datacenter electricity. Sourced and confidence-rated."
+    />
+    <meta property="og:title" content="Culm: Who controls AI compute" />
+    <meta
+      property="og:description"
+      content="Who controls AI compute (Nvidia ~71% in Epoch data; ~79% of mapped US GPU clusters in a partial inventory) and the binding constraint of power."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://prismatic-labs.github.io/culm/compute/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Culm: Who controls AI compute" />
+    <meta
+      name="twitter:description"
+      content="Where AI compute concentrates and the binding constraint of power. Sourced and confidence-rated."
+    />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="compute-page">
+    <div class="culm-chrome">
+      <div class="culm-site-bar">
+        <a class="culm-wordmark" href="../">Culm</a>
+        <nav id="explore-nav" class="explore-nav" aria-label="Explore Culm"></nav>
+        <div class="culm-site-actions">
+          <a
+            class="brand-link"
+            href="https://prismaticlabs.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Prismatic Labs (opens prismaticlabs.ai)"
+          >
+            <span class="brand-by">by</span>
+            <img
+              class="brand-logo"
+              src="../prismatic-logo.svg"
+              alt="Prismatic Labs"
+              width="96"
+              height="68"
+              style="height: 68px; width: auto"
+            />
+          </a>
+        </div>
+      </div>
+      <header class="culm-page-head">
+        <p class="culm-kicker">Compute · where accelerator capacity concentrates</p>
+        <h1 class="page-title">Who controls AI compute, and the power that runs it</h1>
+        <p class="page-subtitle">
+          Accelerator concentration, where clusters sit, and the electricity now binding the stack.
+        </p>
+      </header>
+    </div>
+
+    <div id="app" class="compute-app">
+      <div class="page-intro" id="compute-intro"></div>
+
+      <section class="compute-section" aria-labelledby="compute-who-heading">
+        <h2 id="compute-who-heading"></h2>
+        <p class="section-lead" id="compute-who-lead"></p>
+        <div class="compute-who" id="compute-who"></div>
+      </section>
+
+      <section class="compute-section compute-section--power" aria-labelledby="compute-power-heading">
+        <h2 id="compute-power-heading"></h2>
+        <p class="section-lead" id="compute-power-lead"></p>
+        <div class="compute-power" id="compute-power"></div>
+      </section>
+
+      <section class="compute-payoff-band" id="compute-payoff"></section>
+
+      <footer class="site-footer">
+        Open dataset · Apache-2.0 · Culm · Values confidence-rated ·
+        <a href="../">Return to map</a>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/compute/main.ts"></script>
+  </body>
+</html>

@@ -19,6 +19,7 @@ import {
   layerThesisHeadline,
   layerThesisSub,
 } from './lib/layer-copy';
+import { renderAboutHtml } from './lib/about';
 import { renderGuideHtml, type GuideTabId } from './lib/guide';
 import {
   COPY,
@@ -28,6 +29,13 @@ import {
 } from './lib/ui-copy';
 import { buildDatasetSnapshot } from './lib/dataset-snapshot';
 import { renderEvidenceRow } from './lib/evidence';
+import {
+  CONFIDENCE_DEFINITIONS,
+  initConfidenceTips,
+  renderConfidenceLegend,
+  renderConfidenceTag,
+} from './lib/confidence';
+import { mountExploreNav, renderDeeperBridge } from './lib/explore-nav';
 import { escapeAttr, escapeHtml } from './lib/escape-html';
 import { layerHeldInCountry } from './lib/layer-countries';
 import {
@@ -89,7 +97,7 @@ function isUnverified(sourced: SourcedValue<unknown>): boolean {
 
 function metricTags(sourced: SourcedValue<unknown>): string {
   const verified = !isUnverified(sourced);
-  return `<span class="conf">${escapeHtml(sourced.confidence)}</span><span class="tag ${verified ? '' : 'unverified'}">${verified ? 'sourced' : 'unverified'}</span>`;
+  return `${renderConfidenceTag(sourced.confidence)}<span class="tag ${verified ? '' : 'unverified'}">${verified ? 'sourced' : 'unverified'}</span>`;
 }
 
 function tableRow(
@@ -379,12 +387,12 @@ function renderThesis(): void {
     const chokeCountries = [...new Set(criticalLayers.map((l) => l.metrics.topCountry))];
     const payoff =
       criticalLayers.length > 0
-        ? `The bottom line: ${criticalLayers.length} of the ${stackLayerCount} layers are single points of failure, and just ${chokeCountries.length} countries control them: ${listToProse(chokeCountries)}.`
+        ? `${criticalLayers.length} of the ${stackLayerCount} layers are critical chokepoints; ${chokeCountries.length} countries dominate them: ${listToProse(chokeCountries)}.`
         : '';
     thesisEl.innerHTML = `
       <div class="thesis-words">
-        <div class="big">Eight layers from materials to cloud.</div>
-        <div class="sub">Select a layer in the stack to see who controls it and where supply flows on the map. EUV lithography is the narrowest bottleneck: a good place to start.</div>
+        <div class="big">Where concentration is highest.</div>
+        <div class="sub">Select any layer or country. EUV lithography is among the most concentrated layers. What if? simulates removing one.</div>
         ${payoff ? `<div class="thesis-payoff">${escapeHtml(payoff)}</div>` : ''}
       </div>
       <div class="thesis-stat">
@@ -582,6 +590,30 @@ function renderRail(): void {
   });
 }
 
+function concentrationStakesHtml(layer: Layer): string {
+  const downstream = getDownstreamLayerIds(layers, layer.id);
+  const cr1 = pct100(layer.metrics.cr1.value);
+  const country = layer.metrics.topCountry;
+
+  const fragility = layer.isCriticalChokepoint
+    ? `<strong>Fragility.</strong> A critical chokepoint: if supply from ${escapeHtml(country)} is cut, ${downstream.size} downstream layer${downstream.size === 1 ? '' : 's'} would be hard to operate at scale.`
+    : downstream.size > 0
+      ? `<strong>Fragility.</strong> More than one supplier exists, so losing any single one is more recoverable than at the stack's chokepoints.`
+      : `<strong>Fragility.</strong> Sits at the top of the stack; little depends on it downstream.`;
+
+  const leverage =
+    cr1 >= 50
+      ? `<strong>Leverage.</strong> With ${cr1}% in one supplier's hands, whoever holds this layer can restrict or prioritize supply. <a href="controls/">Export controls already work this way</a>.`
+      : `<strong>Leverage.</strong> No single supplier dominates, so this layer offers less unilateral control than the stack's true chokepoints.`;
+
+  return `
+    <div class="blk stakes">
+      <h3>What the concentration means</h3>
+      <p>${fragility}</p>
+      <p>${leverage}</p>
+    </div>`;
+}
+
 function renderLayerPanel(layer: Layer): void {
   const cr1 = pct100(layer.metrics.cr1.value);
   const cr3 = pct100(layer.metrics.cr3.value);
@@ -599,7 +631,7 @@ function renderLayerPanel(layer: Layer): void {
       ? `
       <details class="blk propagation">
         <summary>Downstream propagation (${downstream.size} layer${downstream.size === 1 ? '' : 's'})</summary>
-        <p>Without this layer, these dependent layers cannot function at scale:</p>
+        <p>Without this layer, these dependent layers would be hard to operate at scale:</p>
         <ul class="actor-list">
           ${[...downstream]
             .map((id) => layers.find((l) => l.id === id)!)
@@ -634,6 +666,8 @@ function renderLayerPanel(layer: Layer): void {
 
     <div class="blk"><h3>What it is</h3><p>${escapeHtml(layer.whatItIs)}</p></div>
     <div class="blk"><h3>Why it matters</h3><p>${escapeHtml(layer.whyItMatters)}</p></div>
+
+    ${concentrationStakesHtml(layer)}
 
     ${renderCompositeNoticeHtml(layer)}
 
@@ -859,7 +893,7 @@ function renderStarterPanel(): void {
       <h3>The narrowest chokepoints</h3>
       <ul class="panel-starter">${items}</ul>
     </div>
-    <p class="note">Want to stress-test the stack? Switch to <strong>${COPY.modeWhatIf}</strong> and remove a layer or country to trace what stalls downstream.</p>
+    <p class="note">Switch to <strong>${COPY.modeWhatIf}</strong> to remove a layer or country and trace what stalls downstream.</p>
   `;
 
   panelEl.querySelectorAll<HTMLButtonElement>('.panel-starter-btn').forEach((button) => {
@@ -875,6 +909,10 @@ function renderMetricsGuide(): void {
   document.querySelector<HTMLElement>('#metrics-guide')!.innerHTML = renderMetricsGuideHtml();
 }
 
+function renderAbout(): void {
+  document.querySelector<HTMLElement>('#about')!.innerHTML = renderAboutHtml();
+}
+
 function renderMethodology(): void {
   const defs: Array<[string, string]> = [
     ['CR1', 'Share held by the single largest company (0 to 100%). 100% means a sole supplier.'],
@@ -888,6 +926,10 @@ function renderMethodology(): void {
       'Substitutability',
       'How fast alternatives could scale if dominant supply failed: fungible, months, years, or years to decades.',
     ],
+    [
+      'Confidence',
+      CONFIDENCE_DEFINITIONS.map((d) => `${d.label}: ${d.gloss}.`).join(' '),
+    ],
   ];
 
   const defsHtml = defs
@@ -900,12 +942,13 @@ function renderMethodology(): void {
   document.querySelector<HTMLElement>('#methodology')!.innerHTML = `
     <h2>Methodology</h2>
     <p class="methodology-lead">Culm measures concentration at each physical layer of the AI stack with separate, auditable metrics. There is no single blended score: every number stands on its own and carries a confidence level, an as-of date, and source links.</p>
+    ${renderConfidenceLegend()}
     <dl class="methodology-defs">${defsHtml}</dl>
     <p class="methodology-rule"><strong>Critical chokepoint:</strong> a layer is flagged when one company or one country holds at least 80% of it, and replacing that supply would take years. Empty sources are shown as unverified.</p>
     <details class="methodology-spec">
       <summary>Data sources and refresh</summary>
       <p>${escapeHtml(API_SUMMARY)}</p>
-      <p>Refresh the API-derived fields with <code>npm run refresh:apis</code>. The full machine-readable spec ships in the dataset download above.</p>
+      <p>Epoch-derived fields refresh monthly via GitHub Actions, or manually with <code>npm run refresh:apis</code> followed by <code>npm run build</code>. The full machine-readable spec ships in the dataset download above.</p>
     </details>
     <p class="methodology-foot">Last updated ${escapeHtml(concentrationMap.lastUpdated)}</p>
   `;
@@ -1045,14 +1088,20 @@ function initFromUrl(): void {
 }
 
 renderMetricsGuide();
+renderAbout();
 renderGuide();
 renderMethodology();
 renderDataExport();
 renderMapMeta();
+mountExploreNav(document.querySelector('#explore-nav'), 'stack', '');
+const deeperBridgeEl = document.querySelector<HTMLElement>('#deeper-bridge');
+if (deeperBridgeEl) deeperBridgeEl.innerHTML = renderDeeperBridge('');
 document.querySelector<HTMLElement>('#dataset-version')!.textContent = concentrationMap.datasetVersion;
+document.querySelector<HTMLElement>('#dataset-updated')!.textContent = concentrationMap.lastUpdated;
 initFromUrl();
 subscribe(renderAll);
 renderAll();
 setupModeToggle();
+initConfidenceTips();
 
 document.querySelector<HTMLElement>('#app')!.dataset.ready = 'true';

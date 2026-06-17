@@ -1,12 +1,15 @@
+import { pageMeta } from './explore-nav';
 import { activeShockTarget, getState, type CulmState } from '../state';
+
+const HUB = pageMeta('stack');
 
 export function updatePageMeta(
   state: CulmState,
   layers: { id: string; name: string }[],
 ): void {
-  let title = 'Culm: AI Stack Concentration Map';
+  let title = HUB.documentTitle;
   let description =
-    'Eight physical layers sit between raw materials and cloud AI. Culm shows who controls each one, and what breaks if you remove it.';
+    'Chokepoints from materials to cloud. Culm shows who holds each layer, where fragility and leverage sit, and what breaks if you remove one.';
 
   const shock = activeShockTarget();
 
