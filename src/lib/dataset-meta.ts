@@ -1,4 +1,4 @@
-import epochMetrics from '../data/auto/epoch-metrics.json';
+import { epochMetrics } from '../data/epoch-metrics';
 
 /** ISO date (YYYY-MM-DD) for the latest Epoch API refresh. */
 export const DATASET_LAST_UPDATED = epochMetrics.fetchedAt.slice(0, 10);

@@ -35,10 +35,10 @@ jobs:
       - name: Fetch Epoch AI metrics
         run: npm run refresh:apis
 
-      - name: Test and rebuild dataset snapshot
+      - name: Rebuild dataset snapshot and verify
         run: |
-          npm run test
           npm run build
+          npm run test
 
       - name: Commit refreshed data if changed
         run: |

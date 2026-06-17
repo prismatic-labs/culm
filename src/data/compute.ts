@@ -1,5 +1,5 @@
 import type { Confidence } from '../types';
-import epochMetrics from '../data/auto/epoch-metrics.json';
+import { epochMetrics } from './epoch-metrics';
 
 export interface ComputeSource {
   url: string;

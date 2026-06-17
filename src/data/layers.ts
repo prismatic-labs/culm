@@ -1,7 +1,11 @@
 import type { Confidence, Layer, SourcedValue, Substitutability } from '../types';
 import { evaluateChokepoint, computeCr1, computeCr3, computeHhiFromShares } from '../lib/chokepoint';
 import { dominantCountriesFromActors } from '../lib/layer-countries';
-import epochMetrics from '../data/auto/epoch-metrics.json';
+import {
+  designerShare,
+  epochMetrics,
+  usDesignerShareTotal,
+} from './epoch-metrics';
 
 export function sv<T>(
   value: T,
@@ -89,16 +93,13 @@ const SYNERGY_CLOUD =
 const EPOCH_CHIP_SALES = 'https://epoch.ai/data/ai_chip_sales.zip';
 const EPOCH_GPU = 'https://epoch.ai/data/gpu_clusters.csv';
 
-const nvidiaShare = epochMetrics.aiAccelerators.designers.Nvidia ?? 0.707;
-const amdShare = epochMetrics.aiAccelerators.designers.AMD ?? 0.065;
-const googleShare = epochMetrics.aiAccelerators.designers.Google ?? 0.19;
-const huaweiShare = epochMetrics.aiAccelerators.designers.Huawei ?? 0.037;
-const cambriconShare = epochMetrics.aiAccelerators.designers.Cambricon ?? 0.002;
+const nvidiaShare = epochMetrics.aiAccelerators.cr1;
+const amdShare = designerShare('AMD', 0.065);
+const googleShare = designerShare('Google', 0.19);
+const huaweiShare = designerShare('Huawei', 0.037);
+const cambriconShare = designerShare('Cambricon', 0.002);
 /** US-headquartered designers in Epoch cumulative H100e share (Nvidia + Google + AMD). */
-const usDesignerShare =
-  (epochMetrics.aiAccelerators.designers.Nvidia ?? 0) +
-  (epochMetrics.aiAccelerators.designers.Google ?? 0) +
-  (epochMetrics.aiAccelerators.designers.AMD ?? 0);
+const usDesignerShare = usDesignerShareTotal();
 
 const criticalMaterials = layerFromMetrics({
   id: 'critical-materials',
