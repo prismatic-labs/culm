@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-17",
+  "fetchedAt": "2026-07-01",
   "aiAccelerators": {
     "asOf": "2026-06",
     "metric": "cumulative H100e share by chip designer",
@@ -21,7 +21,7 @@
     }
   },
   "computeCloud": {
-    "asOf": "2026-06",
+    "asOf": "2026-07",
     "metric": "US share of Max OP/s among Existing GPU clusters in Epoch dataset",
     "topCountry": "United States",
     "topCountryShare": 0.7920226833718457,
