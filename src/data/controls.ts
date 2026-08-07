@@ -73,7 +73,7 @@ export const LEVERAGE_MEASURES: LeverageMeasure[] = [
     sources: [
       CRS,
       {
-        url: 'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf',
+        url: 'https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf',
         org: 'USGS Mineral Commodity Summaries',
         asOf: '2025',
         note: 'China refining dominance for gallium and germanium.',

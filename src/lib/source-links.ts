@@ -14,9 +14,9 @@ const LINK_LABELS: Record<string, string> = {
   'https://epoch.ai/data/ai-chip-sales': 'Epoch AI: AI chip sales',
   'https://epoch.ai/data-insights/ai-chip-production': 'Epoch AI: AI chip production',
   'https://epoch.ai/publications/trends-in-ai-supercomputers': 'Epoch AI: GPU supercomputers',
-  'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf': 'USGS: gallium commodity summary',
-  'https://www.usgs.gov/data/us-geological-survey-mineral-commodity-summaries-2025-data-release':
-    'USGS: MCS 2025 data release',
+  'https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf': 'USGS: gallium commodity summary',
+  'https://www.usgs.gov/data/us-geological-survey-mineral-commodity-summaries-2026-data-release':
+    'USGS: MCS 2026 data release',
   'https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/':
     'Brookings: Japanese semiconductor materials',
   'https://www.asml.com/en/products/euv-lithography-systems': 'ASML: EUV lithography',

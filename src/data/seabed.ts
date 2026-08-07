@@ -220,7 +220,7 @@ export const METAL_PROFILES: MetalAiProfile[] = [
       'Gallium is AI-critical in Culm’s materials layer but is not recovered from seabed deposits mapped here. Land refining dominance (e.g. China) is the relevant concentration risk.',
     sources: [
       {
-        url: 'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf',
+        url: 'https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf',
         org: 'USGS Mineral Commodity Summaries',
         asOf: '2025',
       },
@@ -567,7 +567,7 @@ export const STATE_OF_PLAY: StateOfPlayItem[] = [
       'Alternative suppliers on land, full lifecycle emissions, and whether seabed mining can scale economically. Some AI-critical materials (gallium, ultrapure silicon, photoresists) are not seabed-sourced.',
     sources: [
       {
-        url: 'https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf',
+        url: 'https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf',
         org: 'USGS Mineral Commodity Summaries',
         asOf: '2025',
       },

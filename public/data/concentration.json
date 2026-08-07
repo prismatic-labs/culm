@@ -18,11 +18,11 @@
           "share": {
             "value": 0.99,
             "confidence": "high",
-            "asOf": "2024",
+            "asOf": "2025",
             "sources": [
-              "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+              "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
             ],
-            "note": "USGS MCS 2025: China accounted for 99% of worldwide primary low-purity gallium production."
+            "note": "USGS MCS 2026: China accounted for 99% of worldwide primary low-purity gallium production. This is refining/recovery capacity (gallium is a byproduct of alumina refining), not ore reserves."
           }
         },
         {
@@ -56,18 +56,19 @@
         "cr1": {
           "value": 0.99,
           "confidence": "high",
-          "asOf": "2024",
+          "asOf": "2025",
           "sources": [
-            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+            "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
           ],
-          "note": "Layer headline CR1 uses gallium primary production, the tightest single-country input in this layer."
+          "note": "Layer headline CR1 uses gallium primary production, the tightest single-country input in this layer.",
+          "caveat": "China lifted its 1-year ban on gallium exports to the US in November 2025 (USGS MCS 2026); the acute export lever is temporarily relaxed, but the structural refining concentration is unchanged."
         },
         "cr3": {
           "value": 0.99,
           "confidence": "medium",
-          "asOf": "2024",
+          "asOf": "2025",
           "sources": [
-            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf",
+            "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf",
             "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
           ],
           "note": "Composite layer; CR3 not additive across sub-materials. Shown for transparency."
@@ -75,9 +76,9 @@
         "hhi": {
           "value": 9900,
           "confidence": "medium",
-          "asOf": "2024",
+          "asOf": "2025",
           "sources": [
-            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+            "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
           ],
           "note": "Dominated by gallium country concentration."
         },
@@ -85,9 +86,9 @@
         "topCountryShare": {
           "value": 0.99,
           "confidence": "high",
-          "asOf": "2024",
+          "asOf": "2025",
           "sources": [
-            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+            "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
           ],
           "note": "Gallium refining. Japan dominates photoresist/wafers separately. See actors."
         },
@@ -97,11 +98,11 @@
             "share": {
               "value": 0.99,
               "confidence": "high",
-              "asOf": "2024",
+              "asOf": "2025",
               "sources": [
-                "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+                "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
               ],
-              "note": "USGS MCS 2025: China 99% of worldwide primary low-purity gallium production. Gallium feeds gallium-arsenide and gallium-nitride chips used in radio-frequency, power-electronics, and optoelectronic devices."
+              "note": "USGS MCS 2026: China 99% of worldwide primary low-purity gallium production. Gallium feeds gallium-arsenide and gallium-nitride chips used in radio-frequency, power-electronics, and optoelectronic devices."
             }
           },
           {
@@ -122,7 +123,7 @@
           "confidence": "medium",
           "asOf": "2025",
           "sources": [
-            "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf",
+            "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf",
             "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
           ],
           "note": "USGS notes limited substitutes for germanium in some uses; gallium refinery buildout measured in years."
@@ -136,11 +137,11 @@
           "share": {
             "value": 0.99,
             "confidence": "high",
-            "asOf": "2024",
+            "asOf": "2025",
             "sources": [
-              "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-gallium.pdf"
+              "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
             ],
-            "note": "USGS MCS 2025: China 99% of worldwide primary low-purity gallium production. Drives headline CR1."
+            "note": "USGS MCS 2026: China 99% of worldwide primary low-purity gallium production (refining capacity, not reserves). Drives headline CR1."
           }
         },
         {
@@ -148,13 +149,15 @@
           "name": "Primary germanium production",
           "country": "China",
           "share": {
-            "value": 0.6,
+            "value": 0.68,
             "confidence": "medium",
-            "asOf": "2024",
+            "asOf": "2021",
             "sources": [
-              "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-germanium.pdf"
+              "https://pubs.usgs.gov/periodicals/mcs2022/mcs2022-germanium.pdf",
+              "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-germanium.pdf"
             ],
-            "note": "USGS MCS 2025: China ~60% of worldwide germanium refinery production; used in RF and optoelectronics."
+            "note": "USGS MCS 2022 world refinery production (the last edition with a country table): China 95,000 kg of 140,000 kg world total for 2021 ≈ 68%. USGS reported the country figure as \"NA\" from MCS 2023 and dropped the table entirely by MCS 2024; MCS 2026 still names China the leading global producer but publishes no share. The widely cited \"~60%\" understates this last USGS figure.",
+            "caveat": "Latest USGS-tabulated share is 2021 data; US production is withheld (W) in the table, and no current USGS percentage exists."
           }
         },
         {
@@ -554,102 +557,106 @@
       "stackOrder": 5,
       "category": "Memory",
       "whatItIs": "Stacked DRAM packages that feed AI accelerators at the bandwidth training and inference require.",
-      "whyItMatters": "Only three firms make HBM at scale, heavily concentrated in Korea. Accelerator output is capped by HBM attach rate and supply.",
+      "whyItMatters": "Still a three-firm oligopoly, but the Korea lock is easing: US-based Micron overtook Samsung for the #2 spot in 2026, pulling the combined Korean share down from ~95% toward ~79%. Accelerator output is capped by HBM attach rate and supply.",
       "stallEffect": "Training clusters would face memory-bandwidth limits; accelerator output would be capped.",
       "actors": [
         {
           "name": "SK hynix",
           "country": "South Korea",
           "share": {
-            "value": 0.525,
-            "confidence": "medium",
-            "asOf": "2024-04",
+            "value": 0.62,
+            "confidence": "low",
+            "asOf": "2026-Q1",
             "sources": [
-              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+              "https://www.trendforce.com/research/download/RP260204DA3"
             ],
-            "note": "TrendForce April 2024 HBM revenue share."
-          }
-        },
-        {
-          "name": "Samsung",
-          "country": "South Korea",
-          "share": {
-            "value": 0.424,
-            "confidence": "medium",
-            "asOf": "2024-04",
-            "sources": [
-              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
-            ]
+            "note": "TrendForce 1Q26 HBM analysis (via secondary reporting). Sources range ~50–70% for SK hynix."
           }
         },
         {
           "name": "Micron",
           "country": "United States",
           "share": {
-            "value": 0.05,
-            "confidence": "medium",
-            "asOf": "2024-04",
+            "value": 0.21,
+            "confidence": "low",
+            "asOf": "2026-Q1",
             "sources": [
-              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
-            ]
+              "https://www.trendforce.com/research/download/RP260204DA3"
+            ],
+            "note": "Micron overtook Samsung for #2 in 2026 on HBM3E ramp. Estimates range ~18–24%."
+          }
+        },
+        {
+          "name": "Samsung",
+          "country": "South Korea",
+          "share": {
+            "value": 0.17,
+            "confidence": "low",
+            "asOf": "2026-Q1",
+            "sources": [
+              "https://www.trendforce.com/research/download/RP260204DA3"
+            ],
+            "note": "Fell from ~42% (2024); recovering on HBM4. Some sources still place Samsung ahead of Micron, hence low confidence."
           }
         }
       ],
       "metrics": {
         "cr1": {
-          "value": 0.525,
+          "value": 0.62,
           "confidence": "medium",
-          "asOf": "2024-04",
+          "asOf": "2026-Q1",
           "sources": [
-            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            "https://www.trendforce.com/research/download/RP260204DA3"
           ]
         },
         "cr3": {
-          "value": 0.9990000000000001,
+          "value": 1,
           "confidence": "medium",
-          "asOf": "2024-04",
+          "asOf": "2026-Q1",
           "sources": [
-            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            "https://www.trendforce.com/research/download/RP260204DA3"
           ]
         },
         "hhi": {
-          "value": 4579.01,
+          "value": 4574,
           "confidence": "medium",
-          "asOf": "2024-04",
+          "asOf": "2026-Q1",
           "sources": [
-            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            "https://www.trendforce.com/research/download/RP260204DA3"
           ]
         },
         "topCountry": "South Korea",
         "topCountryShare": {
-          "value": 0.949,
-          "confidence": "medium",
-          "asOf": "2024-04",
+          "value": 0.79,
+          "confidence": "low",
+          "asOf": "2026-Q1",
           "sources": [
-            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            "https://www.trendforce.com/research/download/RP260204DA3"
           ],
-          "note": "SK hynix + Samsung combined; TrendForce April 2024."
+          "note": "SK hynix + Samsung combined, down from ~95% in 2024 as US-based Micron rose to #2.",
+          "caveat": "Threshold-sensitive: the Korean share sits just below the 80% chokepoint line, and secondary sources disagree on the exact SK hynix / Samsung / Micron split (SK ~50–70%, Micron vs Samsung for #2 goes both ways). Confirm against the primary TrendForce 1Q26/2Q26 HBM report before treating the chokepoint easing as settled."
         },
         "dominantCountries": [
           {
             "country": "South Korea",
             "share": {
-              "value": 0.949,
-              "confidence": "medium",
-              "asOf": "2024-04",
+              "value": 0.79,
+              "confidence": "low",
+              "asOf": "2026-Q1",
               "sources": [
-                "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+                "https://www.trendforce.com/research/download/RP260204DA3"
               ],
-              "note": "SK hynix + Samsung combined; TrendForce April 2024."
+              "note": "SK hynix + Samsung combined, down from ~95% in 2024 as US-based Micron rose to #2.",
+              "caveat": "Threshold-sensitive: the Korean share sits just below the 80% chokepoint line, and secondary sources disagree on the exact SK hynix / Samsung / Micron split (SK ~50–70%, Micron vs Samsung for #2 goes both ways). Confirm against the primary TrendForce 1Q26/2Q26 HBM report before treating the chokepoint easing as settled."
             }
           }
         ],
         "substitutability": {
           "value": "years",
           "confidence": "medium",
-          "asOf": "2024-04",
+          "asOf": "2026-Q1",
           "sources": [
-            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            "https://www.trendforce.com/research/download/RP260204DA3"
           ]
         }
       },
@@ -657,8 +664,8 @@
         "leading-edge-fab",
         "critical-materials"
       ],
-      "isCriticalChokepoint": true,
-      "chokepointRationale": "top-country share ≈ 95%; substitutability is years."
+      "isCriticalChokepoint": false,
+      "chokepointRationale": "Concentration below 80% threshold (CR1 62%, top-country 79%)."
     },
     {
       "id": "advanced-packaging",
@@ -1041,5 +1048,5 @@
   ],
   "methodology": "Culm measures concentration at each physical layer of the AI stack using separate, auditable metrics. No blended fragility score.\n\nCR1: share held by the single largest actor (0 to 1).\nCR3: combined share of the top three actors (0 to 1).\nHHI: Herfindahl-Hirschman Index. Sum of squared percentage shares (0 to 10,000; >2,500 = highly concentrated).\nTop-country share: geographic concentration of the dominant country.\nSubstitutability: fungible | months | years | years-to-decades.\n\nCritical chokepoint rule: A layer is a critical chokepoint if (CR1 ≥ 0.80 OR top-country share ≥ 0.80) AND substitutability ∈ {years, years-to-decades}.\n\nEvery value carries confidence, as-of date, and source URLs. Empty sources are shown as unverified.\n\nData APIs: Machine-readable today: Epoch AI CSV/ZIP downloads (CC-BY) for accelerator compute share and GPU-cluster geography. USGS MCS: PDF + CSV data release, no REST API. TrendForce, Synergy, ASML, company filings: manual citation only. No public APIs.\n\nRefresh API-derived fields: npm run refresh:apis",
   "lastUpdated": "2026-08-01",
-  "exportedAt": "2026-08-01T08:21:58.920Z"
+  "exportedAt": "2026-08-07T00:06:47.243Z"
 }
