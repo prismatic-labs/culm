@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "schema": "1.0.0",
-  "lastUpdated": "2026-08-01",
-  "exportedAt": "2026-08-07T00:06:47.244Z",
+  "lastUpdated": "2026-10-05",
+  "exportedAt": "2026-10-05T17:13:31.368Z",
   "license": "Apache-2.0",
   "hotspots": [
     {
@@ -395,10 +395,10 @@
       "dissent": "Some analysts argue AI-driven copper demand is overstated or that headline campus figures bundle grid scope that would exist anyway. ICSG and other forecasters show smaller near-term deficits than bullish bank scenarios.",
       "sources": [
         {
-          "url": "https://www.jpmorgan.com/insights/global-research/commodities/copper",
-          "org": "J.P. Morgan Global Research",
-          "asOf": "2025-11",
-          "note": "475k t data-center copper demand estimate for 2026 cited in industry summaries."
+          "url": "https://skillings.net/copper-supply-deficit-2026-grid-upgrades-data-centers-and-structural-price-floors/",
+          "org": "J.P. Morgan Global Research, as reported by Skillings",
+          "asOf": "2026",
+          "note": "475k t data-center copper demand estimate for 2026. The underlying J.P. Morgan research is not publicly hosted."
         },
         {
           "url": "https://www.spglobal.com/en/research-insights/market-insights/energy-commodities",

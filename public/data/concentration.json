@@ -1,7 +1,7 @@
 {
   "datasetVersion": "1.0.0",
   "schemaVersion": "1.1.0",
-  "citation": "Prismatic Labs (2026). Culm AI Stack Concentration Map v1.0.0. Dataset snapshot culm-concentration-2026-08-01.json.",
+  "citation": "Prismatic Labs (2026). Culm AI Stack Concentration Map v1.0.0. Dataset snapshot culm-concentration-2026-10-05.json.",
   "layers": [
     {
       "id": "critical-materials",
@@ -61,7 +61,7 @@
             "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
           ],
           "note": "Layer headline CR1 uses gallium primary production, the tightest single-country input in this layer.",
-          "caveat": "China lifted its 1-year ban on gallium exports to the US in November 2025 (USGS MCS 2026); the acute export lever is temporarily relaxed, but the structural refining concentration is unchanged."
+          "caveat": "China suspended its ban on gallium exports to the US for one year in November 2025 (USGS MCS 2026); the acute export lever is temporarily relaxed, but the structural refining concentration is unchanged."
         },
         "cr3": {
           "value": 0.99,
@@ -74,13 +74,13 @@
           "note": "Composite layer; CR3 not additive across sub-materials. Shown for transparency."
         },
         "hhi": {
-          "value": 9900,
+          "value": 9801,
           "confidence": "medium",
           "asOf": "2025",
           "sources": [
             "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-gallium.pdf"
           ],
-          "note": "Dominated by gallium country concentration."
+          "note": "Gallium country concentration: China 99% gives 99² = 9,801."
         },
         "topCountry": "China",
         "topCountryShare": {
@@ -211,7 +211,7 @@
             "asOf": "2025",
             "sources": [
               "https://www.asml.com/en/products/euv-lithography-systems",
-              "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+              "https://www.ft.com/june-yoon"
             ],
             "note": "Sole commercial EUV lithography system supplier."
           }
@@ -224,7 +224,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            "https://www.ft.com/june-yoon"
           ]
         },
         "cr3": {
@@ -233,7 +233,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            "https://www.ft.com/june-yoon"
           ]
         },
         "hhi": {
@@ -242,7 +242,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            "https://www.ft.com/june-yoon"
           ]
         },
         "topCountry": "Netherlands",
@@ -252,7 +252,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            "https://www.ft.com/june-yoon"
           ],
           "note": "Assembly in NL; Zeiss SMT (Germany) supplies EUV optics. Sub-supplier concentration."
         },
@@ -265,7 +265,7 @@
               "asOf": "2025",
               "sources": [
                 "https://www.asml.com/en/products/euv-lithography-systems",
-                "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+                "https://www.ft.com/june-yoon"
               ],
               "note": "Assembly in NL; Zeiss SMT (Germany) supplies EUV optics."
             }
@@ -276,7 +276,7 @@
           "confidence": "high",
           "asOf": "2025",
           "sources": [
-            "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+            "https://www.ft.com/june-yoon"
           ],
           "note": "FT/CSET framing: no credible second EUV supplier; decades of operating data gap."
         }
@@ -292,7 +292,7 @@
             "asOf": "2025",
             "sources": [
               "https://www.asml.com/en/products/euv-lithography-systems",
-              "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+              "https://www.ft.com/june-yoon"
             ],
             "note": "Sole commercial EUV lithography system supplier.",
             "rawClaim": "ASML is the only commercial supplier of EUV lithography systems.",
@@ -310,7 +310,7 @@
             "asOf": "2025",
             "sources": [
               "https://www.asml.com/en/products/euv-lithography-systems",
-              "https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf"
+              "https://www.ft.com/june-yoon"
             ],
             "note": "Near-monopoly on EUV optical subsystems supplied into ASML tools.",
             "rawClaim": "Zeiss SMT supplies EUV optics integrated into ASML systems.",
@@ -779,7 +779,7 @@
           "name": "NVIDIA",
           "country": "United States",
           "share": {
-            "value": 0.7887761735451526,
+            "value": 0.6958522240856014,
             "confidence": "medium",
             "asOf": "2026-06",
             "sources": [
@@ -793,7 +793,7 @@
           "name": "Google (TPU)",
           "country": "United States",
           "share": {
-            "value": 0.21122382645484736,
+            "value": 0.20750596977612262,
             "confidence": "medium",
             "asOf": "2026-06",
             "sources": [
@@ -806,7 +806,7 @@
           "name": "AMD",
           "country": "United States",
           "share": {
-            "value": 0.065,
+            "value": 0.05769164456805081,
             "confidence": "medium",
             "asOf": "2026-06",
             "sources": [
@@ -819,7 +819,7 @@
           "name": "Huawei (Ascend)",
           "country": "China",
           "share": {
-            "value": 0.037,
+            "value": 0.03697110038176064,
             "confidence": "medium",
             "asOf": "2026-06",
             "sources": [
@@ -833,7 +833,7 @@
           "name": "Cambricon",
           "country": "China",
           "share": {
-            "value": 0.002,
+            "value": 0.001979061188464556,
             "confidence": "medium",
             "asOf": "2026-06",
             "sources": [
@@ -846,7 +846,7 @@
       ],
       "metrics": {
         "cr1": {
-          "value": 0.7887761735451526,
+          "value": 0.6958522240856014,
           "confidence": "medium",
           "asOf": "2026-06",
           "sources": [
@@ -859,7 +859,7 @@
           "caveat": "Tracks cumulative compute shipped, not current installed base or revenue share."
         },
         "cr3": {
-          "value": 1,
+          "value": 0.9610498384297749,
           "confidence": "medium",
           "asOf": "2026-06",
           "sources": [
@@ -868,7 +868,7 @@
           ]
         },
         "hhi": {
-          "value": 6667.833568147603,
+          "value": 5319.681500571994,
           "confidence": "medium",
           "asOf": "2026-06",
           "sources": [
@@ -878,7 +878,7 @@
         },
         "topCountry": "United States",
         "topCountryShare": {
-          "value": 1,
+          "value": 0.9610498384297749,
           "confidence": "medium",
           "asOf": "2026-06",
           "sources": [
@@ -891,7 +891,7 @@
           {
             "country": "United States",
             "share": {
-              "value": 1,
+              "value": 0.9610498384297749,
               "confidence": "medium",
               "asOf": "2026-06",
               "sources": [
@@ -919,7 +919,7 @@
         "advanced-packaging"
       ],
       "isCriticalChokepoint": true,
-      "chokepointRationale": "top-country share ≈ 100%; substitutability is years."
+      "chokepointRationale": "top-country share ≈ 96%; substitutability is years."
     },
     {
       "id": "compute-cloud",
@@ -999,7 +999,7 @@
         "topCountryShare": {
           "value": 0.7920226833718457,
           "confidence": "medium",
-          "asOf": "2026-08",
+          "asOf": "2026-10",
           "sources": [
             "https://epoch.ai/publications/trends-in-ai-supercomputers",
             "https://epoch.ai/data/gpu_clusters.csv",
@@ -1016,7 +1016,7 @@
             "share": {
               "value": 0.7920226833718457,
               "confidence": "medium",
-              "asOf": "2026-08",
+              "asOf": "2026-10",
               "sources": [
                 "https://epoch.ai/publications/trends-in-ai-supercomputers",
                 "https://epoch.ai/data/gpu_clusters.csv",
@@ -1047,6 +1047,6 @@
     }
   ],
   "methodology": "Culm measures concentration at each physical layer of the AI stack using separate, auditable metrics. No blended fragility score.\n\nCR1: share held by the single largest actor (0 to 1).\nCR3: combined share of the top three actors (0 to 1).\nHHI: Herfindahl-Hirschman Index. Sum of squared percentage shares (0 to 10,000; >2,500 = highly concentrated).\nTop-country share: geographic concentration of the dominant country.\nSubstitutability: fungible | months | years | years-to-decades.\n\nCritical chokepoint rule: A layer is a critical chokepoint if (CR1 ≥ 0.80 OR top-country share ≥ 0.80) AND substitutability ∈ {years, years-to-decades}.\n\nEvery value carries confidence, as-of date, and source URLs. Empty sources are shown as unverified.\n\nData APIs: Machine-readable today: Epoch AI CSV/ZIP downloads (CC-BY) for accelerator compute share and GPU-cluster geography. USGS MCS: PDF + CSV data release, no REST API. TrendForce, Synergy, ASML, company filings: manual citation only. No public APIs.\n\nRefresh API-derived fields: npm run refresh:apis",
-  "lastUpdated": "2026-08-01",
-  "exportedAt": "2026-08-07T00:06:47.243Z"
+  "lastUpdated": "2026-10-05",
+  "exportedAt": "2026-10-05T17:13:31.367Z"
 }

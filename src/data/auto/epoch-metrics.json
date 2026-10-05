@@ -1,15 +1,18 @@
 {
-  "fetchedAt": "2026-08-01",
+  "fetchedAt": "2026-10-05",
   "aiAccelerators": {
     "asOf": "2026-06",
     "metric": "cumulative H100e share by chip designer",
     "designers": {
-      "Nvidia": 0.7887761735451526,
-      "Google": 0.21122382645484736
+      "Nvidia": 0.6958522240856014,
+      "Google": 0.20750596977612262,
+      "AMD": 0.05769164456805081,
+      "Huawei": 0.03697110038176064,
+      "Cambricon": 0.001979061188464556
     },
-    "cr1": 0.7887761735451526,
-    "cr3": 1.0,
-    "hhi": 6667.833568147603,
+    "cr1": 0.6958522240856014,
+    "cr3": 0.9610498384297749,
+    "hhi": 5319.681500571994,
     "sources": [
       "https://epoch.ai/data/ai-chip-sales",
       "https://epoch.ai/data/ai_chip_sales.zip"
@@ -21,7 +24,7 @@
     }
   },
   "computeCloud": {
-    "asOf": "2026-08",
+    "asOf": "2026-10",
     "metric": "US share of Max OP/s among Existing GPU clusters in Epoch dataset",
     "topCountry": "United States",
     "topCountryShare": 0.7920226833718457,

@@ -214,8 +214,8 @@ export const LEVERAGE_MEASURES: LeverageMeasure[] = [
 ];
 
 export const CONTROLS_SUMMARY = {
-  /** Distinct stack layers that carry at least one active control measure. */
-  controlledLayers: 7,
+  /** Distinct stack layers with at least one measure in force (active or tightening); contested ones are excluded. */
+  controlledLayers: new Set(LEVERAGE_MEASURES.filter((m) => m.status !== 'contested').map((m) => m.layerId)).size,
   totalLayers: 8,
   governmentsInConcert: ['United States', 'Netherlands', 'Japan'],
 };
@@ -229,5 +229,5 @@ export const CONTROLS_PAGE_COPY = {
   leverage:
     'Export and compute controls are a major enforceable lever in current AI policy debates. They are possible only because the inputs to frontier AI are concentrated enough to gate, which is exactly what Culm maps.',
   directionGuide:
-    'Each arrow reads left to right: who holds the lever, then who the control targets. The badge in the corner repeats the same direction. Red means US-led export controls toward China; blue means China restricting imports to the United States, EU, Japan, and other buyers.',
+    'Each arrow reads left to right: who holds the lever, then who the control targets. The badge in the corner repeats the same direction. Red means US-led export controls toward China; blue means China restricting exports to the United States, EU, Japan, and other buyers.',
 } as const;

@@ -133,7 +133,7 @@ const SOURCE_ORG: Record<string, string> = {
   'www.nomadsemi.com': 'Nomad Semi',
   'www.srgresearch.com': 'Synergy Research Group',
   'epoch.ai': 'Epoch AI',
-  'www.soitec.com': 'Soitec / Financial Times',
+  'www.ft.com': 'Financial Times',
 };
 
 export function sourceCitation(url: string, asOf: string): string {

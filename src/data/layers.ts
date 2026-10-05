@@ -83,8 +83,8 @@ const USGS_GERMANIUM_MCS2022 =
 const BROOKINGS_JP =
   'https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/';
 const ASML_EUV = 'https://www.asml.com/en/products/euv-lithography-systems';
-const FT_ASML =
-  'https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf';
+/** June Yoon, "Why neither Asia nor the US has produced a rival to ASML", FT, 20 Jan 2026 (paywalled; listed on the author page). */
+const FT_ASML = 'https://www.ft.com/june-yoon';
 const TRENDFORCE_EDA =
   'https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/';
 const TRENDFORCE_FAB =
@@ -156,7 +156,7 @@ const criticalMaterials = layerFromMetrics({
       sources: [USGS_GALLIUM],
       note: 'Layer headline CR1 uses gallium primary production, the tightest single-country input in this layer.',
       caveat:
-        'China lifted its 1-year ban on gallium exports to the US in November 2025 (USGS MCS 2026); the acute export lever is temporarily relaxed, but the structural refining concentration is unchanged.',
+        'China suspended its ban on gallium exports to the US for one year in November 2025 (USGS MCS 2026); the acute export lever is temporarily relaxed, but the structural refining concentration is unchanged.',
     }),
     cr3: sv(0.99, {
       confidence: 'medium',
@@ -164,11 +164,11 @@ const criticalMaterials = layerFromMetrics({
       sources: [USGS_GALLIUM, BROOKINGS_JP],
       note: 'Composite layer; CR3 not additive across sub-materials. Shown for transparency.',
     }),
-    hhi: sv(9900, {
+    hhi: sv(9801, {
       confidence: 'medium',
       asOf: '2025',
       sources: [USGS_GALLIUM],
-      note: 'Dominated by gallium country concentration.',
+      note: 'Gallium country concentration: China 99% gives 99² = 9,801.',
     }),
     topCountry: 'China',
     topCountryShare: sv(0.99, {

@@ -33,9 +33,10 @@ describe('controls (leverage) data integrity', () => {
     expect(dirs.has('china-to-west')).toBe(true);
   });
 
-  it('summary controlledLayers matches the distinct layers under control', () => {
-    const distinct = new Set(LEVERAGE_MEASURES.map((m) => m.layerId));
-    expect(CONTROLS_SUMMARY.controlledLayers).toBe(distinct.size);
+  it('summary controlledLayers counts only layers with a measure in force', () => {
+    const inForce = new Set(LEVERAGE_MEASURES.filter((m) => m.status !== 'contested').map((m) => m.layerId));
+    expect(CONTROLS_SUMMARY.controlledLayers).toBe(inForce.size);
+    expect(CONTROLS_SUMMARY.controlledLayers).toBe(5);
     expect(CONTROLS_SUMMARY.totalLayers).toBe(concentrationMap.layers.length);
   });
 });
