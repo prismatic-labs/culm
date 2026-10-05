@@ -26,20 +26,20 @@
           }
         },
         {
-          "name": "JSR + TOK + Shin-Etsu (EUV photoresist)",
+          "name": "JSR + TOK + Shin-Etsu (photoresists)",
           "country": "Japan",
           "share": {
-            "value": 0.9,
+            "value": 0.5,
             "confidence": "medium",
             "asOf": "2024",
             "sources": [
               "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
             ],
-            "note": "Brookings cites ~50% global photoresist share for Japan; EUV segment higher (~90% per industry reports). Layer uses Japan photoresist/wafer cluster."
+            "note": "Brookings: Japan ~50% of global photoresist supply (all types). Industry reports put the EUV segment higher, but without a citable figure."
           }
         },
         {
-          "name": "Shin-Etsu + SUMCO (300mm silicon wafers)",
+          "name": "Shin-Etsu + SUMCO (silicon wafers)",
           "country": "Japan",
           "share": {
             "value": 0.53,
@@ -108,13 +108,13 @@
           {
             "country": "Japan",
             "share": {
-              "value": 0.9,
+              "value": 0.53,
               "confidence": "medium",
               "asOf": "2024",
               "sources": [
                 "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
               ],
-              "note": "Japan ~90% EUV photoresist; ~53% silicon wafers (Brookings)."
+              "note": "Brookings: Japan 53% of silicon wafers and ~50% of photoresists."
             }
           }
         ],
@@ -162,21 +162,21 @@
         },
         {
           "id": "euv-photoresist",
-          "name": "EUV photoresist (JSR, TOK, Shin-Etsu)",
+          "name": "Photoresists (JSR, TOK, Shin-Etsu)",
           "country": "Japan",
           "share": {
-            "value": 0.9,
+            "value": 0.5,
             "confidence": "medium",
             "asOf": "2024",
             "sources": [
               "https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/"
             ],
-            "note": "Japan ~90% of EUV photoresist segment."
+            "note": "Brookings: Japan ~50% of global photoresist supply (all types)."
           }
         },
         {
           "id": "silicon-wafers",
-          "name": "300mm silicon wafers (Shin-Etsu, SUMCO)",
+          "name": "Silicon wafers (Shin-Etsu, SUMCO)",
           "country": "Japan",
           "share": {
             "value": 0.53,
@@ -455,12 +455,12 @@
     },
     {
       "id": "leading-edge-fab",
-      "name": "Leading-Edge Fabrication (≤5nm)",
+      "name": "Leading-Edge Fabrication (3nm)",
       "stackOrder": 4,
       "category": "Fabrication",
       "whatItIs": "The foundries that actually manufacture the most advanced AI chips at the smallest process nodes.",
-      "whyItMatters": "Most leading-edge AI silicon is fabricated by one company, concentrated in one region. That is high geographic concentration for leading-edge production.",
-      "stallEffect": "Leading-edge ≤5nm production would be severely constrained at scale.",
+      "whyItMatters": "At 3nm, the most advanced node in volume production, nearly every chip is made by one company in one region. One node back, at 5nm, TSMC still holds roughly 70–80%.",
+      "stallEffect": "Leading-edge 3nm production would be severely constrained at scale.",
       "actors": [
         {
           "name": "TSMC",
@@ -472,19 +472,7 @@
             "sources": [
               "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
             ],
-            "note": "TrendForce April 2024: TSMC >90% at 3nm, ~70-80% at 5nm; layer uses advanced-node composite ~90%."
-          }
-        },
-        {
-          "name": "Samsung Foundry",
-          "country": "South Korea",
-          "share": {
-            "value": 0.08,
-            "confidence": "medium",
-            "asOf": "2024-04",
-            "sources": [
-              "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
-            ]
+            "note": "TrendForce (April 2024, citing Commercial Times): TSMC expected to exceed 90% at 3nm; approximately 70–80% at 5nm. Shown as 90%, a floor for 3nm."
           }
         }
       ],
@@ -498,7 +486,7 @@
           ]
         },
         "cr3": {
-          "value": 0.98,
+          "value": 0.9,
           "confidence": "medium",
           "asOf": "2024-04",
           "sources": [
@@ -506,7 +494,7 @@
           ]
         },
         "hhi": {
-          "value": 8164,
+          "value": 8100,
           "confidence": "medium",
           "asOf": "2024-04",
           "sources": [
@@ -520,7 +508,8 @@
           "asOf": "2024-04",
           "sources": [
             "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
-          ]
+          ],
+          "note": "Expected to exceed 90% at 3nm; ~70–80% at 5nm."
         },
         "dominantCountries": [
           {
@@ -531,7 +520,8 @@
               "asOf": "2024-04",
               "sources": [
                 "https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/"
-              ]
+              ],
+              "note": "Expected to exceed 90% at 3nm; ~70–80% at 5nm."
             }
           }
         ],
@@ -557,106 +547,106 @@
       "stackOrder": 5,
       "category": "Memory",
       "whatItIs": "Stacked DRAM packages that feed AI accelerators at the bandwidth training and inference require.",
-      "whyItMatters": "Still a three-firm oligopoly, but the Korea lock is easing: US-based Micron overtook Samsung for the #2 spot in 2026, pulling the combined Korean share down from ~95% toward ~79%. Accelerator output is capped by HBM attach rate and supply.",
+      "whyItMatters": "Only three firms make HBM at scale, and two of them are in Korea. Accelerator output is capped by HBM attach rate and supply.",
       "stallEffect": "Training clusters would face memory-bandwidth limits; accelerator output would be capped.",
       "actors": [
         {
           "name": "SK hynix",
           "country": "South Korea",
           "share": {
-            "value": 0.62,
-            "confidence": "low",
-            "asOf": "2026-Q1",
+            "value": 0.525,
+            "confidence": "medium",
+            "asOf": "2024",
             "sources": [
-              "https://www.trendforce.com/research/download/RP260204DA3"
+              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
             ],
-            "note": "TrendForce 1Q26 HBM analysis (via secondary reporting). Sources range ~50–70% for SK hynix."
-          }
-        },
-        {
-          "name": "Micron",
-          "country": "United States",
-          "share": {
-            "value": 0.21,
-            "confidence": "low",
-            "asOf": "2026-Q1",
-            "sources": [
-              "https://www.trendforce.com/research/download/RP260204DA3"
-            ],
-            "note": "Micron overtook Samsung for #2 in 2026 on HBM3E ramp. Estimates range ~18–24%."
+            "note": "TrendForce 2024 HBM share forecast."
           }
         },
         {
           "name": "Samsung",
           "country": "South Korea",
           "share": {
-            "value": 0.17,
-            "confidence": "low",
-            "asOf": "2026-Q1",
+            "value": 0.424,
+            "confidence": "medium",
+            "asOf": "2024",
             "sources": [
-              "https://www.trendforce.com/research/download/RP260204DA3"
+              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
             ],
-            "note": "Fell from ~42% (2024); recovering on HBM4. Some sources still place Samsung ahead of Micron, hence low confidence."
+            "note": "TrendForce 2024 HBM share forecast."
+          }
+        },
+        {
+          "name": "Micron",
+          "country": "United States",
+          "share": {
+            "value": 0.05,
+            "confidence": "medium",
+            "asOf": "2023",
+            "sources": [
+              "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
+            ],
+            "note": "TrendForce: roughly 5% in 2023."
           }
         }
       ],
       "metrics": {
         "cr1": {
-          "value": 0.62,
+          "value": 0.525,
           "confidence": "medium",
-          "asOf": "2026-Q1",
+          "asOf": "2024",
           "sources": [
-            "https://www.trendforce.com/research/download/RP260204DA3"
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
         },
         "cr3": {
-          "value": 1,
+          "value": 0.9990000000000001,
           "confidence": "medium",
-          "asOf": "2026-Q1",
+          "asOf": "2024",
           "sources": [
-            "https://www.trendforce.com/research/download/RP260204DA3"
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
         },
         "hhi": {
-          "value": 4574,
+          "value": 4579.01,
           "confidence": "medium",
-          "asOf": "2026-Q1",
+          "asOf": "2024",
           "sources": [
-            "https://www.trendforce.com/research/download/RP260204DA3"
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
         },
         "topCountry": "South Korea",
         "topCountryShare": {
-          "value": 0.79,
-          "confidence": "low",
-          "asOf": "2026-Q1",
+          "value": 0.949,
+          "confidence": "medium",
+          "asOf": "2024",
           "sources": [
-            "https://www.trendforce.com/research/download/RP260204DA3"
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ],
-          "note": "SK hynix + Samsung combined, down from ~95% in 2024 as US-based Micron rose to #2.",
-          "caveat": "Threshold-sensitive: the Korean share sits just below the 80% chokepoint line, and secondary sources disagree on the exact SK hynix / Samsung / Micron split (SK ~50–70%, Micron vs Samsung for #2 goes both ways). Confirm against the primary TrendForce 1Q26/2Q26 HBM report before treating the chokepoint easing as settled."
+          "note": "SK hynix + Samsung combined, TrendForce 2024 forecast.",
+          "caveat": "Latest sourced split is for 2024. Reports of 2026 shares disagree (some have Micron overtaking Samsung, which would bring Korea near the 80% line; TrendForce’s own summary says Samsung’s share is recovering on HBM4), so this layer is threshold-sensitive."
         },
         "dominantCountries": [
           {
             "country": "South Korea",
             "share": {
-              "value": 0.79,
-              "confidence": "low",
-              "asOf": "2026-Q1",
+              "value": 0.949,
+              "confidence": "medium",
+              "asOf": "2024",
               "sources": [
-                "https://www.trendforce.com/research/download/RP260204DA3"
+                "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
               ],
-              "note": "SK hynix + Samsung combined, down from ~95% in 2024 as US-based Micron rose to #2.",
-              "caveat": "Threshold-sensitive: the Korean share sits just below the 80% chokepoint line, and secondary sources disagree on the exact SK hynix / Samsung / Micron split (SK ~50–70%, Micron vs Samsung for #2 goes both ways). Confirm against the primary TrendForce 1Q26/2Q26 HBM report before treating the chokepoint easing as settled."
+              "note": "SK hynix + Samsung combined, TrendForce 2024 forecast.",
+              "caveat": "Latest sourced split is for 2024. Reports of 2026 shares disagree (some have Micron overtaking Samsung, which would bring Korea near the 80% line; TrendForce’s own summary says Samsung’s share is recovering on HBM4), so this layer is threshold-sensitive."
             }
           }
         ],
         "substitutability": {
           "value": "years",
           "confidence": "medium",
-          "asOf": "2026-Q1",
+          "asOf": "2024",
           "sources": [
-            "https://www.trendforce.com/research/download/RP260204DA3"
+            "https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/"
           ]
         }
       },
@@ -664,8 +654,8 @@
         "leading-edge-fab",
         "critical-materials"
       ],
-      "isCriticalChokepoint": false,
-      "chokepointRationale": "Concentration below 80% threshold (CR1 62%, top-country 79%)."
+      "isCriticalChokepoint": true,
+      "chokepointRationale": "top-country share ≈ 95%; substitutability is years."
     },
     {
       "id": "advanced-packaging",
@@ -1048,5 +1038,5 @@
   ],
   "methodology": "Culm measures concentration at each physical layer of the AI stack using separate, auditable metrics. No blended fragility score.\n\nCR1: share held by the single largest actor (0 to 1).\nCR3: combined share of the top three actors (0 to 1).\nHHI: Herfindahl-Hirschman Index. Sum of squared percentage shares (0 to 10,000; >2,500 = highly concentrated).\nTop-country share: geographic concentration of the dominant country.\nSubstitutability: fungible | months | years | years-to-decades.\n\nCritical chokepoint rule: A layer is a critical chokepoint if (CR1 ≥ 0.80 OR top-country share ≥ 0.80) AND substitutability ∈ {years, years-to-decades}.\n\nEvery value carries confidence, as-of date, and source URLs. Empty sources are shown as unverified.\n\nData APIs: Machine-readable today: Epoch AI CSV/ZIP downloads (CC-BY) for accelerator compute share and GPU-cluster geography. USGS MCS: PDF + CSV data release, no REST API. TrendForce, Synergy, ASML, company filings: manual citation only. No public APIs.\n\nRefresh API-derived fields: npm run refresh:apis",
   "lastUpdated": "2026-10-05",
-  "exportedAt": "2026-10-05T17:13:31.367Z"
+  "exportedAt": "2026-10-05T17:22:57.433Z"
 }

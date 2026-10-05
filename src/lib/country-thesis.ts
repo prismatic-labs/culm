@@ -47,6 +47,13 @@ export function explainChokepointForCountry(layer: Layer, country: string): stri
     return `${detail}. There is no ready backup at scale. Rerouting would take ${subst}.`;
   }
 
+  if (entry && isCompositeLayer(layer)) {
+    const detail = entry.share.note
+      ? entry.share.note.replace(/\.$/, '')
+      : `${pct100(entry.share.value)}% of ${name} sits in ${country}`;
+    return `${detail}. That share alone is below the 80% line: ${name} counts as a chokepoint because of a different input. ${layer.chokepointRationale.replace(/\.$/, '')}. Alternatives would take ${subst} to reach production scale.`;
+  }
+
   return `${layer.chokepointRationale.replace(/\.$/, '')}. Alternatives would take ${subst} to reach production scale.`;
 }
 

@@ -129,7 +129,7 @@ export const LEVERAGE_MEASURES: LeverageMeasure[] = [
   {
     id: 'sme-leading-edge',
     layerId: 'leading-edge-fab',
-    layerName: 'Leading-Edge Fabrication (≤5nm)',
+    layerName: 'Leading-Edge Fabrication (3nm)',
     stackOrder: 4,
     title: 'Multilateral curbs on chipmaking equipment',
     direction: 'west-to-china',
