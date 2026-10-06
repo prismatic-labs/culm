@@ -211,7 +211,7 @@
             "asOf": "2025",
             "sources": [
               "https://www.asml.com/en/products/euv-lithography-systems",
-              "https://www.ft.com/june-yoon"
+              "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
             ],
             "note": "Sole commercial EUV lithography system supplier."
           }
@@ -224,7 +224,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.ft.com/june-yoon"
+            "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
           ]
         },
         "cr3": {
@@ -233,7 +233,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.ft.com/june-yoon"
+            "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
           ]
         },
         "hhi": {
@@ -242,7 +242,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.ft.com/june-yoon"
+            "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
           ]
         },
         "topCountry": "Netherlands",
@@ -252,7 +252,7 @@
           "asOf": "2025",
           "sources": [
             "https://www.asml.com/en/products/euv-lithography-systems",
-            "https://www.ft.com/june-yoon"
+            "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
           ],
           "note": "Assembly in NL; Zeiss SMT (Germany) supplies EUV optics. Sub-supplier concentration."
         },
@@ -265,7 +265,7 @@
               "asOf": "2025",
               "sources": [
                 "https://www.asml.com/en/products/euv-lithography-systems",
-                "https://www.ft.com/june-yoon"
+                "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
               ],
               "note": "Assembly in NL; Zeiss SMT (Germany) supplies EUV optics."
             }
@@ -276,7 +276,7 @@
           "confidence": "high",
           "asOf": "2025",
           "sources": [
-            "https://www.ft.com/june-yoon"
+            "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
           ],
           "note": "FT/CSET framing: no credible second EUV supplier; decades of operating data gap."
         }
@@ -292,7 +292,7 @@
             "asOf": "2025",
             "sources": [
               "https://www.asml.com/en/products/euv-lithography-systems",
-              "https://www.ft.com/june-yoon"
+              "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
             ],
             "note": "Sole commercial EUV lithography system supplier.",
             "rawClaim": "ASML is the only commercial supplier of EUV lithography systems.",
@@ -310,7 +310,7 @@
             "asOf": "2025",
             "sources": [
               "https://www.asml.com/en/products/euv-lithography-systems",
-              "https://www.ft.com/june-yoon"
+              "https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805"
             ],
             "note": "Near-monopoly on EUV optical subsystems supplied into ASML tools.",
             "rawClaim": "Zeiss SMT supplies EUV optics integrated into ASML systems.",
@@ -1038,5 +1038,5 @@
   ],
   "methodology": "Culm measures concentration at each physical layer of the AI stack using separate, auditable metrics. No blended fragility score.\n\nCR1: share held by the single largest actor (0 to 1).\nCR3: combined share of the top three actors (0 to 1).\nHHI: Herfindahl-Hirschman Index. Sum of squared percentage shares (0 to 10,000; >2,500 = highly concentrated).\nTop-country share: geographic concentration of the dominant country.\nSubstitutability: fungible | months | years | years-to-decades.\n\nCritical chokepoint rule: A layer is a critical chokepoint if (CR1 ≥ 0.80 OR top-country share ≥ 0.80) AND substitutability ∈ {years, years-to-decades}.\n\nEvery value carries confidence, as-of date, and source URLs. Empty sources are shown as unverified.\n\nData APIs: Machine-readable today: Epoch AI CSV/ZIP downloads (CC-BY) for accelerator compute share and GPU-cluster geography. USGS MCS: PDF + CSV data release, no REST API. TrendForce, Synergy, ASML, company filings: manual citation only. No public APIs.\n\nRefresh API-derived fields: npm run refresh:apis",
   "lastUpdated": "2026-10-05",
-  "exportedAt": "2026-10-05T17:22:57.433Z"
+  "exportedAt": "2026-10-06T18:20:15.992Z"
 }

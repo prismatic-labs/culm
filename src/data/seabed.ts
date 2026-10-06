@@ -110,7 +110,7 @@ export const METAL_PROFILES: MetalAiProfile[] = [
     otherUses: 'Construction, vehicles, general electrification.',
     seabedRole: 'primary target',
     demandNote:
-      'J.P. Morgan Global Research estimates data-center copper demand near 475,000 tonnes in 2026 (~110,000 t above the prior year). S&P Global (Jan 2026) frames AI as adding on the order of 2 Mt incremental copper demand from 2025–2040 for IT infrastructure and power generation. A large AI campus can require tens of thousands of tonnes when grid scope is included.',
+      'J.P. Morgan Global Research estimates data-center copper demand near 475,000 tonnes in 2026 (~110,000 t above the prior year); the underlying note is client-only, so this figure reaches us through trade reporting. S&P Global’s January 2026 study puts AI and data centres together with defence at a combined 4 Mt of additional copper demand by 2040, each of those two vectors roughly tripling, against total demand of 42 Mt. A large AI campus can require tens of thousands of tonnes when grid scope is included.',
     dissent:
       'Some analysts argue AI-driven copper demand is overstated or that headline campus figures bundle grid scope that would exist anyway. ICSG and other forecasters show smaller near-term deficits than bullish bank scenarios.',
     sources: [
@@ -121,10 +121,11 @@ export const METAL_PROFILES: MetalAiProfile[] = [
         note: '475k t data-center copper demand estimate for 2026. The underlying J.P. Morgan research is not publicly hosted.',
       },
       {
-        url: 'https://www.spglobal.com/en/research-insights/market-insights/energy-commodities',
+        // Was a section hub URL, which named no study and could not be checked.
+        url: 'https://press.spglobal.com/2026-01-08-Substantial-Shortfall-in-Copper-Supply-Widens-as-the-Race-for-AI-and-Growing-Defense-Spending-Add-to-Accelerating-Demand,-New-S-P-Global-Study-Finds',
         org: 'S&P Global',
-        asOf: '2026-01',
-        note: 'Copper in the Age of AI; long-horizon incremental demand figures.',
+        asOf: '2026-01-08',
+        note: '"Copper in the Age of AI" (Jan 2026). States a combined 4 Mt of additional demand from AI/data centres plus defence by 2040, and a 10 Mt supply deficit. It does not publish an AI-only split, so no AI-only figure is quoted here.',
       },
       {
         url: 'https://www.iea.org/reports/critical-minerals-market-review-2024',

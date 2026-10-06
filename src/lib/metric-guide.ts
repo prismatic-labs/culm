@@ -138,6 +138,10 @@ const SOURCE_ORG: Record<string, string> = {
   'epoch.ai': 'Epoch AI',
   'ft.com': 'Financial Times',
   'skillings.net': 'Skillings Mining Review',
+  'press.spglobal.com': 'S&P Global',
+  'spglobal.com': 'S&P Global',
+  'iea.org': 'IEA',
+  'isa.org.jm': 'International Seabed Authority',
 };
 
 export function sourceCitation(url: string, asOf: string): string {
