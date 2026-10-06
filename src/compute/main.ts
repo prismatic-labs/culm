@@ -70,6 +70,7 @@ function renderWho(): void {
     <article class="compute-card compute-card--accel">
       <div class="compute-stat-value">${pct(COMPUTE_CONCENTRATION.nvidiaShare)}</div>
       <p class="compute-stat-label">of AI-accelerator compute shipped is Nvidia's, measured in cumulative H100-equivalents</p>
+      <p class="compute-stat-formula">${escapeHtml(COMPUTE_CONCENTRATION.nvidiaFormula)}</p>
       <div class="designer-bars">${bars}</div>
       <p class="compute-card-note">${renderConfidenceTag('medium')} Top three designers hold ${pct(COMPUTE_CONCENTRATION.topThreeShare)} combined; market HHI is ${Math.round(COMPUTE_CONCENTRATION.acceleratorHhi).toLocaleString('en-US')}, far above the 2,500 “highly concentrated” line.</p>
       <ul class="panel-sources">${renderSources(COMPUTE_CONCENTRATION.accelSources)}</ul>
@@ -77,6 +78,7 @@ function renderWho(): void {
     <article class="compute-card compute-card--geo">
       <div class="compute-stat-value">${pct(COMPUTE_CONCENTRATION.usClusterShare)}</div>
       <p class="compute-stat-label">of mapped GPU-cluster compute sits in the United States</p>
+      <p class="compute-stat-formula">${escapeHtml(COMPUTE_CONCENTRATION.usClusterFormula)}</p>
       <p class="compute-card-note">${renderConfidenceTag('medium')} Based on Epoch's existing-cluster inventory, which covers an estimated 10–20% of global AI chips, so the geographic share is indicative, not exhaustive. In this sample, US cluster share is high.</p>
       <ul class="panel-sources">${renderSources(COMPUTE_CONCENTRATION.clusterSources)}</ul>
     </article>`;
