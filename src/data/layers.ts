@@ -83,8 +83,16 @@ const USGS_GERMANIUM_MCS2022 =
 const BROOKINGS_JP =
   'https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/';
 const ASML_EUV = 'https://www.asml.com/en/products/euv-lithography-systems';
-/** June Yoon, "Why neither Asia nor the US has produced a rival to ASML", FT, 20 Jan 2026 (paywalled; listed on the author page). */
-const FT_ASML = 'https://www.ft.com/june-yoon';
+/**
+ * June Yoon, "Why neither Asia nor the US has produced a rival to ASML",
+ * Financial Times, 21 January 2026. Canonical article URL; paywalled, and the
+ * twelve Wayback captures all hold the "Subscribe to read" page rather than the
+ * text, so there is no free mirror to link. Supports the EUV substitutability
+ * call: ASML is the sole commercial supplier, EUV-grade optics come only from
+ * Carl Zeiss SMT after decades of joint development, and a new entrant could not
+ * sell enough systems a year to recover the development cost.
+ */
+const FT_ASML = 'https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805';
 const TRENDFORCE_EDA =
   'https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/';
 const TRENDFORCE_FAB =
