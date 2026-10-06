@@ -125,15 +125,19 @@ export function renderMetricsGuideHtml(): string {
   `;
 }
 
+/** Keyed on the hostname *after* the leading "www." is stripped (see sourceCitation). */
 const SOURCE_ORG: Record<string, string> = {
   'pubs.usgs.gov': 'USGS (U.S. Geological Survey)',
-  'www.brookings.edu': 'Brookings Institution',
-  'www.asml.com': 'ASML',
-  'www.trendforce.com': 'TrendForce',
-  'www.nomadsemi.com': 'Nomad Semi',
-  'www.srgresearch.com': 'Synergy Research Group',
+  'usgs.gov': 'USGS (U.S. Geological Survey)',
+  'github.com': 'GitHub',
+  'brookings.edu': 'Brookings Institution',
+  'asml.com': 'ASML',
+  'trendforce.com': 'TrendForce',
+  'nomadsemi.com': 'Nomad Semi',
+  'srgresearch.com': 'Synergy Research Group',
   'epoch.ai': 'Epoch AI',
-  'www.ft.com': 'Financial Times',
+  'ft.com': 'Financial Times',
+  'skillings.net': 'Skillings Mining Review',
 };
 
 export function sourceCitation(url: string, asOf: string): string {

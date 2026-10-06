@@ -34,9 +34,11 @@ describe('controls (leverage) data integrity', () => {
   });
 
   it('summary controlledLayers counts only layers with a measure in force', () => {
-    const inForce = new Set(LEVERAGE_MEASURES.filter((m) => m.status !== 'contested').map((m) => m.layerId));
-    expect(CONTROLS_SUMMARY.controlledLayers).toBe(inForce.size);
+    // Asserted as a literal on purpose: recomputing the implementation's own
+    // expression here would pass no matter what the filter did.
     expect(CONTROLS_SUMMARY.controlledLayers).toBe(5);
+    const contested = LEVERAGE_MEASURES.filter((m) => m.status === 'contested');
+    expect(contested.map((m) => m.layerId).sort()).toEqual(['chip-design-eda', 'compute-cloud']);
     expect(CONTROLS_SUMMARY.totalLayers).toBe(concentrationMap.layers.length);
   });
 });

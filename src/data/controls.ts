@@ -62,11 +62,14 @@ export const LEVERAGE_MEASURES: LeverageMeasure[] = [
     direction: 'china-to-west',
     controller: 'China',
     target: 'United States, EU, Japan, and other importers',
-    instrument: 'MOFCOM export licensing; outright ban on dual-use shipments to the US',
+    instrument:
+      'MOFCOM export licensing; ban on dual-use shipments to US military end-users. ' +
+      'The blanket US ban is suspended until 27 November 2026.',
     since: '2023',
-    status: 'tightening',
+    status: 'active',
     summary:
-      'China requires export licences for gallium and germanium (from August 2023), then antimony and graphite, and in December 2024 banned exports of gallium, germanium, and antimony to the United States. China refines the large majority of all three.',
+      'China requires export licences for gallium and germanium (from August 2023), then antimony and graphite, and in December 2024 banned exports of gallium, germanium, and antimony to the United States. ' +
+      'That blanket ban was suspended on 9 November 2025 until 27 November 2026, but the three metals stay on the dual-use control list, so exporters still need a Beijing licence, and the ban on US military end-uses remains. China refines the large majority of all three.',
     effect:
       'Gallium and germanium feed RF and power electronics in the materials layer. Prices spiked and buyers sought alternative sources, showing leverage runs both ways: the US, Japan, and the Netherlands hold major shares in tools and chips, while China holds major refining share for several inputs.',
     confidence: 'high',
