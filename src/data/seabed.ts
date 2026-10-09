@@ -110,22 +110,22 @@ export const METAL_PROFILES: MetalAiProfile[] = [
     otherUses: 'Construction, vehicles, general electrification.',
     seabedRole: 'primary target',
     demandNote:
-      'J.P. Morgan Global Research estimates data-center copper demand near 475,000 tonnes in 2026 (~110,000 t above the prior year); the underlying note is client-only, so this figure reaches us through trade reporting. S&P Global’s January 2026 study puts AI and data centres together with defence at a combined 4 Mt of additional copper demand by 2040, each of those two vectors roughly tripling, against total demand of 42 Mt. A large AI campus can require tens of thousands of tonnes when grid scope is included.',
+      'J.P. Morgan Global Research estimates data-center copper demand near 475,000 tonnes in 2026 (~110,000 t above the prior year); the underlying note is client-only, so this figure reaches us through trade reporting. S&P Global’s January 2026 study forecasts data-centre copper demand rising from 1.1 Mt in 2025 to 2.5 Mt by 2040, a range of 1.7–2.7 Mt across its scenarios, against total copper demand growing 28 Mt to 42 Mt. A large AI campus can require tens of thousands of tonnes when grid scope is included.',
     dissent:
       'Some analysts argue AI-driven copper demand is overstated or that headline campus figures bundle grid scope that would exist anyway. ICSG and other forecasters show smaller near-term deficits than bullish bank scenarios.',
     sources: [
       {
         url: 'https://skillings.net/copper-supply-deficit-2026-grid-upgrades-data-centers-and-structural-price-floors/',
-        org: 'J.P. Morgan Global Research, as reported by Skillings',
-        asOf: '2026',
-        note: '475k t data-center copper demand estimate for 2026. The underlying J.P. Morgan research is not publicly hosted.',
+        org: 'J.P. Morgan Global Research (28 Nov 2025), via trade reporting',
+        asOf: '2025-11-28',
+        note: 'Client-only note; no public primary exists. jpmorgan.com/insights/global-research/commodities/copper is a 404 and the commodities hub does not carry the figure. Trade write-ups of it agree on 475k t for 2026 and +110k t year on year. Treat as single-sourced: every public restatement traces back to the same note, not to independent measurement.',
       },
       {
         // Was a section hub URL, which named no study and could not be checked.
         url: 'https://press.spglobal.com/2026-01-08-Substantial-Shortfall-in-Copper-Supply-Widens-as-the-Race-for-AI-and-Growing-Defense-Spending-Add-to-Accelerating-Demand,-New-S-P-Global-Study-Finds',
         org: 'S&P Global',
         asOf: '2026-01-08',
-        note: '"Copper in the Age of AI" (Jan 2026). States a combined 4 Mt of additional demand from AI/data centres plus defence by 2040, and a 10 Mt supply deficit. It does not publish an AI-only split, so no AI-only figure is quoted here.',
+        note: '"Copper in the Age of AI: Challenges of Electrification" (Jan 2026). Figures here are from the full report, s2.4: data-centre copper demand 1.1 Mt (2025) to 2.5 Mt (2040), scenario range 1.7-2.7 Mt; defence reaches nearly 1 Mt by 2040. The press release\u2019s "combined 4 million metric tons of additional demand" for AI plus defence does not match the report\u2019s own numbers (the increase is nearer 2 Mt), so the report is used. Full text is 403 to automated fetches on spglobal.com; a copy is hosted at securityconference.org/assets/01_Bilder_Inhalte/05_Marketplace_of_Ideas/MSC_2026/Copper_in_the_Age_of_AI_Full_Report_January_2026.pdf',
       },
       {
         url: 'https://www.iea.org/reports/critical-minerals-market-review-2024',
