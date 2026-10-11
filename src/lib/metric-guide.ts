@@ -137,7 +137,6 @@ const SOURCE_ORG: Record<string, string> = {
   'srgresearch.com': 'Synergy Research Group',
   'epoch.ai': 'Epoch AI',
   'ft.com': 'Financial Times',
-  'skillings.net': 'Skillings Mining Review',
   'press.spglobal.com': 'S&P Global',
   'spglobal.com': 'S&P Global',
   'iea.org': 'IEA',
