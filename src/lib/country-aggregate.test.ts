@@ -17,9 +17,9 @@ describe('aggregateByCountry', () => {
     const japan = aggregates.find((a) => a.country === 'Japan');
     expect(japan).toBeDefined();
     expect(japan!.layers.some((layer) => layer.id === 'critical-materials')).toBe(true);
-    expect(japan!.maxCountryShare).toBeCloseTo(0.9, 1);
+    expect(japan!.maxCountryShare).toBeCloseTo(0.53, 2);
     expect(japan!.maxCr1).toBeCloseTo(0.99, 2);
-    expect(countryChokeIntensity(japan!)).toBeCloseTo(0.9, 1);
+    expect(countryChokeIntensity(japan!)).toBeCloseTo(0.53, 2);
     expect(countryChokeIntensity(taiwan!)).toBeGreaterThan(0.85);
   });
 

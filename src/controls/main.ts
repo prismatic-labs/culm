@@ -33,7 +33,7 @@ function renderSources(sources: readonly ControlSource[]): string {
 function directionLabel(m: LeverageMeasure): string {
   return m.direction === 'west-to-china'
     ? 'US-led export controls → China'
-    : 'China import restrictions → US, EU, Japan';
+    : 'China export restrictions → US, EU, Japan';
 }
 
 function renderSummary(): void {
@@ -45,7 +45,7 @@ function renderSummary(): void {
     <div class="controls-stats">
       <article class="controls-stat">
         <div class="controls-stat-value">${CONTROLS_SUMMARY.controlledLayers} of ${CONTROLS_SUMMARY.totalLayers}</div>
-        <p class="controls-stat-label">stack chokepoints already under an active control measure</p>
+        <p class="controls-stat-label">stack layers under a control measure in force (not counting contested or rescinded ones)</p>
       </article>
       <article class="controls-stat">
         <div class="controls-stat-value">${govs.length}</div>
@@ -79,8 +79,8 @@ function renderDirectionGuide(): void {
         <p class="controls-direction-note">Chips, tools, and equipment export controls. Red card accent.</p>
       </div>
       <div class="controls-direction-example">
-        <span class="control-dir control-dir--china-to-west">China import restrictions → US, EU, Japan</span>
-        <p class="control-flow control-flow--sample" aria-label="China restricting imports to the United States, EU, and Japan">
+        <span class="control-dir control-dir--china-to-west">China export restrictions → US, EU, Japan</span>
+        <p class="control-flow control-flow--sample" aria-label="China restricting exports to the United States, EU, and Japan">
           <span class="control-actor">China</span>
           <span class="control-arrow" aria-hidden="true">→</span>
           <span class="control-actor">United States, EU, Japan</span>

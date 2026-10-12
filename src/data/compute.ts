@@ -66,6 +66,11 @@ export const COMPUTE_CONCENTRATION = {
   asOfCluster: epochMetrics.computeCloud.asOf,
   accelSources: [EPOCH_ACCEL],
   clusterSources: [EPOCH_CLUSTERS],
+  // Shown under each headline figure. The two measure different things (one
+  // company's share of chips shipped vs one country's share of mapped clusters),
+  // and a reader cannot tell which from the percentage alone.
+  nvidiaFormula: 'NVIDIA cumulative H100e \u00f7 total cumulative H100e across all designers',
+  usClusterFormula: 'US Max OP/s \u00f7 global Max OP/s across existing GPU clusters (Epoch inventory)',
 };
 
 /** The binding constraint: power. Curated, confidence-rated, sourced. */

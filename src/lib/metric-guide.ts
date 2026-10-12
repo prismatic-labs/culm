@@ -125,15 +125,27 @@ export function renderMetricsGuideHtml(): string {
   `;
 }
 
+/** Keyed on the hostname *after* the leading "www." is stripped (see sourceCitation). */
 const SOURCE_ORG: Record<string, string> = {
   'pubs.usgs.gov': 'USGS (U.S. Geological Survey)',
-  'www.brookings.edu': 'Brookings Institution',
-  'www.asml.com': 'ASML',
-  'www.trendforce.com': 'TrendForce',
-  'www.nomadsemi.com': 'Nomad Semi',
-  'www.srgresearch.com': 'Synergy Research Group',
+  'usgs.gov': 'USGS (U.S. Geological Survey)',
+  'github.com': 'GitHub',
+  'brookings.edu': 'Brookings Institution',
+  'asml.com': 'ASML',
+  'trendforce.com': 'TrendForce',
+  'nomadsemi.com': 'Nomad Semi',
+  'srgresearch.com': 'Synergy Research Group',
   'epoch.ai': 'Epoch AI',
-  'www.soitec.com': 'Soitec / Financial Times',
+  'ft.com': 'Financial Times',
+  'press.spglobal.com': 'S&P Global',
+  'spglobal.com': 'S&P Global',
+  'iea.org': 'IEA',
+  'isa.org.jm': 'International Seabed Authority',
+  'bis.gov': 'US Bureau of Industry and Security',
+  'congress.gov': 'Congressional Research Service',
+  'epri.com': 'EPRI',
+  'rnz.co.nz': 'RNZ',
+  'sbma.gov.ck': 'Seabed Minerals Authority, Cook Islands',
 };
 
 export function sourceCitation(url: string, asOf: string): string {

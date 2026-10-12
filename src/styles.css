@@ -4713,6 +4713,14 @@ button.conf-tag--tip:focus-visible {
   color: var(--ink);
 }
 
+.compute-stat-formula {
+  margin: 6px 0 0;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted, #8a8a8a);
+}
+
 .compute-card-note {
   margin: 12px 0 0;
   font-size: 13px;

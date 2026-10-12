@@ -100,9 +100,9 @@ export const DATA_ENDPOINTS: DataEndpoint[] = [
     provider: 'TrendForce',
     layerIds: ['hbm'],
     kind: 'report',
-    url: 'https://www.trendforce.com/research/download/RP260204DA3',
+    url: 'https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/',
     license: 'Third-party press / analyst',
-    notes: 'TrendForce 1Q26 HBM analysis (paywalled; figures via secondary reporting): SK hynix ~62%, Micron ~21% (overtook Samsung), Samsung ~17%. Exact split contested; no public API.',
+    notes: '2024 HBM share forecast: SK hynix 52.5%, Samsung 42.4%; Micron ~5% (2023). 2026 splits in secondary reporting disagree. No public API.',
   },
   {
     id: 'trendforce-tsmc-advanced',

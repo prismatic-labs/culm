@@ -44,11 +44,23 @@ def assert_shares_valid(label: str, shares: dict[str, float]) -> None:
         raise ValueError(f"{label}: designer shares sum to {total:.4f}, expected ~1.0")
 
 
-def latest_end_date(rows: list[dict[str, str]]) -> str:
-    dates = sorted({row["End date"] for row in rows if row.get("End date")})
-    if not dates:
-        raise ValueError("chip sales CSV has no End date values")
-    return dates[-1]
+def latest_complete_end_date(rows: list[dict[str, str]]) -> str:
+    """Latest quarter where every designer has a total row and none is flagged Incomplete.
+
+    Epoch publishes a partial newest quarter (e.g. only Nvidia and Google, from their fiscal
+    calendars); taking it would drop the other designers and inflate the leaders' shares.
+    """
+    totals = [row for row in rows if "total" in row["Name"] and row.get("End date")]
+    designers = {row["Chip manufacturer"] for row in totals}
+    by_date: dict[str, list[dict[str, str]]] = {}
+    for row in totals:
+        by_date.setdefault(row["End date"], []).append(row)
+    for end_date in sorted(by_date, reverse=True):
+        dated = by_date[end_date]
+        complete = all(row.get("Incomplete", "").strip().lower() != "true" for row in dated)
+        if complete and {row["Chip manufacturer"] for row in dated} == designers:
+            return end_date
+    raise ValueError("chip sales CSV has no quarter with complete rows for every designer")
 
 
 def chip_designer_shares() -> dict:
@@ -59,7 +71,7 @@ def chip_designer_shares() -> dict:
     if not rows:
         raise ValueError("chip sales CSV is empty")
 
-    end_date = latest_end_date(rows)
+    end_date = latest_complete_end_date(rows)
     by_designer: dict[str, float] = {}
     for row in rows:
         if row["End date"] != end_date:

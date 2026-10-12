@@ -62,11 +62,14 @@ export const LEVERAGE_MEASURES: LeverageMeasure[] = [
     direction: 'china-to-west',
     controller: 'China',
     target: 'United States, EU, Japan, and other importers',
-    instrument: 'MOFCOM export licensing; outright ban on dual-use shipments to the US',
+    instrument:
+      'MOFCOM export licensing; ban on dual-use shipments to US military end-users. ' +
+      'The blanket US ban is suspended until 27 November 2026.',
     since: '2023',
-    status: 'tightening',
+    status: 'active',
     summary:
-      'China requires export licences for gallium and germanium (from August 2023), then antimony and graphite, and in December 2024 banned exports of gallium, germanium, and antimony to the United States. China refines the large majority of all three.',
+      'China requires export licences for gallium and germanium (from August 2023), then antimony and graphite, and in December 2024 banned exports of gallium, germanium, and antimony to the United States. ' +
+      'That blanket ban was suspended on 9 November 2025 until 27 November 2026, but the three metals stay on the dual-use control list, so exporters still need a Beijing licence, and the ban on US military end-uses remains. China refines the large majority of all three.',
     effect:
       'Gallium and germanium feed RF and power electronics in the materials layer. Prices spiked and buyers sought alternative sources, showing leverage runs both ways: the US, Japan, and the Netherlands hold major shares in tools and chips, while China holds major refining share for several inputs.',
     confidence: 'high',
@@ -129,7 +132,7 @@ export const LEVERAGE_MEASURES: LeverageMeasure[] = [
   {
     id: 'sme-leading-edge',
     layerId: 'leading-edge-fab',
-    layerName: 'Leading-Edge Fabrication (≤5nm)',
+    layerName: 'Leading-Edge Fabrication (3nm)',
     stackOrder: 4,
     title: 'Multilateral curbs on chipmaking equipment',
     direction: 'west-to-china',
@@ -214,8 +217,8 @@ export const LEVERAGE_MEASURES: LeverageMeasure[] = [
 ];
 
 export const CONTROLS_SUMMARY = {
-  /** Distinct stack layers that carry at least one active control measure. */
-  controlledLayers: 7,
+  /** Distinct stack layers with at least one measure in force (active or tightening); contested ones are excluded. */
+  controlledLayers: new Set(LEVERAGE_MEASURES.filter((m) => m.status !== 'contested').map((m) => m.layerId)).size,
   totalLayers: 8,
   governmentsInConcert: ['United States', 'Netherlands', 'Japan'],
 };
@@ -229,5 +232,5 @@ export const CONTROLS_PAGE_COPY = {
   leverage:
     'Export and compute controls are a major enforceable lever in current AI policy debates. They are possible only because the inputs to frontier AI are concentrated enough to gate, which is exactly what Culm maps.',
   directionGuide:
-    'Each arrow reads left to right: who holds the lever, then who the control targets. The badge in the corner repeats the same direction. Red means US-led export controls toward China; blue means China restricting imports to the United States, EU, Japan, and other buyers.',
+    'Each arrow reads left to right: who holds the lever, then who the control targets. The badge in the corner repeats the same direction. Red means US-led export controls toward China; blue means China restricting exports to the United States, EU, Japan, and other buyers.',
 } as const;

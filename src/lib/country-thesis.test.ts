@@ -12,9 +12,9 @@ describe('countryThesisCopy', () => {
     );
     const copy = countryThesisCopy('Japan', japanLayers, layers.length);
 
-    expect(copy.statNum).toBe('90%');
+    expect(copy.statNum).toBe('53%');
     expect(copy.statNum).not.toBe('99%');
-    expect(copy.why).toContain('90%');
+    expect(copy.why).toContain('53%');
     expect(copy.why).toMatch(/rerout|backup|substitut|years/i);
     expect(copy.why).not.toMatch(/meets the rule/i);
   });
@@ -44,7 +44,7 @@ describe('explainChokepointForCountry', () => {
   it('uses dominant-country share for composite layers', () => {
     const materials = concentrationMap.layers.find((l) => l.id === 'critical-materials')!;
     const why = explainChokepointForCountry(materials, 'Japan');
-    expect(why).toContain('90%');
+    expect(why).toContain('53%');
     expect(why).toMatch(/rerout|backup|years/i);
     expect(why).not.toMatch(/meets the rule/i);
   });
@@ -53,7 +53,7 @@ describe('explainChokepointForCountry', () => {
 describe('maxCountryShare', () => {
   it('returns the country dominant share, not layer CR1', () => {
     const materials = concentrationMap.layers.find((l) => l.id === 'critical-materials')!;
-    expect(maxCountryShare([materials], 'Japan')).toBeCloseTo(0.9);
+    expect(maxCountryShare([materials], 'Japan')).toBeCloseTo(0.53);
     expect(maxCountryShare([materials], 'China')).toBeCloseTo(0.99);
   });
 });

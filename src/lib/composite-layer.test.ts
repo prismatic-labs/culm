@@ -13,7 +13,7 @@ describe('composite layer helpers', () => {
 
   it('summarizes both dominant geographies', () => {
     expect(compositeGeoSummary(materials)).toContain('China 99%');
-    expect(compositeGeoSummary(materials)).toContain('Japan 90%');
+    expect(compositeGeoSummary(materials)).toContain('Japan 53%');
   });
 
   it('explains headline CR1 in the panel notice', () => {

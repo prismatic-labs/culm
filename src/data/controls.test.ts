@@ -33,9 +33,12 @@ describe('controls (leverage) data integrity', () => {
     expect(dirs.has('china-to-west')).toBe(true);
   });
 
-  it('summary controlledLayers matches the distinct layers under control', () => {
-    const distinct = new Set(LEVERAGE_MEASURES.map((m) => m.layerId));
-    expect(CONTROLS_SUMMARY.controlledLayers).toBe(distinct.size);
+  it('summary controlledLayers counts only layers with a measure in force', () => {
+    // Asserted as a literal on purpose: recomputing the implementation's own
+    // expression here would pass no matter what the filter did.
+    expect(CONTROLS_SUMMARY.controlledLayers).toBe(5);
+    const contested = LEVERAGE_MEASURES.filter((m) => m.status === 'contested');
+    expect(contested.map((m) => m.layerId).sort()).toEqual(['chip-design-eda', 'compute-cloud']);
     expect(CONTROLS_SUMMARY.totalLayers).toBe(concentrationMap.layers.length);
   });
 });

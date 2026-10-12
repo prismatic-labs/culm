@@ -83,14 +83,22 @@ const USGS_GERMANIUM_MCS2022 =
 const BROOKINGS_JP =
   'https://www.brookings.edu/articles/the-renaissance-of-the-japanese-semiconductor-industry/';
 const ASML_EUV = 'https://www.asml.com/en/products/euv-lithography-systems';
-const FT_ASML =
-  'https://www.soitec.com/docs/default-source/press-news---articles-de-presse/january---26/why-neither-asia-nor-the-us-has-produced-a-rival-to-asml---financial-times---21-01-2026.pdf';
+/**
+ * June Yoon, "Why neither Asia nor the US has produced a rival to ASML",
+ * Financial Times, 21 January 2026. Canonical article URL; paywalled, and the
+ * twelve Wayback captures all hold the "Subscribe to read" page rather than the
+ * text, so there is no free mirror to link. Supports the EUV substitutability
+ * call: ASML is the sole commercial supplier, EUV-grade optics come only from
+ * Carl Zeiss SMT after decades of joint development, and a new entrant could not
+ * sell enough systems a year to recover the development cost.
+ */
+const FT_ASML = 'https://www.ft.com/content/e47375fb-8c9f-4a4f-8526-8d46ededb805';
 const TRENDFORCE_EDA =
   'https://www.trendforce.com/news/2025/06/02/news-china-revenue-at-risk-as-u-s-curbs-slam-eda-giants-impact-on-synopsys-cadence-and-more/';
 const TRENDFORCE_FAB =
   'https://www.trendforce.com/news/2024/04/08/news-tsmcs-advanced-processes-remain-resilient-amid-challenges/';
 const TRENDFORCE_HBM =
-  'https://www.trendforce.com/research/download/RP260204DA3';
+  'https://www.trendforce.com/news/2024/04/24/news-amid-foundry-overcapacity-competition-for-hbm-intensifies-rapidly/';
 const NOMAD_COWOS = 'https://www.nomadsemi.com/p/tsmcs-cowos-capacity';
 const SYNERGY_CLOUD =
   'https://www.srgresearch.com/articles/cloud-market-jumped-to-330-billion-in-2024-genai-is-now-driving-half-of-the-growth';
@@ -129,17 +137,17 @@ const criticalMaterials = layerFromMetrics({
       }),
     },
     {
-      name: 'JSR + TOK + Shin-Etsu (EUV photoresist)',
+      name: 'JSR + TOK + Shin-Etsu (photoresists)',
       country: 'Japan',
-      share: sv(0.9, {
+      share: sv(0.5, {
         confidence: 'medium',
         asOf: '2024',
         sources: [BROOKINGS_JP],
-        note: 'Brookings cites ~50% global photoresist share for Japan; EUV segment higher (~90% per industry reports). Layer uses Japan photoresist/wafer cluster.',
+        note: 'Brookings: Japan ~50% of global photoresist supply (all types). Industry reports put the EUV segment higher, but without a citable figure.',
       }),
     },
     {
-      name: 'Shin-Etsu + SUMCO (300mm silicon wafers)',
+      name: 'Shin-Etsu + SUMCO (silicon wafers)',
       country: 'Japan',
       share: sv(0.53, {
         confidence: 'medium',
@@ -156,7 +164,7 @@ const criticalMaterials = layerFromMetrics({
       sources: [USGS_GALLIUM],
       note: 'Layer headline CR1 uses gallium primary production, the tightest single-country input in this layer.',
       caveat:
-        'China lifted its 1-year ban on gallium exports to the US in November 2025 (USGS MCS 2026); the acute export lever is temporarily relaxed, but the structural refining concentration is unchanged.',
+        'China suspended its ban on gallium exports to the US for one year in November 2025 (USGS MCS 2026); the acute export lever is temporarily relaxed, but the structural refining concentration is unchanged.',
     }),
     cr3: sv(0.99, {
       confidence: 'medium',
@@ -164,11 +172,11 @@ const criticalMaterials = layerFromMetrics({
       sources: [USGS_GALLIUM, BROOKINGS_JP],
       note: 'Composite layer; CR3 not additive across sub-materials. Shown for transparency.',
     }),
-    hhi: sv(9900, {
+    hhi: sv(9801, {
       confidence: 'medium',
       asOf: '2025',
       sources: [USGS_GALLIUM],
-      note: 'Dominated by gallium country concentration.',
+      note: 'Gallium country concentration: China 99% gives 99² = 9,801.',
     }),
     topCountry: 'China',
     topCountryShare: sv(0.99, {
@@ -189,11 +197,11 @@ const criticalMaterials = layerFromMetrics({
       },
       {
         country: 'Japan',
-        share: sv(0.9, {
+        share: sv(0.53, {
           confidence: 'medium',
           asOf: '2024',
           sources: [BROOKINGS_JP],
-          note: 'Japan ~90% EUV photoresist; ~53% silicon wafers (Brookings).',
+          note: 'Brookings: Japan 53% of silicon wafers and ~50% of photoresists.',
         }),
       },
     ],
@@ -230,18 +238,18 @@ const criticalMaterials = layerFromMetrics({
     },
     {
       id: 'euv-photoresist',
-      name: 'EUV photoresist (JSR, TOK, Shin-Etsu)',
+      name: 'Photoresists (JSR, TOK, Shin-Etsu)',
       country: 'Japan',
-      share: sv(0.9, {
+      share: sv(0.5, {
         confidence: 'medium',
         asOf: '2024',
         sources: [BROOKINGS_JP],
-        note: 'Japan ~90% of EUV photoresist segment.',
+        note: 'Brookings: Japan ~50% of global photoresist supply (all types).',
       }),
     },
     {
       id: 'silicon-wafers',
-      name: '300mm silicon wafers (Shin-Etsu, SUMCO)',
+      name: 'Silicon wafers (Shin-Etsu, SUMCO)',
       country: 'Japan',
       share: sv(0.53, {
         confidence: 'medium',
@@ -414,15 +422,15 @@ const chipDesignEda = layerFromMetrics({
 
 const leadingEdgeFab = layerFromMetrics({
   id: 'leading-edge-fab',
-  name: 'Leading-Edge Fabrication (≤5nm)',
+  name: 'Leading-Edge Fabrication (3nm)',
   stackOrder: 4,
   category: 'Fabrication',
   whatItIs:
     'The foundries that actually manufacture the most advanced AI chips at the smallest process nodes.',
   whyItMatters:
-    'Most leading-edge AI silicon is fabricated by one company, concentrated in one region. ' +
-    'That is high geographic concentration for leading-edge production.',
-  stallEffect: 'Leading-edge ≤5nm production would be severely constrained at scale.',
+    'At 3nm, the most advanced node in volume production, nearly every chip is made by one company in one region. ' +
+    'One node back, at 5nm, TSMC still holds roughly 70–80%.',
+  stallEffect: 'Leading-edge 3nm production would be severely constrained at scale.',
   actors: [
     {
       name: 'TSMC',
@@ -431,16 +439,7 @@ const leadingEdgeFab = layerFromMetrics({
         confidence: 'medium',
         asOf: '2024-04',
         sources: [TRENDFORCE_FAB],
-        note: 'TrendForce April 2024: TSMC >90% at 3nm, ~70-80% at 5nm; layer uses advanced-node composite ~90%.',
-      }),
-    },
-    {
-      name: 'Samsung Foundry',
-      country: 'South Korea',
-      share: sv(0.08, {
-        confidence: 'medium',
-        asOf: '2024-04',
-        sources: [TRENDFORCE_FAB],
+        note: 'TrendForce (April 2024, citing Commercial Times): TSMC expected to exceed 90% at 3nm; approximately 70–80% at 5nm. Shown as 90%, a floor for 3nm.',
       }),
     },
   ],
@@ -448,11 +447,15 @@ const leadingEdgeFab = layerFromMetrics({
     ...metricsFromActors(
       [
         { name: 'TSMC', country: 'Taiwan', share: sv(0.9, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_FAB] }) },
-        { name: 'Samsung Foundry', country: 'South Korea', share: sv(0.08, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_FAB] }) },
       ],
       {
         topCountry: 'Taiwan',
-        topCountryShare: sv(0.9, { confidence: 'medium', asOf: '2024-04', sources: [TRENDFORCE_FAB] }),
+        topCountryShare: sv(0.9, {
+          confidence: 'medium',
+          asOf: '2024-04',
+          sources: [TRENDFORCE_FAB],
+          note: 'Expected to exceed 90% at 3nm; ~70–80% at 5nm.',
+        }),
         substitutability: sv('years', {
           confidence: 'high',
           asOf: '2025',
@@ -473,50 +476,49 @@ const hbm = layerFromMetrics({
   category: 'Memory',
   whatItIs: 'Stacked DRAM packages that feed AI accelerators at the bandwidth training and inference require.',
   whyItMatters:
-    'Still a three-firm oligopoly, but the Korea lock is easing: US-based Micron overtook Samsung for the #2 spot in 2026, ' +
-    'pulling the combined Korean share down from ~95% toward ~79%. Accelerator output is capped by HBM attach rate and supply.',
+    'Only three firms make HBM at scale, and two of them are in Korea. Accelerator output is capped by HBM attach rate and supply.',
   stallEffect:
     'Training clusters would face memory-bandwidth limits; accelerator output would be capped.',
   actors: [
     {
       name: 'SK hynix',
       country: 'South Korea',
-      share: sv(0.62, { confidence: 'low', asOf: '2026-Q1', sources: [TRENDFORCE_HBM], note: 'TrendForce 1Q26 HBM analysis (via secondary reporting). Sources range ~50–70% for SK hynix.' }),
-    },
-    {
-      name: 'Micron',
-      country: 'United States',
-      share: sv(0.21, { confidence: 'low', asOf: '2026-Q1', sources: [TRENDFORCE_HBM], note: 'Micron overtook Samsung for #2 in 2026 on HBM3E ramp. Estimates range ~18–24%.' }),
+      share: sv(0.525, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM], note: 'TrendForce 2024 HBM share forecast.' }),
     },
     {
       name: 'Samsung',
       country: 'South Korea',
-      share: sv(0.17, { confidence: 'low', asOf: '2026-Q1', sources: [TRENDFORCE_HBM], note: 'Fell from ~42% (2024); recovering on HBM4. Some sources still place Samsung ahead of Micron, hence low confidence.' }),
+      share: sv(0.424, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM], note: 'TrendForce 2024 HBM share forecast.' }),
+    },
+    {
+      name: 'Micron',
+      country: 'United States',
+      share: sv(0.05, { confidence: 'medium', asOf: '2023', sources: [TRENDFORCE_HBM], note: 'TrendForce: roughly 5% in 2023.' }),
     },
   ],
   metrics: {
     ...metricsFromActors(
       [
-        { name: 'SK hynix', country: 'South Korea', share: sv(0.62, { confidence: 'low', asOf: '2026-Q1', sources: [TRENDFORCE_HBM] }) },
-        { name: 'Micron', country: 'United States', share: sv(0.21, { confidence: 'low', asOf: '2026-Q1', sources: [TRENDFORCE_HBM] }) },
-        { name: 'Samsung', country: 'South Korea', share: sv(0.17, { confidence: 'low', asOf: '2026-Q1', sources: [TRENDFORCE_HBM] }) },
+        { name: 'SK hynix', country: 'South Korea', share: sv(0.525, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }) },
+        { name: 'Samsung', country: 'South Korea', share: sv(0.424, { confidence: 'medium', asOf: '2024', sources: [TRENDFORCE_HBM] }) },
+        { name: 'Micron', country: 'United States', share: sv(0.05, { confidence: 'medium', asOf: '2023', sources: [TRENDFORCE_HBM] }) },
       ],
       {
         topCountry: 'South Korea',
-        topCountryShare: sv(0.79, {
-          confidence: 'low',
-          asOf: '2026-Q1',
+        topCountryShare: sv(0.949, {
+          confidence: 'medium',
+          asOf: '2024',
           sources: [TRENDFORCE_HBM],
-          note: 'SK hynix + Samsung combined, down from ~95% in 2024 as US-based Micron rose to #2.',
+          note: 'SK hynix + Samsung combined, TrendForce 2024 forecast.',
           caveat:
-            'Threshold-sensitive: the Korean share sits just below the 80% chokepoint line, and secondary sources disagree on the exact SK hynix / Samsung / Micron split (SK ~50–70%, Micron vs Samsung for #2 goes both ways). Confirm against the primary TrendForce 1Q26/2Q26 HBM report before treating the chokepoint easing as settled.',
+            'Latest sourced split is for 2024. Reports of 2026 shares disagree (some have Micron overtaking Samsung, which would bring Korea near the 80% line; TrendForce\u2019s own summary says Samsung\u2019s share is recovering on HBM4), so this layer is threshold-sensitive.',
         }),
         substitutability: sv('years', {
           confidence: 'medium',
-          asOf: '2026-Q1',
+          asOf: '2024',
           sources: [TRENDFORCE_HBM],
         }),
-        asOf: '2026-Q1',
+        asOf: '2024',
         sources: [TRENDFORCE_HBM],
       },
     ),
