@@ -141,6 +141,11 @@ const SOURCE_ORG: Record<string, string> = {
   'spglobal.com': 'S&P Global',
   'iea.org': 'IEA',
   'isa.org.jm': 'International Seabed Authority',
+  'bis.gov': 'US Bureau of Industry and Security',
+  'congress.gov': 'Congressional Research Service',
+  'epri.com': 'EPRI',
+  'rnz.co.nz': 'RNZ',
+  'sbma.gov.ck': 'Seabed Minerals Authority, Cook Islands',
 };
 
 export function sourceCitation(url: string, asOf: string): string {
